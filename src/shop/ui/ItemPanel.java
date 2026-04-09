@@ -11,6 +11,10 @@ public class ItemPanel extends JPanel{
     // private String imageName;
     // private String price;
 
+
+
+
+
     public ItemPanel(String name,String imageName, String price){
     
         // this.name=name;
@@ -23,8 +27,9 @@ public class ItemPanel extends JPanel{
         this.setPreferredSize(new Dimension(250,280));
        
         
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        this.setBorder(BorderFactory.createLineBorder(Color.decode("#d8b598"),2));
     
+        
         
 
 

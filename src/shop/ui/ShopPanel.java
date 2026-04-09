@@ -5,6 +5,50 @@ import java.awt.*;
 
 
 
+class TopPanel extends JPanel{
+    
+
+    JButton list = new JButton();
+    
+
+    public TopPanel(SidePanel sidePanel){
+       
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setPreferredSize(new Dimension(0,40));
+        this.setBackground(Color.decode("#71625d"));
+
+        
+        list.addActionListener(e -> {
+            System.out.println("list pressed");
+            sidePanel.setVisible(!sidePanel.isVisible());
+            sidePanel.getParent().revalidate();
+            sidePanel.getParent().repaint();
+
+
+        });
+        list.setPreferredSize(new Dimension(40,30));
+        list.setText("☰");
+        list.setFocusPainted(false);
+     list.setBorderPainted(false);
+        list.setBackground(Color.decode("#71625d"));
+        list.setForeground(Color.WHITE);
+        this.add(list);
+
+    }
+
+
+}
+
+class SidePanel extends JPanel{
+
+    public SidePanel(){
+
+        this.setPreferredSize(new Dimension(300,0));
+        this.setBackground(Color.decode("#d9c7b6"));
+        this.setVisible(false);
+
+    }
+}
 
 public class ShopPanel extends JPanel {
 
@@ -31,35 +75,15 @@ public class ShopPanel extends JPanel {
             itemWindow.add("microphone","microphone.PNG","1500");
          }
           
-        
-           
-
-
-        
-        JPanel sidePanel = new JPanel();
-        sidePanel.setPreferredSize(new Dimension(200,0));
-        sidePanel.setBackground(Color.decode("#B4D4FF"));
-
-
+         SidePanel sidePanel = new SidePanel();
+         TopPanel topPanel = new TopPanel(sidePanel);
+         //BottomPanel bottomPanel = new BottomPanel();
        
-       
-       
-        JPanel topPanel = new JPanel();
-        topPanel.setPreferredSize(new Dimension(0,30));
-        topPanel.setBackground(Color.decode("#176B87"));
-
-        
-        
-        
-        
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setPreferredSize(new Dimension(0,200));
-        bottomPanel.setBackground(Color.decode("#213C51"));
 
        // mainPanel.add(itemsPanel, BorderLayout.CENTER);
-        mainPanel.add(sidePanel, BorderLayout.EAST);
+        mainPanel.add(sidePanel, BorderLayout.WEST);
         mainPanel.add(topPanel,BorderLayout.NORTH);
-        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+        //mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         this.setLayout(new BorderLayout());
         this.add(mainPanel, BorderLayout.CENTER);
