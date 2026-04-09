@@ -7,22 +7,21 @@ import java.awt.*;
 
 public class ItemPanel extends JPanel{
    
-    private String name;
-    private String imageName;
-    private String price;
+    // private String name;
+    // private String imageName;
+    // private String price;
 
     public ItemPanel(String name,String imageName, String price){
     
-        this.name=name;
-        this.imageName=imageName;
-        this.price=price;
+        // this.name=name;
+        // this.imageName=imageName;
+        // this.price=price;
 
         //setting the itemPanel layout
         this.setLayout(new BorderLayout());
         
-        this.setPreferredSize(new Dimension(150,220));
-        this.setMaximumSize(new Dimension(150 , 220));
-        this.setMinimumSize(new Dimension(150 , 220));
+        this.setPreferredSize(new Dimension(250,280));
+       
         
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
     

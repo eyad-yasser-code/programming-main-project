@@ -3,6 +3,9 @@ package shop.ui;
 import javax.swing.*;
 import java.awt.*;
 
+
+
+
 public class ShopPanel extends JPanel {
 
     public ShopPanel(){
@@ -12,14 +15,25 @@ public class ShopPanel extends JPanel {
         mainPanel.setLayout(new BorderLayout(1,1));
         mainPanel.setBackground(Color.decode("#E5E1DA"));
 
-        JPanel itemsPanel = new JPanel();
-        itemsPanel.setLayout(new GridLayout(0, 3, 10, 10));
-        itemsPanel.setBackground(Color.decode("#EEF5FF"));
-    
-            itemsPanel.add(new ItemPanel("laptop","laptop.PNG","15,000"));
-            itemsPanel.add(new ItemPanel("keyboard","keyboard.PNG","1000"));
-            itemsPanel.add(new ItemPanel("mouse","mouse.PNG","500"));
-            itemsPanel.add(new ItemPanel("microphone","microphone.PNG","1500"));
+
+        ItemWindow itemWindow = new ItemWindow();
+        mainPanel.add(itemWindow, BorderLayout.CENTER);
+        
+      
+       
+        
+            itemWindow.add("laptop","laptop.PNG","15,000");
+            itemWindow.add("keyboard","keyboard.PNG","1000");
+            itemWindow.add("mouse","mouse.PNG","500");
+            itemWindow.add("microphone","microphone.PNG","1500");
+         
+         for(int i =0 ; i<10 ; i++){
+            itemWindow.add("microphone","microphone.PNG","1500");
+         }
+          
+        
+           
+
 
         
         JPanel sidePanel = new JPanel();
@@ -27,15 +41,22 @@ public class ShopPanel extends JPanel {
         sidePanel.setBackground(Color.decode("#B4D4FF"));
 
 
+       
+       
+       
         JPanel topPanel = new JPanel();
         topPanel.setPreferredSize(new Dimension(0,30));
         topPanel.setBackground(Color.decode("#176B87"));
 
+        
+        
+        
+        
         JPanel bottomPanel = new JPanel();
         bottomPanel.setPreferredSize(new Dimension(0,200));
         bottomPanel.setBackground(Color.decode("#213C51"));
 
-        mainPanel.add(itemsPanel, BorderLayout.CENTER);
+       // mainPanel.add(itemsPanel, BorderLayout.CENTER);
         mainPanel.add(sidePanel, BorderLayout.EAST);
         mainPanel.add(topPanel,BorderLayout.NORTH);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
