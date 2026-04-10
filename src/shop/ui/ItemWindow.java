@@ -13,24 +13,37 @@ import java.awt.*;
 
 class PressableButton extends JButton{
 
+private boolean hover = false;
+private Color baseColor;
+private Color hoverColor;
+private int arc;
+
+
+
+    @Override
+    protected void paintComponent(Graphics g){
+        
+        
+    Graphics2D g2D = (Graphics2D)g;
+
+
+    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+
+    g2D.setColor(hover == false ? baseColor : hoverColor );
+    g2D.fillRoundRect(0,0,getWidth(),getHeight(),arc,arc);
    
-        @Override 
-        protected void paintComponent(Graphics g ){
-           
-            Graphics2D g2D =(Graphics2D)g;
 
-            g2D.setColor(getBackground());
-            g2D.fillRoundRect(0,0 ,getWidth(),getHeight(), 30,30);
 
-            super.paintComponent(g);
-        }
+    super.paintComponent(g);
+    }
 
     
-public PressableButton(String base, String hover){
+public PressableButton(String base, String hover, int arc){
 
-    Color baseColor = Color.decode(base);
-    Color hoverColor = Color.decode(hover);
-
+    baseColor = Color.decode(base);
+    hoverColor = Color.decode(hover);
+    this.arc=arc;
 
     this.setFocusPainted(false);
     this.setBorderPainted(false);
@@ -46,17 +59,24 @@ public PressableButton(String base, String hover){
         @Override
         public void mouseEntered(java.awt.event.MouseEvent e){
             setBackground(hoverColor);
+            sethover(true);
         }    
         
         @Override
         public void mouseExited(java.awt.event.MouseEvent e){
             setBackground(baseColor);
+            sethover(false);
         }
         
 
     });
-
+   
+  
 }
+
+  private void sethover(boolean hover){
+        this.hover=hover;
+    }
 
 }
 
@@ -147,7 +167,7 @@ class MainPanel extends JPanel{
         
 
             //buttons 
-            PressableButton backToTop = new PressableButton("#159069","#56b798");
+            PressableButton backToTop = new PressableButton("#159069","#56b798",0);
             backToTop.setText("Back To Top");
             backToTop.setPreferredSize(new Dimension(Integer.MAX_VALUE,40));
             backToTop.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
