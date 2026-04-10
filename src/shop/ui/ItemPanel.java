@@ -2,8 +2,7 @@ package shop.ui;
 
 import javax.swing.*;
 import java.awt.*;
-
-
+import java.awt.geom.*;
 
 
 class ImageLabel extends JLabel{
@@ -14,9 +13,6 @@ class ImageLabel extends JLabel{
         ImageIcon icon = new ImageIcon(getClass().getResource(dir + imagName)); //dir -> ex: /images/
         this.image= icon.getImage();
 
-        
-
-
     }
 
     @Override
@@ -25,10 +21,31 @@ class ImageLabel extends JLabel{
 
         Graphics2D g2D = (Graphics2D) g;
 
+
+
+        int imagWidth = image.getWidth(this);
+        int imagHeight = image.getHeight(this);
+
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
+
+        //I want:  imageSize * scale = panelSize  
+        double scaleX = (double)panelWidth / imagWidth; //how much image width change when changing panel width
+        double scaleY = (double)panelHeight / imagHeight;
+
+        double scale = Math.min(scaleX,scaleY); // get smaller one, make sure the image fit in both width and hight to not overflow
+
+        int newWidth = (int)(imagWidth*scale);
+        int newHeight = (int)(imagHeight*scale);
+
+        int xPos = (panelWidth - newWidth)/2;
+        int yPos = (panelHeight - newHeight)/2;
+
+        //smother scalling
         g2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,  RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-       
-        g2D.drawImage(image,0,0,getWidth(),getHeight(),this);
+
+        g2D.drawImage(image,xPos,yPos,newWidth,newHeight,this);
 
     }
 
@@ -45,16 +62,18 @@ public class ItemPanel extends JPanel{
    
    float fractions[]={0.0f,0.4f,1.0f};
    Color colors[]={Color.decode("#1d1f1d"),Color.decode("#1d1f1d"), Color.decode("#373737")};
+   
    @Override
-   protected void paintComponent(Graphics graphics){
-        super.paintComponent(graphics);
-        Graphics2D graphics2d = (Graphics2D)graphics;
+   protected void paintComponent(Graphics g){
+        
+    super.paintComponent(g);
 
-      // GradientPaint gradientPaint = new GradientPaint(0 , 0 , Color.decode("#8fee8a"), 0 , getHeight(), Color.decode("#504f4c"));
-        LinearGradientPaint lGradientPaint = new LinearGradientPaint(0,0,getWidth(),getHeight(), fractions,colors);
+    Graphics2D g2D = (Graphics2D)g;
+    LinearGradientPaint linerG = new LinearGradientPaint(0,0,getWidth(),getHeight(), fractions,colors);
 
-        graphics2d.setPaint(lGradientPaint);
-        graphics2d.fillRoundRect(0 , 0 , getWidth(),getHeight(),30,40);
+    g2D.setPaint(linerG);
+    g2D.fillRoundRect(0 , 0 , getWidth(),getHeight(),30,30);
+    
     }
 
 
@@ -67,19 +86,48 @@ public class ItemPanel extends JPanel{
         this.setOpaque(false);
         
     
+        //image section
+
+        JPanel imagPanel = new JPanel(new BorderLayout()){
+            
+            @Override 
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Graphics2D g2D = (Graphics2D)g;
+
+                g2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,  RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                Shape clip = new RoundRectangle2D.Float(0,0,getWidth(),getHeight(),30,30);
+                g2D.setClip(clip);
+
+                g2D.setColor(getBackground());
+                g2D.fillRoundRect(0,0, getWidth(),getHeight(), 30, 30);
+
+               
+            }
+
+        };
+        imagPanel.setOpaque(false);
+        imagPanel.setPreferredSize(new Dimension(0,300));
+        imagPanel.setBackground(Color.WHITE);
+  
+  
+        ImageLabel imagLabel = new ImageLabel("/images/",imageName);
+        imagLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+
+        imagPanel.add(imagLabel, BorderLayout.CENTER);
+
+     
         
-        int imagWidth = 600;
-        int imagHeight = 210;
-
-        ImageLabel imageLabel = new ImageLabel("/images/",imageName);
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        imageLabel.setPreferredSize(new Dimension(imagWidth,imagHeight));
-        imageLabel.setMaximumSize(new Dimension(imagWidth,imagHeight));
-        imageLabel.setMinimumSize(new Dimension(imagWidth,imagHeight));
-
-
-
-        //labels
+        //text section
+        
+        
+        JPanel textPanel = new JPanel();
+        textPanel.setLayout(new BoxLayout(textPanel,BoxLayout.Y_AXIS));
+        textPanel.setOpaque(false);
+        textPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+       
         JLabel nameLabel = new JLabel(name);
         nameLabel.setFont(new Font("Arial",Font.PLAIN,12));
         nameLabel.setForeground(Color.WHITE);
@@ -90,20 +138,17 @@ public class ItemPanel extends JPanel{
         priceLabel.setFont(new Font("Arial",Font.BOLD,14));
         priceLabel.setForeground(Color.WHITE);
         priceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
- 
-        JPanel textPanel = new JPanel();
-        textPanel.setLayout(new BoxLayout(textPanel,BoxLayout.Y_AXIS));
-        textPanel.setOpaque(false);
-        textPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         textPanel.add(nameLabel);
         textPanel.add(Box.createRigidArea(new Dimension(0 , 10)));
         textPanel.add(priceLabel);
         textPanel.add(Box.createRigidArea(new Dimension(0 , 10)));
 
+   
+   
+        //buttons section
 
 
-        //buttons
         JButton cartAdd = new JButton("Add to cart");
         cartAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
         cartAdd.setFocusPainted(false);
@@ -118,11 +163,14 @@ public class ItemPanel extends JPanel{
 
 
 
-       // this.add(Box.createRigidArea(new Dimension(0, 10)));
-        this.add(imageLabel);
+       
+        this.add(imagPanel);
         this.add(Box.createRigidArea(new Dimension(0,10)));
         this.add(textPanel);
         this.add(Box.createRigidArea(new Dimension(0,10)));
+        this.add(Box.createRigidArea(new Dimension(0,10)));
+        this.add(Box.createRigidArea(new Dimension(0,10)));
+
         this.add(cartAdd);
        
       

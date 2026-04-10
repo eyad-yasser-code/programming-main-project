@@ -20,7 +20,7 @@ class ItemPanelHolder extends JPanel{
        
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
-        this.setBorder(new EmptyBorder(150,100,100,100));
+        this.setBorder(new EmptyBorder(150,105,100,105));
      
     }
 
