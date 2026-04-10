@@ -1,6 +1,8 @@
 package shop.ui;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -123,28 +125,50 @@ public class ItemPanel extends JPanel{
         //text section
         
         
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.setOpaque(false);
+        wrapper.setBorder(new EmptyBorder(5,20,0,0));
+
+
+
         JPanel textPanel = new JPanel();
+      
         textPanel.setLayout(new BoxLayout(textPanel,BoxLayout.Y_AXIS));
         textPanel.setOpaque(false);
         textPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        
+        
+
+        
+      
        
+
         JLabel nameLabel = new JLabel(name);
         nameLabel.setFont(new Font("Arial",Font.PLAIN,12));
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         
+       
 
+      
+      
+      
         JLabel priceLabel = new JLabel( price + "L.E.");
         priceLabel.setFont(new Font("Arial",Font.BOLD,14));
         priceLabel.setForeground(Color.WHITE);
         priceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+       
+
+
 
         textPanel.add(nameLabel);
         textPanel.add(Box.createRigidArea(new Dimension(0 , 10)));
         textPanel.add(priceLabel);
         textPanel.add(Box.createRigidArea(new Dimension(0 , 10)));
 
-   
+        wrapper.add(textPanel, BorderLayout.WEST);
    
         //buttons section
 
@@ -166,11 +190,10 @@ public class ItemPanel extends JPanel{
        
         this.add(imagPanel);
         this.add(Box.createRigidArea(new Dimension(0,10)));
-        this.add(textPanel);
+        this.add(wrapper);
         this.add(Box.createRigidArea(new Dimension(0,10)));
         this.add(Box.createRigidArea(new Dimension(0,10)));
         this.add(Box.createRigidArea(new Dimension(0,10)));
-
         this.add(cartAdd);
        
       
