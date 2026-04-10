@@ -1,17 +1,17 @@
 package shop.ui;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 
 class ItemPanelHolder extends JPanel{
 
-
-    
     // @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics); //remove color of panel
         Graphics2D graphics2d = (Graphics2D) graphics;
-        GradientPaint gradientPaint = new GradientPaint(0, getHeight()*0.6f, Color.decode("#c6c0b4"), 0, getHeight(), Color.decode("#1c1c1c"));
+        GradientPaint gradientPaint = new GradientPaint(0, getHeight()*0.6f, Color.decode("#424242"), 0, getHeight(), Color.decode("#1c1c1c"));
         graphics2d.setPaint(gradientPaint);
         graphics2d.fillRect(0, 0, getWidth(), getHeight());
     }
@@ -20,10 +20,9 @@ class ItemPanelHolder extends JPanel{
        
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
+        this.setBorder(new EmptyBorder(150,100,100,100));
      
-
     }
-
 
 }
 
@@ -49,13 +48,13 @@ class MiddleView extends JPanel{
         itemHolder = new ItemPanelHolder();
         bottomPanel = new BottomPanel();
         
-        this.add(itemHolder, BorderLayout.NORTH);
+        this.add(itemHolder, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
 
 
     }
 
-    public void add(String name, String imagName, String price){
+    public void addItem(String name, String imagName, String price){
         itemHolder.add(new ItemPanel(name,imagName,price));
         itemHolder.revalidate();
         itemHolder.repaint();
@@ -67,6 +66,7 @@ class ScrollPane extends JScrollPane{
 
     private MiddleView middleView;
     
+    //must create an object of middleView first before putting in ScrollPane
     public ScrollPane(){
         this(new MiddleView());
     }
@@ -77,10 +77,11 @@ class ScrollPane extends JScrollPane{
        
         this.setWheelScrollingEnabled(true);
         this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        this.setBorder(null);
     }
     
-    public void add(String name, String imagName, String price){
-        middleView.add(name,imagName,price);
+    public void addItem(String name, String imagName, String price){
+        middleView.addItem(name,imagName,price);
         
     }
 }
@@ -100,8 +101,8 @@ private ScrollPane scrollPane;
 
     }
 
-    public void add(String name, String imagName, String price){
-        scrollPane.add(name,imagName,price);
+    public void addItem(String name, String imagName, String price){
+        scrollPane.addItem(name,imagName,price);
     }
     
 }
