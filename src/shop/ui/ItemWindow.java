@@ -9,6 +9,50 @@ import java.awt.*;
 
 
 
+//helper class
+
+class PressableButton extends JButton{
+
+public PressableButton(String base, String hover){
+
+    Color baseColor = Color.decode(base);
+    Color hoverColor = Color.decode(hover);
+
+
+    this.setFocusPainted(false);
+    this.setBorderPainted(false);
+    this.setContentAreaFilled(false);
+    this.setBackground(baseColor);
+    this.setForeground(Color.WHITE);
+    this.setOpaque(true);
+    this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+   
+
+
+    this.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent e){
+            setBackground(hoverColor);
+        }    
+        
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent e){
+            setBackground(baseColor);
+        }
+        
+
+    });
+
+}
+
+}
+
+
+
+
+
+//main classes 
+
 class ItemPanelHolder extends JPanel{
 
     // @Override
@@ -54,13 +98,33 @@ class MainPanel extends JPanel{
         
         
         
-        JPanel bottomPanel = new JPanel();
+        JPanel bottomPanel = new JPanel(){
+            
+            float values[]={0.0f,0.1f,0.2f,1.0f};
+            Color colors[]={Color.decode("#159069"),Color.decode("#159069"),Color.decode("#23221f"),Color.decode("#23221f")};
+
+            @Override
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Graphics2D g2D = (Graphics2D)g;
+
+                LinearGradientPaint linerG = new LinearGradientPaint(0,0 , 0,  getHeight() ,values ,colors);
+
+                g2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+                g2D.setPaint(linerG);
+                g2D.fillRect(0, 0, getWidth(), getHeight());
+                
+            }
+
+
+        };
 
             
             bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
             bottomPanel.setPreferredSize(new Dimension(0,400));
-            bottomPanel.setBackground(Color.decode("#23221f"));
             bottomPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            bottomPanel.setOpaque(false);
 
             //information panels
 
@@ -70,16 +134,15 @@ class MainPanel extends JPanel{
         
 
             //buttons 
-            JButton backToTop = new JButton("Back To To");
+            PressableButton backToTop = new PressableButton("#159069","#56b798");
+            backToTop.setText("Back To Top");
             backToTop.setPreferredSize(new Dimension(Integer.MAX_VALUE,40));
             backToTop.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
             backToTop.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            backToTop.addActionListener(e -> {
-                System.out.println("back to top pressed");
-            
-            });
-            
+            backToTop.setFont(new Font("Arial",Font.BOLD,14));
+
+
 
             bottomPanel.add(backToTop);
             bottomPanel.add(inforamtionWrapPanel);
@@ -103,6 +166,17 @@ class MainPanel extends JPanel{
             scrollPane.setBorder(null);
            
            
+
+
+            backToTop.addActionListener(e -> {
+                System.out.println("back to top pressed");
+                 scrollPane.getVerticalScrollBar().setValue(0);
+            
+            });
+
+
+
+
            
             this.add(scrollPane, BorderLayout.CENTER);
             
@@ -138,8 +212,3 @@ class ItemWindow extends JPanel{
         
     }
     
-
-
-
-
-
