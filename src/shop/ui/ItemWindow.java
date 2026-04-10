@@ -13,6 +13,19 @@ import java.awt.*;
 
 class PressableButton extends JButton{
 
+   
+        @Override 
+        protected void paintComponent(Graphics g ){
+           
+            Graphics2D g2D =(Graphics2D)g;
+
+            g2D.setColor(getBackground());
+            g2D.fillRoundRect(0,0 ,getWidth(),getHeight(), 30,30);
+
+            super.paintComponent(g);
+        }
+
+    
 public PressableButton(String base, String hover){
 
     Color baseColor = Color.decode(base);
@@ -24,7 +37,7 @@ public PressableButton(String base, String hover){
     this.setContentAreaFilled(false);
     this.setBackground(baseColor);
     this.setForeground(Color.WHITE);
-    this.setOpaque(true);
+    this.setOpaque(false);
     this.setCursor(new Cursor(Cursor.HAND_CURSOR));
    
 

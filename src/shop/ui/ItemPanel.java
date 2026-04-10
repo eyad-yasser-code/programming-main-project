@@ -173,18 +173,24 @@ public class ItemPanel extends JPanel{
         //buttons section
 
 
-        JButton cartAdd = new JButton("Add to cart");
+        JPanel buttonWrapper = new JPanel(new BorderLayout());
+        buttonWrapper.setMaximumSize(new Dimension(120,40));
+
+
+        PressableButton cartAdd = new PressableButton("#159069","#56b798");
+        cartAdd.setText("Add to cart");
         cartAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cartAdd.setFocusPainted(false);
-        cartAdd.setBorderPainted(false); 
-        cartAdd.setOpaque(false);
-        cartAdd.setBackground(Color.BLACK);
-        cartAdd.setForeground(Color.WHITE);
+        cartAdd.setPreferredSize(new Dimension(120, 40));
+       // cartAdd.setMinimumSize(new Dimension(120, 40));
+        //cartAdd.setMaximumSize(new Dimension(120, 40));
+        //artAdd.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
+     
+   
         cartAdd.addActionListener(e -> {
             System.out.println(name + " added to cart");
         });
 
-
+        buttonWrapper.add(cartAdd, BorderLayout.CENTER);
 
 
        
@@ -194,7 +200,7 @@ public class ItemPanel extends JPanel{
         this.add(Box.createRigidArea(new Dimension(0,10)));
         this.add(Box.createRigidArea(new Dimension(0,10)));
         this.add(Box.createRigidArea(new Dimension(0,10)));
-        this.add(cartAdd);
+        this.add(buttonWrapper);
        
       
 
