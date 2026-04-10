@@ -34,7 +34,7 @@ private int arc;
     g2D.fillRoundRect(0,0,getWidth(),getHeight(),arc,arc);
    
 
-
+        
     super.paintComponent(g);
     }
 
@@ -114,7 +114,7 @@ class ItemPanelHolder extends JPanel{
 
 
 
-class MainPanel extends JPanel{
+ class MainPanel extends JPanel{
 
  private ItemPanelHolder itemPanelHolder;   
 
@@ -197,7 +197,8 @@ class MainPanel extends JPanel{
             scrollPane.setWheelScrollingEnabled(true);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setBorder(null);
-           
+            scrollPane.setOpaque(false);
+            scrollPane.getViewport().setOpaque(false);
            
 
 
