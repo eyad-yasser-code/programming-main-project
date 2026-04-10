@@ -27,7 +27,7 @@ class TopPanel extends JPanel{
 
         });
         list.setPreferredSize(new Dimension(40,30));
-        list.setText("☰");
+        list.setText("list");
         list.setFocusPainted(false);
      list.setBorderPainted(false);
         list.setBackground(Color.decode("#71625d"));

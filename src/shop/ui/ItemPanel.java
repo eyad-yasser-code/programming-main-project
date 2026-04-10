@@ -7,27 +7,21 @@ import java.awt.*;
 
 public class ItemPanel extends JPanel{
    
-    // private String name;
-    // private String imageName;
-    // private String price;
-
-
+   
+    
 
 
 
     public ItemPanel(String name,String imageName, String price){
-    
-        // this.name=name;
-        // this.imageName=imageName;
-        // this.price=price;
 
-        //setting the itemPanel layout
-        this.setLayout(new BorderLayout());
+       
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+
         
         this.setPreferredSize(new Dimension(250,280));
        
-        
-        this.setBorder(BorderFactory.createLineBorder(Color.decode("#d8b598"),2));
+        //this.setBackground(Color.BLACK);
+        //this.setBorder(BorderFactory.createLineBorder(Color.decode("#d8b598"),2));
     
         
         
@@ -40,33 +34,46 @@ public class ItemPanel extends JPanel{
         Image image = icon.getImage().getScaledInstance(imagWidth, imagHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledIcon);
-        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
+
 
         //labels
         JLabel nameLabel = new JLabel(name);
-        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        //nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
 
         JLabel priceLabel = new JLabel( price + "L.E.");
-        priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
+        // priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new BorderLayout());
-        topPanel.add(nameLabel, BorderLayout.CENTER);
-        topPanel.add(imageLabel, BorderLayout.NORTH);
-
+        
 
         //buttons
         JButton cartAdd = new JButton("Add to cart");
+        cartAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cartAdd.setFocusPainted(false);
+        cartAdd.setBorderPainted(false); 
+        cartAdd.setOpaque(false);
+        //cartAdd.setContentAreaFilled(false);
+        cartAdd.setBackground(Color.BLACK);
+        cartAdd.setForeground(Color.WHITE);
         cartAdd.addActionListener(e -> {
             System.out.println(name + " added to cart");
         });
 
 
-        this.add(topPanel, BorderLayout.NORTH);
-        this.add(priceLabel, BorderLayout.CENTER);
+        this.add(imageLabel);
+        this.add(Box.createRigidArea(new Dimension(10,0)));
+        this.add(nameLabel);
+        this.add(Box.createRigidArea(new Dimension(10,0)));
+        this.add(priceLabel);
+        this.add(Box.createRigidArea(new Dimension(0,10)));
         this.add(cartAdd, BorderLayout.SOUTH);
+       
+      
+
     
 
     }

@@ -7,27 +7,20 @@ class ItemPanelHolder extends JPanel{
 
 
     
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        GradientPaint gp = new GradientPaint(0, 0, Color.decode("#a56ed9"), 0, getHeight(), Color.decode("#80a4c9"));
-        g2.setPaint(gp);
-        g2.fillRect(0, 0, getWidth(), getHeight());
+    // @Override
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics); //remove color of panel
+        Graphics2D graphics2d = (Graphics2D) graphics;
+        GradientPaint gradientPaint = new GradientPaint(0, getHeight()*0.6f, Color.decode("#c6c0b4"), 0, getHeight(), Color.decode("#1c1c1c"));
+        graphics2d.setPaint(gradientPaint);
+        graphics2d.fillRect(0, 0, getWidth(), getHeight());
     }
 
     public ItemPanelHolder(){
        
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
-       // this.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
-        //this.setPreferredSize(new Dimension(800 ,0));
-       // this.setBackground(Color.decode("#fffdf1"));
-        //this.setBorder(BorderFactory.createEmptyBorder(50, 70,150,70));
-        this.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1),
-            BorderFactory.createEmptyBorder(10, 10, 10, 10)
-        ));
+     
 
     }
 
