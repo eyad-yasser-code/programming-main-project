@@ -77,6 +77,7 @@ public PressableButton(String base, String hover, int arc){
 
   private void sethover(boolean hover){
         this.hover=hover;
+        this.repaint();
     }
 
 }

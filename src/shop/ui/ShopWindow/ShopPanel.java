@@ -1,14 +1,27 @@
+
+
+//main package
 package shop.ui.ShopWindow;
 
+
+//my packages imports
+import shop.ui.Helper.PressableButton;
+import shop.ui.MainWindow.*;
+
+
+// main imports
 import javax.swing.*;
 import java.awt.*;
+
+
+
 
 
 
 class TopPanel extends JPanel{
     
 
-    JButton list = new JButton();
+    PressableButton list = new PressableButton("#159069","#56b798",10);
     
 
     public TopPanel(SidePanel sidePanel){
@@ -18,14 +31,10 @@ class TopPanel extends JPanel{
         this.setBackground(Color.decode("#30302f"));
 
        
-       //list button look & function
+       //list button 
+
         list.setPreferredSize(new Dimension(40,30));
         list.setText("list");
-        list.setFocusPainted(false);
-        list.setBorderPainted(false);
-        list.setOpaque(false);
-        list.setBackground(Color.BLACK);
-        list.setForeground(Color.WHITE);
         list.addActionListener(e -> {
             System.out.println("list pressed");
             // sidePanel.setVisible(!sidePanel.isVisible());
@@ -66,42 +75,55 @@ public class ShopPanel extends JPanel {
         this.setLayout(new BorderLayout());   
         
        
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout(0,0));
-        mainPanel.setBackground(Color.decode("#ffffff"));
+
+        
+        //SidePanel listPanel = new SidePanel();
+        
+        //TopPanel topPanel = new TopPanel(listPanel);
+        
 
 
-        ItemWindow itemWindow = new ItemWindow();
-        
-        
+
+
+
+        JPanel mainPanel = new JPanel(new BorderLayout(0,0));
+    
+
+
+
+      
+
+
+        MainWindow mainWindow = new MainWindow();
+       
+       
       
 
             //adding items test
-            itemWindow.addItem("laptop","laptop.PNG","15,000");
-            itemWindow.addItem("keyboard","keyboard.PNG","1000");
-            itemWindow.addItem("mouse","mouse.PNG","500");
-            itemWindow.addItem("microphone","microphone.PNG","1500");
+            mainWindow.addItem("laptop","laptop.PNG","15,000");
+            mainWindow.addItem("keyboard","keyboard.PNG","1000");
+            mainWindow.addItem("mouse","mouse.PNG","500");
+            mainWindow.addItem("microphone","microphone.PNG","1500");
          
-            for(int i =0 ; i<10 ; i++){
-                itemWindow.addItem("microphone","microphone.PNG","1500");
+            for(int i =0 ; i<6 ; i++){
+                mainWindow.addItem("microphone","microphone.PNG","1500");
             }
           
+            
       
+            mainWindow.addCategory("keyboards","keyboard.PNG");
       
-      
-      
-         SidePanel sidePanel = new SidePanel();
-        
-         TopPanel topPanel = new TopPanel(sidePanel);
-        
-       
+         
+         
 
        
-        mainPanel.add(sidePanel, BorderLayout.WEST);
-        mainPanel.add(topPanel,BorderLayout.NORTH);
-        mainPanel.add(itemWindow, BorderLayout.CENTER);
+       // mainPanel.add(sidePanel, BorderLayout.WEST);
+       // mainPanel.add(topPanel,BorderLayout.NORTH);
+        mainPanel.add(mainWindow, BorderLayout.CENTER);
 
        
+
+
         this.add(mainPanel, BorderLayout.CENTER);
     }
 }

@@ -1,5 +1,6 @@
 
 
+//import shop.ui.MainWindow.MainWindow;
 import shop.ui.ShopWindow.ShopPanel;
 
 import javax.swing.JFrame;
@@ -13,10 +14,6 @@ public class App {
         
 
 
-
-
-
-       
        
         frame.add(new ShopPanel());
         frame.setVisible(true);
