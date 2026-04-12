@@ -4,7 +4,7 @@ package shop.ui.MainWrapper;
 
 //my imports 
 import shop.ui.Helper.*;
-
+import shop.ui.MainWindow.MainWindow;
 
 
 import javax.swing.*;
@@ -19,13 +19,18 @@ private WrapperCenter wrapperCenter;
 
 
 
-public MainWrapper(){
+
+public MainWrapper(MainWindow mainWindow){
 
 
     this.setLayout(new BorderLayout());
 
+
+  
+
+
     JPanel wrapperBottom = new JPanel(new BorderLayout());
-    wrapperSide = new WrapperSide();
+    wrapperSide = new WrapperSide(mainWindow , wrapperBottom);
     wrapperCenter = new WrapperCenter();
     wrapperBottom.add(wrapperSide, BorderLayout.WEST);
     wrapperBottom.add(wrapperCenter, BorderLayout.CENTER);
@@ -65,7 +70,6 @@ class WrapperTop extends JPanel{
         list.setText("list");
         list.addActionListener(e -> {
             System.out.println("list pressed");
-            // sidePanel.setVisible(!sidePanel.isVisible());
             if(!panel.isVisible()){
                 panel.setVisible(true);
 
@@ -87,11 +91,31 @@ class WrapperTop extends JPanel{
 
 class WrapperSide extends JPanel{
 
-    public WrapperSide(){
+    
 
+    public WrapperSide(MainWindow mainWindow, JPanel panel){
+
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(300,0));
         this.setBackground(Color.decode("#4e4e4e"));
         
+
+        PressableButton category = new PressableButton("#159069","#56b798",10);
+        category.setText("Categories");
+        category.setMaximumSize(new Dimension(250,30));
+        category.setPreferredSize(new Dimension(250,30));
+        category.setAlignmentX(Component.CENTER_ALIGNMENT);
+        category.addActionListener( e->{
+
+          mainWindow.showCategoriesHolder();
+          mainWindow.defaultScroll();
+          panel.setVisible(false);
+
+
+        });
+
+        this.add(Box.createVerticalStrut(20));
+        this.add(category);
 
     }
 }
@@ -100,9 +124,7 @@ class WrapperSide extends JPanel{
 class WrapperCenter extends JPanel{
     public WrapperCenter(){
 
-        this.setBackground(new Color(0, 0, 0, 150
-            
-        ));
+        this.setBackground(new Color(0, 0, 0, 150));
 
     }
 }

@@ -9,6 +9,7 @@ package shop.ui.ShopWindow;
 //my packages imports
 import shop.ui.Helper.PressableButton;
 import shop.ui.Helper.ImageLabel;
+import shop.ui.MainWindow.MainWindow;
 import shop.ui.MainWindow.MiddleView;
 
 // main imports
@@ -25,18 +26,18 @@ import java.awt.geom.*;
 
 public class CategoryPanel extends JPanel{
    
-    private MiddleView middleView;
+    private MainWindow mainWindow;
 
     
 
-    public CategoryPanel(String name,String imageName, MiddleView middleView){
+    public CategoryPanel(String name,String imageName, MainWindow mainWindow){
 
        
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(200,50));
         this.setOpaque(false);
         
-        this.middleView=middleView;
+        this.mainWindow=mainWindow;
     
         //image section
 
@@ -108,8 +109,8 @@ public class CategoryPanel extends JPanel{
    
         select.addActionListener(e -> {
             System.out.println(name + "selected");
-           
-            this.middleView.showItemHolder();
+            this.mainWindow.defaultScroll();
+            this.mainWindow.showItemsHolder();
             
             
         });

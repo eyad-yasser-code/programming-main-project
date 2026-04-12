@@ -25,15 +25,16 @@ public class MiddleView extends JPanel{
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
+    private MainWindow mainWindow;
 
 
 
 
 
 
+    public MiddleView(MainWindow mainWindow){
 
-    public MiddleView(){
-
+        this.setLayout(new BorderLayout());
     
         itemsHolder = new ItemsHolder();
         categoriesHolder = new CategoriesHolder();
@@ -41,7 +42,7 @@ public class MiddleView extends JPanel{
         cardPanel = new JPanel(cardLayout);
 
 
-        this.setLayout(new BorderLayout());
+        this.mainWindow=mainWindow;        
 
 
         cardPanel.add(itemsHolder,"itemsHolder");
@@ -50,20 +51,20 @@ public class MiddleView extends JPanel{
         
         
         this.add(cardPanel, BorderLayout.CENTER);
-        showCatigoriesHolder();
+        showCategoriesHolder();
 
 
     }
 
     //appearing 
 
-    public  void showItemHolder(){
+    public  void showItemsHolder(){
         cardLayout.show(cardPanel,"itemsHolder");
         revalidate();
         repaint();
         
     }
-    public void showCatigoriesHolder(){
+    public void showCategoriesHolder(){
        
         cardLayout.show(cardPanel, "catigoriesHolder");
         revalidate();
@@ -72,12 +73,12 @@ public class MiddleView extends JPanel{
 
     //adding 
 
-    public void addItem(String name, String imagName, String price){
-         itemsHolder.add(new ItemPanel(name,imagName,price));
+    public void addItem(String name, String imageName, String price){
+         itemsHolder.add(new ItemPanel(name,imageName,price));
     }
 
-    public void addCategory(String name, String imagName){
-        categoriesHolder.add(new CategoryPanel(name,imagName,this));
+    public void addCategory(String name, String imageName){
+        categoriesHolder.add(new CategoryPanel(name,imageName,this.mainWindow));
        
    }
 
@@ -92,8 +93,6 @@ public class MiddleView extends JPanel{
 class ItemsHolder extends JPanel{
 
     
-    
-  
     
     
      @Override
@@ -121,10 +120,6 @@ class ItemsHolder extends JPanel{
 
 
 class CategoriesHolder extends JPanel{
-
-    
-
-
 
 
     @Override

@@ -33,7 +33,7 @@ this.setLayout(new BorderLayout());
 
 basePanel = new JPanel(new BorderLayout());
 topBasePanel = new TopBasePanel();
-bottomBasePanel = new BottomBasePanel();
+bottomBasePanel = new BottomBasePanel(this);
 
 
 
@@ -61,6 +61,23 @@ public void addCategory(String name, String imagName){
 
 }
 
+//showing functions
+
+public void showCategoriesHolder(){
+    bottomBasePanel.showCatigoriesHolder();
+}
+public void showItemsHolder(){
+    bottomBasePanel.showItemsHolder();
+}
+
+//scroll
+
+public void defaultScroll(){
+    bottomBasePanel.defaultScroll();
+}
+
+
+
 
 
 }
@@ -75,25 +92,25 @@ class TopBasePanel extends JPanel{
     }
 }
 
-
+ 
 
 class BottomBasePanel extends JPanel{
 
 
 
     private MiddleView middleView;   
-   
+    private JScrollPane scrollPane;
        
     
-    public BottomBasePanel(){
+    public BottomBasePanel(MainWindow mainWindow){
    
           
            this.setLayout(new BorderLayout());
    
           
           
-           middleView = new MiddleView();
-           middleView.showCatigoriesHolder();
+           middleView = new MiddleView(mainWindow);
+           middleView.showCategoriesHolder();
            middleView.setAlignmentX(Component.CENTER_ALIGNMENT);
    
            
@@ -158,20 +175,18 @@ class BottomBasePanel extends JPanel{
               
    
    
-   
-              
-               JScrollPane scrollPane = new JScrollPane(wrapper);
-               scrollPane.setWheelScrollingEnabled(true);
-               scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-               scrollPane.setBorder(null);
-               scrollPane.setOpaque(false);
-               scrollPane.getViewport().setOpaque(false);
+                scrollPane = new JScrollPane(wrapper);
+                scrollPane.setWheelScrollingEnabled(true);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setBorder(null);
+                scrollPane.setOpaque(false);
+                scrollPane.getViewport().setOpaque(false);
               
    
    
                backToTop.addActionListener(e -> {
                   
-                    scrollPane.getVerticalScrollBar().setValue(0);
+                   defaultScroll();
                
                });
    
@@ -181,7 +196,7 @@ class BottomBasePanel extends JPanel{
                
        }
    
-
+       //adding
        public void addItem(String name, String imagName, String price){
          middleView.addItem(name, imagName, price);
          
@@ -193,6 +208,21 @@ class BottomBasePanel extends JPanel{
    
        }
    
+
+       //showing 
+       public void showCatigoriesHolder(){
+        middleView.showCategoriesHolder();
+       }
+       public void showItemsHolder(){
+        middleView.showItemsHolder();
+       }
+
+       //scrollpane
+
+       public void defaultScroll(){
+        this.scrollPane.getVerticalScrollBar().setValue(0);
+       }
+
    }
    
    

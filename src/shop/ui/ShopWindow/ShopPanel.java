@@ -26,7 +26,7 @@ public class ShopPanel extends JPanel {
        
 
         MainWindow mainWindow = new MainWindow();
-        MainWrapper mainWrapper = new MainWrapper();
+        MainWrapper mainWrapper = new MainWrapper(mainWindow);
         mainWrapper.setOpaque(false);
       
 
@@ -39,7 +39,7 @@ public class ShopPanel extends JPanel {
         mainWindow.addItem("mouse","mouse.PNG","500");
         mainWindow.addItem("microphone","microphone.PNG","1500");
      
-        for(int i =0 ; i<6 ; i++){
+        for(int i =0 ; i<0 ; i++){
             mainWindow.addItem("microphone","microphone.PNG","1500");
         }
         mainWindow.addCategory("keyboards","keyboard.PNG");
