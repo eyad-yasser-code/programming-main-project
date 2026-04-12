@@ -68,8 +68,8 @@ public void addCategory(String name, String imagName){
 class TopBasePanel extends JPanel{
     public TopBasePanel(){
         
-        this.setPreferredSize(new Dimension(0,50));
-        this.setBackground(Color.decode("#1b3824"));
+        this.setPreferredSize(new Dimension(0,30));
+        this.setBackground(Color.decode("#1a1b1b"));
 
 
     }
