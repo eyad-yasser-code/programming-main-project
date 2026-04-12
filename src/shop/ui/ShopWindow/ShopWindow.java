@@ -1,0 +1,60 @@
+//main package 
+package shop.ui.ShopWindow;
+
+//my imports 
+
+import shop.ui.CartWindow.CartWindow;
+import shop.ui.HomeWindow.HomeWindow;
+
+
+//main imports 
+import javax.swing.*;
+
+
+
+import java.awt.*;
+
+
+public class ShopWindow extends JPanel{
+
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
+    
+    private CartWindow cartWindow;
+    private HomeWindow homeWindow;
+
+    public ShopWindow(){
+
+        this.setLayout(new BorderLayout());
+
+        this.cardLayout = new CardLayout();
+        this.cardPanel = new JPanel(cardLayout);
+
+        this.cartWindow = new CartWindow();
+        this.homeWindow = new HomeWindow(this);
+
+
+        cardPanel.add(homeWindow,"homeWindow");
+        cardPanel.add(cartWindow, "cartWindow");
+
+        this.add(cardPanel, BorderLayout.CENTER);
+        showHomeWindow();
+
+    }
+
+    //show functions 
+
+    public void showCartWindow(){
+        cardLayout.show(cardPanel,"cartWindow");
+        revalidate();
+        repaint();
+    }
+
+    public void showHomeWindow(){
+        cardLayout.show(cardPanel, "homeWindow");
+        revalidate();
+        repaint();
+    }
+
+
+}

@@ -4,7 +4,7 @@
 
 
 //main package
-package shop.ui.ShopWindow;
+package shop.ui.HomeWindow;
 
 //my packages imports
 import shop.ui.Helper.PressableButton;

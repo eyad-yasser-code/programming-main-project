@@ -1,12 +1,13 @@
 
 
 //main package
-package shop.ui.ShopWindow;
+package shop.ui.HomeWindow;
 
 
 //my packages imports
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
+import shop.ui.ShopWindow.ShopWindow;
 
 // main imports
 import javax.swing.*;
@@ -16,9 +17,9 @@ import java.awt.*;
 
 
 
-public class ShopPanel extends JPanel {
+public class HomeWindow extends JPanel {
 
-    public ShopPanel(){
+    public HomeWindow(ShopWindow shopWindow){
         
         this.setLayout(new BorderLayout());   
         
@@ -26,7 +27,7 @@ public class ShopPanel extends JPanel {
        
 
         MainWindow mainWindow = new MainWindow();
-        MainWrapper mainWrapper = new MainWrapper(mainWindow);
+        MainWrapper mainWrapper = new MainWrapper(mainWindow, shopWindow);
         mainWrapper.setOpaque(false);
       
 

@@ -5,7 +5,7 @@ package shop.ui.MainWrapper;
 //my imports 
 import shop.ui.Helper.*;
 import shop.ui.MainWindow.MainWindow;
-
+import shop.ui.ShopWindow.ShopWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ private WrapperCenter wrapperCenter;
 
 
 
-public MainWrapper(MainWindow mainWindow){
+public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
 
 
     this.setLayout(new BorderLayout());
@@ -38,7 +38,7 @@ public MainWrapper(MainWindow mainWindow){
     wrapperBottom.setVisible(false);
 
    
-    wrapperTop = new WrapperTop(wrapperBottom);
+    wrapperTop = new WrapperTop(wrapperBottom, shopWindow);
 
     
     this.add(wrapperTop, BorderLayout.NORTH);
@@ -54,19 +54,77 @@ public MainWrapper(MainWindow mainWindow){
 class WrapperTop extends JPanel{
     
 
-    PressableButton list = new PressableButton("#159069","#56b798",10);
+   
     
 
-    public WrapperTop(JPanel panel){
+    public WrapperTop(JPanel panel, ShopWindow shopWindow){
        
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+       
+       
+       
+        this.setLayout(new GridLayout(1,3,0,0));
         this.setPreferredSize(new Dimension(0,40));
         this.setBackground(Color.decode("#111111"));
 
        
-       //list button 
 
-        list.setPreferredSize(new Dimension(40,30));
+
+
+        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        leftPanel.setOpaque(false);
+        leftPanel.setPreferredSize(new Dimension(0,40));
+        JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        middlePanel.setOpaque(false);
+        middlePanel.setPreferredSize(new Dimension(0,40));
+        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightPanel.setOpaque(false);
+        rightPanel.setPreferredSize(new Dimension(0,40));
+
+
+
+
+
+
+        //search bar 
+        JTextField searchField = new JTextField();
+        searchField.setPreferredSize(new Dimension(400 , 30 ));
+        
+        middlePanel.add(searchField);
+
+
+
+        //login
+        PressableButton login = new PressableButton("#159069","#56b798",10);
+        login.setText("login");
+        login.setPreferredSize(new Dimension(90,30));
+        login.addActionListener(e->{
+            System.out.println("login");
+        });
+        rightPanel.add(login);
+
+
+
+        //cart
+        PressableButton cart = new PressableButton("#159069","#56b798",10);
+        cart.setText("Cart");
+        cart.setMinimumSize(new Dimension(60,30));
+        cart.setPreferredSize(new Dimension(60,30));
+        cart.setMaximumSize(new Dimension(60,30));
+        cart.addActionListener(e->{
+            System.out.println("cart");
+            shopWindow.showCartWindow();
+            revalidate();
+            repaint();
+
+
+        });
+        rightPanel.add(cart);
+
+
+
+       //list button 
+        PressableButton list = new PressableButton("#159069","#56b798",10);
+        list.setPreferredSize(new Dimension(70,30));
         list.setText("list");
         list.addActionListener(e -> {
             System.out.println("list pressed");
@@ -80,9 +138,16 @@ class WrapperTop extends JPanel{
             panel.repaint();
 
         });
-        
+        leftPanel.add(list);
        
-        this.add(list);
+       
+
+        this.add(leftPanel);
+        this.add(middlePanel);
+       this.add(rightPanel);
+
+
+
 
     }
 

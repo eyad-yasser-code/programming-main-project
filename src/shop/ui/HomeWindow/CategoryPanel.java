@@ -4,13 +4,12 @@
 
 
 //main package
-package shop.ui.ShopWindow;
+package shop.ui.HomeWindow;
 
 //my packages imports
 import shop.ui.Helper.PressableButton;
 import shop.ui.Helper.ImageLabel;
 import shop.ui.MainWindow.MainWindow;
-import shop.ui.MainWindow.MiddleView;
 
 // main imports
 import javax.swing.*;

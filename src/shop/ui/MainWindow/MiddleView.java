@@ -10,8 +10,8 @@ package shop.ui.MainWindow;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import shop.ui.ShopWindow.CategoryPanel;
-import shop.ui.ShopWindow.ItemPanel;
+import shop.ui.HomeWindow.CategoryPanel;
+import shop.ui.HomeWindow.ItemPanel;
 
 import java.awt.*;
 
@@ -36,13 +36,15 @@ public class MiddleView extends JPanel{
 
         this.setLayout(new BorderLayout());
     
+        this.mainWindow=mainWindow;        
+
+
         itemsHolder = new ItemsHolder();
         categoriesHolder = new CategoriesHolder();
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
 
-        this.mainWindow=mainWindow;        
 
 
         cardPanel.add(itemsHolder,"itemsHolder");
