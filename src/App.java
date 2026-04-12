@@ -1,5 +1,7 @@
 
-import shop.ui.*;
+
+import shop.ui.ShopWindow.ShopPanel;
+
 import javax.swing.JFrame;
 public class App {
     public static void main(String[] args) throws Exception {

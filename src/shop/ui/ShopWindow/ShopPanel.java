@@ -1,4 +1,4 @@
-package shop.ui;
+package shop.ui.ShopWindow;
 
 import javax.swing.*;
 import java.awt.*;

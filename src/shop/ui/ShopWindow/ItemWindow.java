@@ -1,84 +1,19 @@
-package shop.ui;
 
+
+
+
+
+//main package
+package shop.ui.ShopWindow;
+
+//my packages import
+import shop.ui.Helper.PressableButton;
+
+
+//main imports
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
-
-
-
-
-
-//helper class
-
-class PressableButton extends JButton{
-
-private boolean hover = false;
-private Color baseColor;
-private Color hoverColor;
-private int arc;
-
-
-
-    @Override
-    protected void paintComponent(Graphics g){
-        
-        
-    Graphics2D g2D = (Graphics2D)g;
-
-
-    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-
-    g2D.setColor(hover == false ? baseColor : hoverColor );
-    g2D.fillRoundRect(0,0,getWidth(),getHeight(),arc,arc);
-   
-
-        
-    super.paintComponent(g);
-    }
-
-    
-public PressableButton(String base, String hover, int arc){
-
-    baseColor = Color.decode(base);
-    hoverColor = Color.decode(hover);
-    this.arc=arc;
-
-    this.setFocusPainted(false);
-    this.setBorderPainted(false);
-    this.setContentAreaFilled(false);
-    this.setBackground(baseColor);
-    this.setForeground(Color.WHITE);
-    this.setOpaque(false);
-    this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-   
-
-
-    this.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseEntered(java.awt.event.MouseEvent e){
-            setBackground(hoverColor);
-            sethover(true);
-        }    
-        
-        @Override
-        public void mouseExited(java.awt.event.MouseEvent e){
-            setBackground(baseColor);
-            sethover(false);
-        }
-        
-
-    });
-   
-  
-}
-
-  private void sethover(boolean hover){
-        this.hover=hover;
-    }
-
-}
 
 
 
@@ -86,7 +21,18 @@ public PressableButton(String base, String hover, int arc){
 
 //main classes 
 
-class ItemPanelHolder extends JPanel{
+
+
+
+
+
+
+
+
+
+
+
+class ItemsHolder extends JPanel{
 
     // @Override
     protected void paintComponent(Graphics graphics) {
@@ -102,7 +48,7 @@ class ItemPanelHolder extends JPanel{
         graphics2d.fillRect(0, 0, getWidth(), getHeight());
     }
 
-    public ItemPanelHolder(){
+    public ItemsHolder(){
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
@@ -114,9 +60,10 @@ class ItemPanelHolder extends JPanel{
 
 
 
- class MainPanel extends JPanel{
 
- private ItemPanelHolder itemPanelHolder;   
+class MainPanel extends JPanel{
+
+ private ItemsHolder itemsHolder;   
 
     public MainPanel(){
 
@@ -125,8 +72,8 @@ class ItemPanelHolder extends JPanel{
 
        
        
-        itemPanelHolder = new ItemPanelHolder();
-        itemPanelHolder.setAlignmentX(Component.CENTER_ALIGNMENT);
+        itemsHolder = new ItemsHolder();
+        itemsHolder.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         
         
@@ -186,7 +133,7 @@ class ItemPanelHolder extends JPanel{
            JPanel wrapper = new JPanel();
            wrapper.setLayout(new BoxLayout (wrapper,BoxLayout.Y_AXIS));
            wrapper.setOpaque(false);
-           wrapper.add(itemPanelHolder);
+           wrapper.add(itemsHolder);
            wrapper.add(bottomPanel);
            
 
@@ -217,9 +164,9 @@ class ItemPanelHolder extends JPanel{
     }
 
     public void addItem(String name, String imagName, String price){
-        itemPanelHolder.add(new ItemPanel(name,imagName,price));
-        itemPanelHolder.revalidate();
-        itemPanelHolder.repaint();
+        itemsHolder.add(new ItemPanel(name,imagName,price));
+        itemsHolder.revalidate();
+        itemsHolder.repaint();
 
     }
 
