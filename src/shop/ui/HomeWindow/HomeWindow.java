@@ -19,6 +19,12 @@ import java.awt.*;
 
 public class HomeWindow extends JPanel {
 
+
+    private MainWindow mainWindow;
+    private MainWrapper mainWrapper;
+
+
+
     public HomeWindow(ShopWindow shopWindow){
         
         this.setLayout(new BorderLayout());   
@@ -26,8 +32,8 @@ public class HomeWindow extends JPanel {
 
        
 
-        MainWindow mainWindow = new MainWindow();
-        MainWrapper mainWrapper = new MainWrapper(mainWindow, shopWindow);
+        mainWindow = new MainWindow();
+        mainWrapper = new MainWrapper(mainWindow, shopWindow);
         mainWrapper.setOpaque(false);
       
 
@@ -70,4 +76,13 @@ public class HomeWindow extends JPanel {
       
 
     }
+
+    //helping methods
+
+    public void panelVisible(boolean bool){
+       mainWrapper.panelVisible(bool);
+    }
+
+
+
 }

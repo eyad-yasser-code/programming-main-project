@@ -17,7 +17,7 @@ private WrapperTop wrapperTop;
 private WrapperSide wrapperSide;
 private WrapperCenter wrapperCenter;
 
-
+private JPanel wrapperBottom;
 
 
 public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
@@ -29,9 +29,9 @@ public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
   
 
 
-    JPanel wrapperBottom = new JPanel(new BorderLayout());
-    wrapperSide = new WrapperSide(mainWindow , wrapperBottom);
-    wrapperCenter = new WrapperCenter();
+    wrapperBottom = new JPanel(new BorderLayout());
+    wrapperSide = new WrapperSide(mainWindow , this);
+    wrapperCenter = new WrapperCenter(this);
     wrapperBottom.add(wrapperSide, BorderLayout.WEST);
     wrapperBottom.add(wrapperCenter, BorderLayout.CENTER);
     wrapperBottom.setOpaque(false);
@@ -47,6 +47,11 @@ public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
 
 }
 
+// helping methods 
+
+public void panelVisible(boolean bool){
+    wrapperBottom.setVisible(bool);
+}
 
 }
 
@@ -154,11 +159,15 @@ class WrapperTop extends JPanel{
 
 }
 
+
+
+
+
 class WrapperSide extends JPanel{
 
     
 
-    public WrapperSide(MainWindow mainWindow, JPanel panel){
+    public WrapperSide(MainWindow mainWindow,MainWrapper mainWrapper){
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(300,0));
@@ -174,7 +183,7 @@ class WrapperSide extends JPanel{
 
           mainWindow.showCategoriesHolder();
           mainWindow.defaultScroll();
-          panel.setVisible(false);
+          mainWrapper.panelVisible(false);
 
 
         });
@@ -187,9 +196,18 @@ class WrapperSide extends JPanel{
 
 
 class WrapperCenter extends JPanel{
-    public WrapperCenter(){
+    public WrapperCenter(MainWrapper mainWrapper){
 
         this.setBackground(new Color(0, 0, 0, 150));
+
+        this.addMouseListener(new java.awt.event.MouseAdapter(){
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+                mainWrapper.panelVisible(false);
+            }
+
+        });
+
 
     }
 }

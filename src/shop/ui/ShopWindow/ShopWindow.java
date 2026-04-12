@@ -30,10 +30,11 @@ public class ShopWindow extends JPanel{
         this.cardLayout = new CardLayout();
         this.cardPanel = new JPanel(cardLayout);
 
-        this.cartWindow = new CartWindow();
+        
         this.homeWindow = new HomeWindow(this);
+        this.cartWindow = new CartWindow(this,homeWindow);
 
-
+      
         cardPanel.add(homeWindow,"homeWindow");
         cardPanel.add(cartWindow, "cartWindow");
 
