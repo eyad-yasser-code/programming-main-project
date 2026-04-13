@@ -40,14 +40,16 @@ public class MiddleView extends JPanel{
         this.setLayout(new BorderLayout());
     
         this.mainWindow=mainWindow;        
-
+        this.setOpaque(false);
 
        
         itemsHolder = new ItemsHolder(0,0,0,getHeight(),degrees,colors,30);
         categoriesHolder = new CategoriesHolder(0,0,0,getHeight(),degrees,colors,30);
+      
+      
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-
+        cardPanel.setOpaque(false);
 
 
 
@@ -108,7 +110,7 @@ class ItemsHolder extends MyGradient{
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
-     
+        this.setOpaque(false);
     }
 
 }
@@ -124,6 +126,8 @@ class CategoriesHolder extends MyGradient{
 
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
+        this.setOpaque(false);
+      
      
     }
 

@@ -29,7 +29,7 @@ public class ShopWindow extends JPanel{
 
         this.cardLayout = new CardLayout();
         this.cardPanel = new JPanel(cardLayout);
-
+        cardPanel.setOpaque(false);
         
         this.homeWindow = new HomeWindow(this);
         this.cartWindow = new CartWindow(this,homeWindow);

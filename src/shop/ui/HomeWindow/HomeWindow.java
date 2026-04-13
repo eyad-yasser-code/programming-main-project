@@ -28,11 +28,11 @@ public class HomeWindow extends JPanel {
     public HomeWindow(ShopWindow shopWindow){
         
         this.setLayout(new BorderLayout());   
+        this.setBackground(Color.decode("#111111"));      
         
 
-       
-
         mainWindow = new MainWindow();
+        mainWindow.setOpaque(false);
         mainWrapper = new MainWrapper(mainWindow, shopWindow);
         mainWrapper.setOpaque(false);
       
@@ -68,6 +68,7 @@ public class HomeWindow extends JPanel {
         
         layeredPane.add(mainWindow , JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(mainWrapper, JLayeredPane.PALETTE_LAYER);
+        layeredPane.setOpaque(false);
 
         
       

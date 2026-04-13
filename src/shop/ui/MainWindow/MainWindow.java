@@ -29,21 +29,27 @@ private JPanel basePanel;
 
 public MainWindow(){
 
-this.setLayout(new BorderLayout());
+    this.setLayout(new BorderLayout());
+    this.setOpaque(false);
 
-basePanel = new JPanel(new BorderLayout());
-topBasePanel = new TopBasePanel();
-bottomBasePanel = new BottomBasePanel(this);
+    basePanel = new JPanel(new BorderLayout());
+    basePanel.setOpaque(false);
 
-
-
-basePanel.add(topBasePanel, BorderLayout.NORTH);
-basePanel.add(bottomBasePanel, BorderLayout.CENTER);
+    topBasePanel = new TopBasePanel();
 
 
+    bottomBasePanel = new BottomBasePanel(this);
 
 
-this.add(basePanel, BorderLayout.CENTER);
+
+
+    basePanel.add(topBasePanel, BorderLayout.NORTH);
+    basePanel.add(bottomBasePanel, BorderLayout.CENTER);
+
+
+
+
+    this.add(basePanel, BorderLayout.CENTER);
 
 }
 
@@ -85,9 +91,9 @@ public void defaultScroll(){
 class TopBasePanel extends JPanel{
     public TopBasePanel(){
         
-        this.setPreferredSize(new Dimension(0,30));
+        this.setPreferredSize(new Dimension(0,40));
         this.setBackground(Color.decode("#1a1b1b"));
-
+        this.setOpaque(false);
 
     }
 }
@@ -106,14 +112,16 @@ class BottomBasePanel extends JPanel{
    
           
            this.setLayout(new BorderLayout());
-   
+           this.setOpaque(false); 
           
           
            middleView = new MiddleView(mainWindow);
            middleView.showCategoriesHolder();
            middleView.setAlignmentX(Component.CENTER_ALIGNMENT);
-   
-           
+           middleView.setOpaque(false); 
+           middleView.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
+
+       
            
            
            JPanel bottomPanel = new JPanel(){
@@ -172,6 +180,7 @@ class BottomBasePanel extends JPanel{
               wrapper.setLayout(new BoxLayout (wrapper,BoxLayout.Y_AXIS));
               wrapper.add(middleView);
               wrapper.add(bottomPanel);
+              wrapper.setOpaque(false);
               
    
    

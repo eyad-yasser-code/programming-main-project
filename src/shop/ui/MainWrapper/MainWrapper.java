@@ -24,7 +24,7 @@ public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
 
 
     this.setLayout(new BorderLayout());
-
+    this.setOpaque(false);
 
   
 

@@ -28,7 +28,7 @@ public class MyGradient extends JPanel{
        this.colors=colors;
        
    
-
+        this.setOpaque(false);
 
     }
 
@@ -42,7 +42,10 @@ public class MyGradient extends JPanel{
         Graphics2D graphics2d = (Graphics2D) graphics;
        
         LinearGradientPaint linerG = new LinearGradientPaint(startX,startY, endX,getHeight(), degrees, colors);
-       
+        graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+
+
         graphics2d.setPaint(linerG);
         graphics2d.fillRoundRect(0, 0, getWidth(), getHeight(),arc,arc);
 
