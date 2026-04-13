@@ -5,6 +5,7 @@
 package shop.ui.CartWindow;
 
 
+import shop.ui.Helper.ModifiedScroll;
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
@@ -33,7 +34,17 @@ public class CartWindow extends JPanel{
     
 
     
+    private float[] paymentDegrees = {0.0f, 0.5f, 1.0f};
+    private Color[] paymentColors ={Color.decode("#636363"),Color.decode("#474747"),Color.decode("#1c1c1c")};
+    
 
+
+    
+    private float[] rightDegrees = {0.0f, 0.4f, 1.0f};
+    private Color[] rightColors ={Color.decode("#1c1c1c"),Color.decode("#313131"),Color.decode("#313131")};
+    
+
+//3b3b3b
 
     public CartWindow(ShopWindow shopWindow){
 
@@ -97,9 +108,15 @@ public class CartWindow extends JPanel{
 
             LeftTop leftTop = new LeftTop(0,0,0,getHeight(),degrees,colors,30);
 
+
+
+            
+
+
+
             JPanel itemsWrapper = new JPanel(new BorderLayout());
             itemsWrapper.setOpaque(false); 
-
+            
 
             items = new JPanel();
             items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
@@ -136,10 +153,37 @@ public class CartWindow extends JPanel{
                 scrollPane.setBorder(null);
                 scrollPane.setOpaque(false);
                 scrollPane.getViewport().setOpaque(false);
+                scrollPane.getVerticalScrollBar().setUI(new ModifiedScroll());
+                scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15,0));
+               
+                // scrollPane.addMouseListener(new java.awt.event.MouseAdapter() {
+                    
+                //     @Override
+                //     public void mouseEntered(java.awt.event.MouseEvent e){
+                //         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                //     }
+                //     @Override
+                //     public void mouseExited(java.awt.event.MouseEvent e){
+                //         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                //     }
+
+                // });
+               
+
+
+               
+               
+               
                 toTop.addActionListener(e->{
                     defaultCartScroll();
                 });
-           
+                
+
+
+
+
+
+
 
             leftTop.add(scrollPane, BorderLayout.CENTER);
            
@@ -153,19 +197,93 @@ public class CartWindow extends JPanel{
 
 
 
-
         JPanel cartRight = new JPanel(new BorderLayout());
         cartRight.setPreferredSize(new Dimension(300 , 600));
-        cartRight.setBackground(Color.decode("#505050"));
+        cartRight.setOpaque(false);
+
+        JPanel checkoutBase = new JPanel(new BorderLayout());
+        checkoutBase.setPreferredSize(new Dimension(300 , 65));
+        checkoutBase.setOpaque(false);
+
+
+                JPanel checkoutWrapper = new JPanel(new BorderLayout());
+                checkoutWrapper.setBorder(new EmptyBorder(0,30,20,30));
+                checkoutWrapper.setOpaque(false);
+
+                PressableButton checkout = new PressableButton("#159069","#56b798",10);
+                checkout.setText("Check Out");
+                checkout.setPreferredSize(new Dimension(250,50));
+                checkout.setMaximumSize(new Dimension(250,50));
+                checkout.setMinimumSize(new Dimension(250,50));
+                checkout.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+                checkoutWrapper.add(checkout,  BorderLayout.CENTER);
+
+
+        checkoutBase.add(checkoutWrapper, BorderLayout.CENTER);
+
+
+
+
+
       
-         innerWrapper.add(cartLeft, BorderLayout.CENTER);
-            innerWrapper.add(cartRight, BorderLayout.EAST);
+      
+      
+      
+        PaymentBase paymentBase = new PaymentBase(0,0,0,getHeight(),rightDegrees,rightColors,30);
+        
+        
+        JPanel paymentWrapper = new JPanel(new BorderLayout());
+        paymentWrapper.setBorder(new EmptyBorder(20,20,100,20));
+        paymentWrapper.setOpaque(false);
+
+       
+       
+        PaymentBase paymentinner = new PaymentBase(0,0,0,getHeight(),paymentDegrees,paymentColors,30);
+               
+        
+        paymentWrapper.add(paymentinner,BorderLayout.CENTER);
 
 
+        paymentBase.add(paymentWrapper);
 
 
+        JPanel payBWrapper = new JPanel();
+        payBWrapper.setLayout(new BoxLayout(payBWrapper,BoxLayout.Y_AXIS));
+        payBWrapper.setOpaque(false);
+
+        PressableButton cash = new PressableButton("#313131","#6e6e6e",10);
+        cash.setText("Cash On Delivery");
+        cash.setPreferredSize(new Dimension(250,40));
+        cash.setMaximumSize(new Dimension(250,40));
+        cash.setMinimumSize(new Dimension(250,40));
+        cash.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        PressableButton credit = new PressableButton("#313131","#6e6e6e",10);
+        credit.setText("Credit Card");
+        credit.setPreferredSize(new Dimension(250,40));
+        credit.setMaximumSize(new Dimension(250,40));
+        credit.setMinimumSize(new Dimension(250,40));
+        credit.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        payBWrapper.add(Box.createVerticalStrut(10));
+        payBWrapper.add(cash);
+        payBWrapper.add(Box.createVerticalStrut(10));
+        payBWrapper.add(credit);
 
 
+       paymentWrapper.add(payBWrapper);         
+
+
+        
+        
+
+        cartRight.add(paymentBase,BorderLayout.CENTER);
+        cartRight.add(checkoutBase,BorderLayout.SOUTH);
+
+        innerWrapper.add(cartLeft, BorderLayout.CENTER);
+        innerWrapper.add(cartRight, BorderLayout.EAST);
+       
         paddingWrapper.add(innerWrapper,BorderLayout.CENTER);
         cartBase.add(paddingWrapper,BorderLayout.CENTER);
         baseWrapper.add(cartBase); 
@@ -257,3 +375,16 @@ class LeftTop extends MyGradient{
 }
 
 
+class PaymentBase extends MyGradient{
+
+    
+    public PaymentBase(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+        
+        super(startX, startY , endX, endY, degrees, colors, arc);
+
+        this.setLayout(new GridLayout());
+        this.setOpaque(false);
+
+    }
+
+}

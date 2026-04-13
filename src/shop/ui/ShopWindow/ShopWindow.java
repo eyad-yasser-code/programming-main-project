@@ -39,7 +39,7 @@ public class ShopWindow extends JPanel{
         cardPanel.add(cartWindow, "cartWindow");
 
         this.add(cardPanel, BorderLayout.CENTER);
-        showCartWindow();
+        showHomeWindow();
 
     }
 

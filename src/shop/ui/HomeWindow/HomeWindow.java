@@ -33,8 +33,8 @@ public class HomeWindow extends JPanel {
     public HomeWindow(ShopWindow shopWindow){
         
         this.setLayout(new BorderLayout());   
-        this.setBackground(Color.decode("#111111"));      
-        
+        this.setBackground(Color.decode("#1b1b1b"));      
+        this.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
 
        
 

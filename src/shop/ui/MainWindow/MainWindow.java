@@ -2,6 +2,7 @@
 package shop.ui.MainWindow;
 
 
+import shop.ui.Helper.ModifiedScroll;
 import shop.ui.Helper.MyGradient;
 //my imports 
 import shop.ui.Helper.PressableButton;
@@ -91,7 +92,7 @@ class TopBasePanel extends JPanel{
     public TopBasePanel(){
         
         this.setPreferredSize(new Dimension(0,40));
-        this.setBackground(Color.decode("#1a1b1b"));
+        this.setBackground(Color.decode("#1c1c1c"));
         this.setOpaque(false);
 
     }
@@ -107,8 +108,8 @@ class BottomBasePanel extends JPanel{
     private JScrollPane scrollPane;
        
     
-    private float degrees[]={0.0f,0.1f,0.2f,1.0f};
-    private Color colors[]={Color.decode("#159069"),Color.decode("#159069"),Color.decode("#23221f"),Color.decode("#23221f")};
+    private float degrees[]={0.0f,0.2f,0.3f,1.0f};
+    private Color colors[]={Color.decode("#159069"),Color.decode("#159069"),Color.decode("#303030"),Color.decode("#161616")};
     
 
 
@@ -123,12 +124,12 @@ class BottomBasePanel extends JPanel{
            middleView.showCategoriesHolder();
            middleView.setAlignmentX(Component.CENTER_ALIGNMENT);
            middleView.setOpaque(false); 
-           middleView.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
+           middleView.setBorder(BorderFactory.createLineBorder(Color.decode("#1c1c1c"),10));
 
        
           
            
-           BottomPanel bottomPanel = new BottomPanel(0,0,0,getHeight(),degrees,colors,30);
+           BottomPanel bottomPanel = new BottomPanel(0,0,0,getHeight(),degrees,colors,60);
                
               
    
@@ -173,8 +174,12 @@ class BottomBasePanel extends JPanel{
                 scrollPane.setBorder(null);
                 scrollPane.setOpaque(false);
                 scrollPane.getViewport().setOpaque(false);
-              
-   
+                scrollPane.getVerticalScrollBar().setUI(new ModifiedScroll());
+                scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15 , 0));
+                
+                scrollPane.getHorizontalScrollBar().setUI(new ModifiedScroll());
+                scrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0 , 15));
+                
    
                backToTop.addActionListener(e -> {
                   
@@ -224,7 +229,7 @@ class BottomBasePanel extends JPanel{
         
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(0,400));
-        this.setBorder(BorderFactory.createLineBorder( Color.decode("#111111") ,10));
+        this.setBorder(BorderFactory.createLineBorder( Color.decode("#1b1b1b") ,10));
         this.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setOpaque(false);
 

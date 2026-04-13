@@ -24,7 +24,7 @@ public class CartItem extends JPanel{
     private Color[] picColor = {Color.WHITE,Color.WHITE};
     private float[] picFloat = {0.0f,1.0f};
 
-    private Color[] infoColor = {Color.decode("#159069"),Color.decode("#159069")};
+    private Color[] infoColor = {Color.decode("#4a806f"),Color.decode("#4a806f")};
     private float[] infoFloat = {0.0f, 1.0f};
 
     public CartItem(){

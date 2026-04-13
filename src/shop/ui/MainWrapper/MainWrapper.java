@@ -9,6 +9,8 @@ import shop.ui.MainWindow.MainWindow;
 import shop.ui.ShopWindow.ShopWindow;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 
 
@@ -19,8 +21,6 @@ private WrapperSide wrapperSide;
 private WrapperCenter wrapperCenter;
 
 private JPanel wrapperBottom;
-
-
 
 
 
@@ -64,7 +64,10 @@ public void panelVisible(boolean bool){
 
 class WrapperTop extends JPanel{
     
-
+    
+    private float[] searchFloats = {0.0f,1.0f};
+    private Color[] searchColors = {Color.decode("#222222"),Color.decode("#222222")};
+    
    
     
 
@@ -97,9 +100,8 @@ class WrapperTop extends JPanel{
 
 
         //search bar 
-        JTextField searchField = new JTextField();
-        searchField.setPreferredSize(new Dimension(400 , 30 ));
-        
+        SearchField searchField = new SearchField(0,0,0,getHeight(),searchFloats,searchColors,30);
+       
         middlePanel.add(searchField);
 
 
@@ -171,18 +173,45 @@ class WrapperTop extends JPanel{
 
 
 
+class SideInner extends MyGradient{
+   
+   
+    public SideInner(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+        super(startX, startY , endX, endY, degrees, colors, arc);
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
+
+
+
+    }
+}
 
 
 class WrapperSide extends JPanel{
 
+    private float[] degrees = {0.0f, 0.2f,0.7f ,1.0f};
+    private Color[] colors ={Color.decode("#1d1d1d"),Color.decode("#2e2e2e"),Color.decode("#313131"),Color.decode("#313131")};
     
 
     public WrapperSide(MainWindow mainWindow,MainWrapper mainWrapper){
 
-        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(300,0));
-        this.setBackground(Color.decode("#4e4e4e"));
+        this.setBackground(Color.decode("#313131"));
+        //  this.setOpaque(false);
         
+
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.setBorder(new EmptyBorder(15,10,0,10));
+        wrapper.setOpaque(false);
+
+
+        SideInner side = new SideInner(0,0,0,getHeight(),degrees,colors,10);
+
+
+        JPanel cateWrapper = new JPanel();
+        cateWrapper.setLayout(new BoxLayout(cateWrapper,BoxLayout.Y_AXIS));
+        cateWrapper.setOpaque(false);
 
         PressableButton category = new PressableButton("#159069","#56b798",10);
         category.setText("Categories");
@@ -197,11 +226,16 @@ class WrapperSide extends JPanel{
 
 
         });
-
-        this.add(Box.createVerticalStrut(20));
-        this.add(category);
+       
+        
+        cateWrapper.add(Box.createVerticalStrut(20));
+        cateWrapper.add(category);
+        side.add(cateWrapper, BorderLayout.CENTER);
+        wrapper.add(side, BorderLayout.CENTER);
+        this.add(wrapper,BorderLayout.CENTER);
 
     }
+
 }
 
 
@@ -219,5 +253,26 @@ class WrapperCenter extends JPanel{
         });
 
 
+    }
+}
+
+class SearchField extends MyGradient{
+    public SearchField(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+        super(startX, startY , endX, endY, degrees, colors, arc);
+        this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(400 , 30 ));
+        this.setBorder(new EmptyBorder(0,0,0,0));
+        this.setOpaque(false);
+        
+
+        JTextField searchtxt = new JTextField();
+        searchtxt.setBorder(new EmptyBorder(0,30,0,30));
+        searchtxt.setBackground(Color.white);
+        searchtxt.setForeground(Color.white);
+        searchtxt.setCaretColor(Color.WHITE);
+        searchtxt.setOpaque(false);
+
+        searchtxt.setFont(new Font("Segoe UI",Font.PLAIN,12));
+        this.add(searchtxt,BorderLayout.CENTER);
     }
 }

@@ -106,7 +106,7 @@ class ItemsHolder extends MyGradient{
 
     public ItemsHolder(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
        
-        super( startX,  startY ,  endX,  endY, degrees,  colors, arc);
+        super(startX, startY , endX, endY, degrees, colors, arc);
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
@@ -122,7 +122,7 @@ class CategoriesHolder extends MyGradient{
 
     public CategoriesHolder(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
        
-        super( startX,  startY ,  endX,  endY, degrees,  colors, arc);
+        super(startX, startY , endX, endY, degrees, colors, arc);
 
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
