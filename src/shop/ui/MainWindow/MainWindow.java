@@ -178,6 +178,7 @@ class BottomBasePanel extends JPanel{
                 scrollPane = new JScrollPane(wrapper);
                 scrollPane.setWheelScrollingEnabled(true);
                 scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 scrollPane.setBorder(null);
                 scrollPane.setOpaque(false);
                 scrollPane.getViewport().setOpaque(false);

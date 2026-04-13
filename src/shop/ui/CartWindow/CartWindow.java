@@ -13,6 +13,7 @@ import shop.ui.ShopWindow.ShopWindow;
 public class CartWindow extends JPanel{
     
 
+    private JPanel leftTopTop;
 
 
 
@@ -21,6 +22,11 @@ public class CartWindow extends JPanel{
       this.setLayout(new BorderLayout());
     
       
+
+
+       
+
+
       
       
       
@@ -36,11 +42,13 @@ public class CartWindow extends JPanel{
       
       
         JPanel cartLeft = new JPanel(new BorderLayout());
-        cartLeft.setPreferredSize(new Dimension(0,600));
+        cartLeft.setPreferredSize(new Dimension(600,600));
         cartLeft.setBackground(Color.decode("#7c7c7c"));
 
+           
+        
             JPanel leftBottom = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            leftBottom.setPreferredSize(new Dimension(0,60));
+            leftBottom.setPreferredSize(new Dimension(600,60));
             leftBottom.setOpaque(false);
             leftBottom.setBorder(new EmptyBorder(3,10,50,3));
 
@@ -56,8 +64,73 @@ public class CartWindow extends JPanel{
 
             leftBottom.add(back);
 
-        cartLeft.add(leftBottom, BorderLayout.SOUTH);    
+            
+            
 
+           
+            
+
+
+
+            JPanel leftTop = new JPanel(new BorderLayout());
+           leftTop.setOpaque(false);
+
+
+
+            JPanel leftWrapper = new JPanel(new BorderLayout());
+            leftWrapper.setOpaque(false); 
+
+
+                leftTopTop = new JPanel();
+                leftTopTop.setLayout(new BoxLayout(leftTopTop, BoxLayout.Y_AXIS));
+                leftTopTop.setOpaque(false);
+
+                
+            
+
+
+                PressableButton toTop = new PressableButton("#159069","#56b798",10);
+                toTop.setText("^");
+                toTop.setPreferredSize(new Dimension(50,50));
+                toTop.setMaximumSize(new Dimension(50,50));
+                toTop.setAlignmentX(Component.RIGHT_ALIGNMENT);
+               
+               
+                
+                JPanel leftTopBottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                leftTopBottom.setPreferredSize(new Dimension(600,50));
+                leftTopBottom.setOpaque(false);
+                leftTopBottom.add(toTop);
+                leftTopBottom.setAlignmentX(Component.RIGHT_ALIGNMENT);
+                leftTopBottom.setBorder(new EmptyBorder(4,4,40,40));
+
+                leftWrapper.add(leftTopTop, BorderLayout.CENTER);
+                leftWrapper.add(leftTopBottom, BorderLayout.SOUTH);
+
+                
+                JScrollPane scrollPane = new JScrollPane(leftWrapper);
+                scrollPane.setWheelScrollingEnabled(true);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane.setBorder(null);
+                scrollPane.setOpaque(false);
+                scrollPane.getViewport().setOpaque(false);
+                toTop.addActionListener(e->{
+                    scrollPane.getVerticalScrollBar().setValue(0);
+                });
+           
+
+
+
+            
+            leftTop.add(scrollPane, BorderLayout.CENTER);
+          
+           // leftTop.add(leftTopBottom, BorderLayout.SOUTH);
+
+
+       
+        cartLeft.add(leftBottom, BorderLayout.SOUTH);    
+        cartLeft.add(leftTop, BorderLayout.CENTER);
 
 
 
@@ -77,8 +150,19 @@ public class CartWindow extends JPanel{
         this.add(wrapper);
 
 
+        
+        for(int i = 0 ; i < 20 ; i++){ 
+            addItem();
+          
+        }
+     
+    
+
     }
 
+
+
+    //look
     
     @Override
    protected void paintComponent(Graphics graphics) {
@@ -93,5 +177,28 @@ public class CartWindow extends JPanel{
        graphics2d.setPaint(linerG);
        graphics2d.fillRect(0, 0, getWidth(), getHeight());
    }
+
+
+
+   //add 
+
+   public void addItem(){
+
+    CartItem item = new CartItem();
+    
+    item.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+    leftTopTop.add(item);
+    leftTopTop.add(Box.createVerticalStrut(20));
+    leftTopTop.revalidate();
+    leftTopTop.repaint();
+
+
+
+   }
+
+
+
+
 
 }
