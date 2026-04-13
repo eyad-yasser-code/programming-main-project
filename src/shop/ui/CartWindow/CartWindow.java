@@ -8,7 +8,6 @@ package shop.ui.CartWindow;
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
-import shop.ui.HomeWindow.HomeWindow;
 import shop.ui.ShopWindow.ShopWindow;
 
 //main imports
@@ -36,7 +35,7 @@ public class CartWindow extends JPanel{
     
 
 
-    public CartWindow(ShopWindow shopWindow, HomeWindow homeWindow){
+    public CartWindow(ShopWindow shopWindow){
 
 
     
@@ -87,7 +86,6 @@ public class CartWindow extends JPanel{
                 back.setPreferredSize(new Dimension(80,40));
                 back.addActionListener(e->{
                     shopWindow.showHomeWindow();
-                    homeWindow.panelVisible(false);
                     revalidate();
                     repaint();
                 });
