@@ -9,7 +9,7 @@ package shop.ui.HomeWindow;
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
 import shop.ui.ShopWindow.ShopWindow;
-import shop.ui.CartWindow.CartWindow;
+
 
 
 // main imports
@@ -30,7 +30,7 @@ public class HomeWindow extends JPanel {
 
 
 
-    public HomeWindow(ShopWindow shopWindow, CartWindow cartWindow){
+    public HomeWindow(ShopWindow shopWindow){
         
         this.setLayout(new BorderLayout());   
         this.setBackground(Color.decode("#111111"));      
@@ -41,7 +41,7 @@ public class HomeWindow extends JPanel {
 
         mainWindow = new MainWindow();
         mainWindow.setOpaque(false);
-        mainWrapper = new MainWrapper(mainWindow, shopWindow, cartWindow);
+        mainWrapper = new MainWrapper(mainWindow, shopWindow);
         mainWrapper.setOpaque(false);
       
 
@@ -91,9 +91,6 @@ public class HomeWindow extends JPanel {
     public void panelVisible(boolean bool){
        mainWrapper.panelVisible(bool);
     }
-    // public  void defaultCartScroll(){
-    //     cartWindow.defaultCartScroll();
-    // }
-
+   
 
 }
