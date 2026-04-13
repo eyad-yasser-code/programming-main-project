@@ -10,6 +10,7 @@ package shop.ui.MainWindow;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import shop.ui.Helper.MyGradient;
 import shop.ui.HomeWindow.CategoryPanel;
 import shop.ui.HomeWindow.ItemPanel;
 
@@ -28,7 +29,9 @@ public class MiddleView extends JPanel{
     private MainWindow mainWindow;
 
 
-
+    private  float[] degrees = {0.0f, 0.7f, 1.0f};
+    private Color[] colors ={Color.decode("#424242"),Color.decode("#424242"),Color.decode("#1c1c1c")};
+    
 
 
 
@@ -39,8 +42,9 @@ public class MiddleView extends JPanel{
         this.mainWindow=mainWindow;        
 
 
-        itemsHolder = new ItemsHolder();
-        categoriesHolder = new CategoriesHolder();
+       
+        itemsHolder = new ItemsHolder(0,0,0,getHeight(),degrees,colors,30);
+        categoriesHolder = new CategoriesHolder(0,0,0,getHeight(),degrees,colors,30);
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
@@ -92,26 +96,15 @@ public class MiddleView extends JPanel{
 
 
 
-class ItemsHolder extends JPanel{
+class ItemsHolder extends MyGradient{
 
     
-    
-    
-     @Override
-    protected void paintComponent(Graphics graphics) {
+    //int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc
+
+
+    public ItemsHolder(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
        
-        Color colors[]={Color.decode("#424242"),Color.decode("#424242"),Color.decode("#1c1c1c")};
-        float degree[]={0.0f, 0.7f, 1.0f};
-
-        super.paintComponent(graphics); //remove color of panel
-        Graphics2D graphics2d = (Graphics2D) graphics;
-        LinearGradientPaint linerG = new LinearGradientPaint(0,0, 0,getHeight(),degree,colors);
-       
-        graphics2d.setPaint(linerG);
-        graphics2d.fillRect(0, 0, getWidth(), getHeight());
-    }
-
-    public ItemsHolder(){
+        super( startX,  startY ,  endX,  endY, degrees,  colors, arc);
        
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
@@ -121,25 +114,14 @@ class ItemsHolder extends JPanel{
 }
 
 
-class CategoriesHolder extends JPanel{
+class CategoriesHolder extends MyGradient{
 
 
-    @Override
-    protected void paintComponent(Graphics graphics) {
+
+    public CategoriesHolder(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
        
-        Color colors[]={Color.decode("#424242"),Color.decode("#424242"),Color.decode("#1c1c1c")};
-        float degree[]={0.0f, 0.7f, 1.0f};
+        super( startX,  startY ,  endX,  endY, degrees,  colors, arc);
 
-        super.paintComponent(graphics); //remove color of panel
-        Graphics2D graphics2d = (Graphics2D) graphics;
-        LinearGradientPaint linerG = new LinearGradientPaint(0,0, 0,getHeight(),degree,colors);
-       
-        graphics2d.setPaint(linerG);
-        graphics2d.fillRect(0, 0, getWidth(), getHeight());
-    }
-
-    public CategoriesHolder(){
-       
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
      
