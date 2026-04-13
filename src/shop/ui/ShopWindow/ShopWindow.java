@@ -31,7 +31,7 @@ public class ShopWindow extends JPanel{
         this.cardPanel = new JPanel(cardLayout);
         cardPanel.setOpaque(false);
         
-        this.homeWindow = new HomeWindow(this);
+        this.homeWindow = new HomeWindow(this,cartWindow);
         this.cartWindow = new CartWindow(this,homeWindow);
 
       
@@ -39,7 +39,7 @@ public class ShopWindow extends JPanel{
         cardPanel.add(cartWindow, "cartWindow");
 
         this.add(cardPanel, BorderLayout.CENTER);
-        showHomeWindow();
+        showCartWindow();
 
     }
 

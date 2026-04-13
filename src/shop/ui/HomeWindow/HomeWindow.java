@@ -4,10 +4,13 @@
 package shop.ui.HomeWindow;
 
 
+
 //my packages imports
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
 import shop.ui.ShopWindow.ShopWindow;
+import shop.ui.CartWindow.CartWindow;
+
 
 // main imports
 import javax.swing.*;
@@ -20,20 +23,25 @@ import java.awt.*;
 public class HomeWindow extends JPanel {
 
 
+    
     private MainWindow mainWindow;
     private MainWrapper mainWrapper;
 
 
 
-    public HomeWindow(ShopWindow shopWindow){
+
+    public HomeWindow(ShopWindow shopWindow, CartWindow cartWindow){
         
         this.setLayout(new BorderLayout());   
         this.setBackground(Color.decode("#111111"));      
         
 
+       
+
+
         mainWindow = new MainWindow();
         mainWindow.setOpaque(false);
-        mainWrapper = new MainWrapper(mainWindow, shopWindow);
+        mainWrapper = new MainWrapper(mainWindow, shopWindow, cartWindow);
         mainWrapper.setOpaque(false);
       
 
@@ -83,7 +91,9 @@ public class HomeWindow extends JPanel {
     public void panelVisible(boolean bool){
        mainWrapper.panelVisible(bool);
     }
-
+    // public  void defaultCartScroll(){
+    //     cartWindow.defaultCartScroll();
+    // }
 
 
 }

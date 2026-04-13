@@ -2,8 +2,10 @@ package shop.ui.MainWrapper;
 
 
 
+import shop.ui.CartWindow.CartWindow;
 //my imports 
 import shop.ui.Helper.*;
+import shop.ui.HomeWindow.HomeWindow;
 import shop.ui.MainWindow.MainWindow;
 import shop.ui.ShopWindow.ShopWindow;
 
@@ -20,13 +22,18 @@ private WrapperCenter wrapperCenter;
 private JPanel wrapperBottom;
 
 
-public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
+
+
+
+public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow ,CartWindow cartWindow){
 
 
     this.setLayout(new BorderLayout());
     this.setOpaque(false);
 
   
+    
+
 
 
     wrapperBottom = new JPanel(new BorderLayout());
@@ -38,7 +45,7 @@ public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
     wrapperBottom.setVisible(false);
 
    
-    wrapperTop = new WrapperTop(wrapperBottom, shopWindow);
+    wrapperTop = new WrapperTop(wrapperBottom, shopWindow, cartWindow);
 
     
     this.add(wrapperTop, BorderLayout.NORTH);
@@ -62,7 +69,7 @@ class WrapperTop extends JPanel{
    
     
 
-    public WrapperTop(JPanel panel, ShopWindow shopWindow){
+    public WrapperTop(JPanel panel, ShopWindow shopWindow, CartWindow cartWindow){
        
        
        
@@ -117,7 +124,14 @@ class WrapperTop extends JPanel{
         cart.setMaximumSize(new Dimension(60,30));
         cart.addActionListener(e->{
             System.out.println("cart");
+            
+
+            
             shopWindow.showCartWindow();
+            SwingUtilities.invokeLater(() -> {
+                cartWindow.defaultCartScroll();
+            });
+        
             revalidate();
             repaint();
 

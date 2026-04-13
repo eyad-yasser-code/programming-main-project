@@ -2,16 +2,16 @@
 package shop.ui.CartWindow;
 
 
-
-
-
 //my imports 
 
-
+import shop.ui.Helper.ImageLabel;
+import shop.ui.Helper.MyGradient;
 
 //main imports
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 
 
 import java.awt.*;
@@ -21,44 +21,51 @@ import java.awt.*;
 public class CartItem extends JPanel{
 
 
+    private Color[] picColor = {Color.WHITE,Color.WHITE};
+    private float[] picFloat = {0.0f,1.0f};
+
+    private Color[] infoColor = {Color.decode("#159069"),Color.decode("#159069")};
+    private float[] infoFloat = {0.0f, 1.0f};
+
     public CartItem(){
 
         this.setLayout(new BorderLayout());
-        this.setOpaque(false);
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
-        
-        JPanel base = new JPanel(new BorderLayout());
+        this.setPreferredSize(new Dimension(0, 150));
+        this.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setOpaque(false);
+       
+       
+        JPanel base = new JPanel(new BorderLayout(20,5));
         base.setPreferredSize(new Dimension(700 , 150 ));
-        base.setBackground(Color.decode("#159069"));
+        base.setBorder(new EmptyBorder(0,25,0,20));
+        base.setOpaque(false);
 
 
 
-            JPanel leftBase = new JPanel(new BorderLayout());
-            leftBase.setPreferredSize(new Dimension(100,100));
-            leftBase.setBackground(Color.WHITE);
-
-
-
-
-            JPanel rightBase = new JPanel(new BorderLayout());
-            rightBase.setOpaque(false);
+            ItemPic itemPic = new ItemPic(0,0,0,getHeight(),picFloat,picColor,30);
+         
+           
+            ItemInfo itemInfo = new ItemInfo(0,0,0,getHeight(),infoFloat,infoColor,30);
+           
+           
             
 
-                JPanel rightBaseTop = new JPanel(new BorderLayout());
-                rightBaseTop.setOpaque(false);
+                JPanel itemInfoTop = new JPanel(new BorderLayout());
+                itemInfoTop.setOpaque(false);
 
 
 
-                JPanel rightBaseBottom = new JPanel(new BorderLayout());
-                rightBaseBottom.setOpaque(false);
+                JPanel itemInfoBottom = new JPanel(new BorderLayout());
+                itemInfoBottom.setOpaque(false);
 
 
-            rightBase.add(rightBaseTop, BorderLayout.CENTER);
-            rightBase.add(rightBaseBottom, BorderLayout.SOUTH);
-            
+            itemInfo.add(itemInfoTop, BorderLayout.CENTER);
+            itemInfo.add(itemInfoBottom, BorderLayout.SOUTH);
         
-        base.add(leftBase, BorderLayout.WEST);
-        base.add(rightBase, BorderLayout.CENTER);
+        
+        base.add(itemPic, BorderLayout.WEST);
+        base.add(itemInfo, BorderLayout.CENTER);
 
 
 
@@ -67,3 +74,43 @@ public class CartItem extends JPanel{
     }
 }
 
+
+
+class ItemPic extends MyGradient{
+    
+    
+    
+    private ImageLabel imageLabel;
+
+
+    
+    public ItemPic(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+    
+        super(startX, startY , endX, endY, degrees, colors, arc);
+
+        this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(150,150));
+        this.setOpaque(false);
+
+        imageLabel = new ImageLabel("/images/","keyboard.PNG");
+
+       
+        this.add(imageLabel,BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
+
+
+
+}
+
+class ItemInfo extends MyGradient{
+    public ItemInfo(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+        super(startX, startY , endX, endY, degrees, colors, arc);
+
+        this.setLayout(new GridLayout());
+        this.setPreferredSize(new Dimension(150,150));
+
+    }
+
+}
