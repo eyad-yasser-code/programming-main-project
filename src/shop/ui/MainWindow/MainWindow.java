@@ -2,6 +2,7 @@
 package shop.ui.MainWindow;
 
 
+import shop.ui.Helper.MyGradient;
 //my imports 
 import shop.ui.Helper.PressableButton;
 //import shop.ui.ShopWindow.*;
@@ -21,68 +22,66 @@ import java.awt.*;
 
 public class MainWindow extends JPanel{
 
-private BottomBasePanel bottomBasePanel;
-private TopBasePanel topBasePanel;
-private JPanel basePanel;
+    private BottomBasePanel bottomBasePanel;
+    private TopBasePanel topBasePanel;
+    private JPanel basePanel;
 
 
 
-public MainWindow(){
+    public MainWindow(){
 
-    this.setLayout(new BorderLayout());
-    this.setOpaque(false);
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
 
-    basePanel = new JPanel(new BorderLayout());
-    basePanel.setOpaque(false);
+        basePanel = new JPanel(new BorderLayout());
+        basePanel.setOpaque(false);
 
-    topBasePanel = new TopBasePanel();
-
-
-    bottomBasePanel = new BottomBasePanel(this);
+        topBasePanel = new TopBasePanel();
 
 
-
-
-    basePanel.add(topBasePanel, BorderLayout.NORTH);
-    basePanel.add(bottomBasePanel, BorderLayout.CENTER);
+        bottomBasePanel = new BottomBasePanel(this);
 
 
 
 
-    this.add(basePanel, BorderLayout.CENTER);
-
-}
-
+        basePanel.add(topBasePanel, BorderLayout.NORTH);
+        basePanel.add(bottomBasePanel, BorderLayout.CENTER);
 
 
-//adding functions main
-
-public  void addItem( String name, String imagName, String price) {
-    bottomBasePanel.addItem(name,imagName,price);
-}
-
-public void addCategory(String name, String imagName){
-    bottomBasePanel.addCategory(name,imagName);
 
 
-}
+        this.add(basePanel, BorderLayout.CENTER);
 
-//showing functions
-
-public void showCategoriesHolder(){
-    bottomBasePanel.showCatigoriesHolder();
-}
-public void showItemsHolder(){
-    bottomBasePanel.showItemsHolder();
-}
-
-//scroll
-
-public void defaultScroll(){
-    bottomBasePanel.defaultScroll();
-}
+    }
 
 
+
+    //adding functions main
+
+    public  void addItem( String name, String imagName, String price) {
+        bottomBasePanel.addItem(name,imagName,price);
+    }
+
+    public void addCategory(String name, String imagName){
+        bottomBasePanel.addCategory(name,imagName);
+
+
+    }
+
+    //showing functions
+
+    public void showCategoriesHolder(){
+        bottomBasePanel.showCatigoriesHolder();
+    }
+    public void showItemsHolder(){
+        bottomBasePanel.showItemsHolder();
+    }
+
+    //scroll
+
+    public void defaultScroll(){
+        bottomBasePanel.defaultScroll();
+    }
 
 
 
@@ -108,6 +107,11 @@ class BottomBasePanel extends JPanel{
     private JScrollPane scrollPane;
        
     
+    private float degrees[]={0.0f,0.1f,0.2f,1.0f};
+    private Color colors[]={Color.decode("#159069"),Color.decode("#159069"),Color.decode("#23221f"),Color.decode("#23221f")};
+    
+
+
     public BottomBasePanel(MainWindow mainWindow){
    
           
@@ -122,35 +126,13 @@ class BottomBasePanel extends JPanel{
            middleView.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
 
        
+          
            
-           
-           JPanel bottomPanel = new JPanel(){
+           BottomPanel bottomPanel = new BottomPanel(0,0,0,getHeight(),degrees,colors,30);
                
-               float values[]={0.0f,0.1f,0.2f,1.0f};
-               Color colors[]={Color.decode("#159069"),Color.decode("#159069"),Color.decode("#23221f"),Color.decode("#23221f")};
+              
    
-               @Override
-               protected void paintComponent(Graphics g){
-                   super.paintComponent(g);
-                   Graphics2D g2D = (Graphics2D)g;
-   
-                   LinearGradientPaint linerG = new LinearGradientPaint(0,0 , 0,  getHeight() ,values ,colors);
-   
-                   g2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-   
-                   g2D.setPaint(linerG);
-                   g2D.fillRect(0, 0, getWidth(), getHeight());
-                   
-               }
-   
-   
-           };
-   
-               
-               bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
-               bottomPanel.setPreferredSize(new Dimension(0,400));
-               bottomPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-               bottomPanel.setOpaque(false);
+              
    
                //information panels
    
@@ -235,4 +217,17 @@ class BottomBasePanel extends JPanel{
 
    }
    
-   
+   class BottomPanel extends MyGradient{
+    public BottomPanel(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+        super(startX, startY , endX, endY, degrees, colors, arc);
+
+        
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setPreferredSize(new Dimension(0,400));
+        this.setBorder(BorderFactory.createLineBorder( Color.decode("#111111") ,10));
+        this.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setOpaque(false);
+
+
+    }
+   }
