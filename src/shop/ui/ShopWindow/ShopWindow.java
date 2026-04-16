@@ -43,7 +43,7 @@ public class ShopWindow extends JPanel{
         cardPanel.add(loginWrapper, "loginWrapper");
 
         this.add(cardPanel, BorderLayout.CENTER);
-        showLoginWrapper();
+        showHomeWindow();
 
     }
 

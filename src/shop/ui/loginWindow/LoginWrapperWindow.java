@@ -59,6 +59,7 @@ public class LoginWrapperWindow extends JPanel{
 
     public void showSignInWindow(){
         cardLayout.show(cardPanel, "signInWindow");
+        signInWindow.resetText();
 
         revalidate();
         repaint();

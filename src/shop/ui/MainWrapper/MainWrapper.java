@@ -5,7 +5,6 @@ package shop.ui.MainWrapper;
 
 //my imports 
 import shop.ui.Helper.*;
-import shop.ui.HomeWindow.HomeWindow;
 import shop.ui.MainWindow.MainWindow;
 import shop.ui.ShopWindow.ShopWindow;
 

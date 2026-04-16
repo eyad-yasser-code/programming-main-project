@@ -9,7 +9,6 @@ package shop.ui.HomeWindow;
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
 import shop.ui.ShopWindow.ShopWindow;
-import shop.ui.loginWindow.LoginWrapperWindow;
 
 // main imports
 import javax.swing.*;
