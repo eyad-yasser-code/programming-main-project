@@ -5,7 +5,7 @@ package shop.ui.ShopWindow;
 
 import shop.ui.CartWindow.CartWindow;
 import shop.ui.HomeWindow.HomeWindow;
-
+import shop.ui.loginWindow.LoginWrapperWindow;
 
 //main imports 
 import javax.swing.*;
@@ -22,6 +22,7 @@ public class ShopWindow extends JPanel{
     
     private CartWindow cartWindow;
     private HomeWindow homeWindow;
+    private LoginWrapperWindow loginWrapper;
 
     public ShopWindow(){
 
@@ -31,15 +32,18 @@ public class ShopWindow extends JPanel{
         this.cardPanel = new JPanel(cardLayout);
         cardPanel.setOpaque(false);
         
+        this.loginWrapper = new LoginWrapperWindow(this);
         this.homeWindow = new HomeWindow(this);
         this.cartWindow = new CartWindow(this);
+      
 
       
         cardPanel.add(homeWindow,"homeWindow");
         cardPanel.add(cartWindow, "cartWindow");
+        cardPanel.add(loginWrapper, "loginWrapper");
 
         this.add(cardPanel, BorderLayout.CENTER);
-        showHomeWindow();
+        showLoginWrapper();
 
     }
 
@@ -55,6 +59,15 @@ public class ShopWindow extends JPanel{
     public void showHomeWindow(){
         cardLayout.show(cardPanel, "homeWindow");
         homeWindow.panelVisible(false);
+        homeWindow.resetSearch();
+        revalidate();
+        repaint();
+    }
+
+
+    public void showLoginWrapper(){
+        cardLayout.show(cardPanel, "loginWrapper");
+        loginWrapper.showLoginWindow();
         revalidate();
         repaint();
     }

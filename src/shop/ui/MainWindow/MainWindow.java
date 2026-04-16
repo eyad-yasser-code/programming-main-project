@@ -108,7 +108,7 @@ class BottomBasePanel extends JPanel{
     private JScrollPane scrollPane;
        
     
-    private float degrees[]={0.0f,0.2f,0.3f,1.0f};
+    private float degrees[]={0.0f,0.15f,0.25f,1.0f};
     private Color colors[]={Color.decode("#159069"),Color.decode("#159069"),Color.decode("#303030"),Color.decode("#161616")};
     
 

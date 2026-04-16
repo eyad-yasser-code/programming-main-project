@@ -44,12 +44,12 @@ public class CartWindow extends JPanel{
     private Color[] rightColors ={Color.decode("#1c1c1c"),Color.decode("#313131"),Color.decode("#313131")};
     
 
-//3b3b3b
+
 
     public CartWindow(ShopWindow shopWindow){
 
 
-    
+        
         this.setLayout(new BorderLayout());
         this.setBackground(Color.decode("#111111"));
         this.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
@@ -287,6 +287,7 @@ public class CartWindow extends JPanel{
         paddingWrapper.add(innerWrapper,BorderLayout.CENTER);
         cartBase.add(paddingWrapper,BorderLayout.CENTER);
         baseWrapper.add(cartBase); 
+        
         this.add(baseWrapper, BorderLayout.CENTER);
 
 

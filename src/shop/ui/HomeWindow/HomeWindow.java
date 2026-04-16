@@ -9,8 +9,7 @@ package shop.ui.HomeWindow;
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
 import shop.ui.ShopWindow.ShopWindow;
-
-
+import shop.ui.loginWindow.LoginWrapperWindow;
 
 // main imports
 import javax.swing.*;
@@ -29,9 +28,9 @@ public class HomeWindow extends JPanel {
 
 
 
-
     public HomeWindow(ShopWindow shopWindow){
         
+       
         this.setLayout(new BorderLayout());   
         this.setBackground(Color.decode("#1b1b1b"));      
         this.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
@@ -88,9 +87,16 @@ public class HomeWindow extends JPanel {
 
     //helping methods
 
+    
+   
     public void panelVisible(boolean bool){
        mainWrapper.panelVisible(bool);
     }
    
+    public void resetSearch(){
+        mainWrapper.resetSearch();
+    }
+
+
 
 }
