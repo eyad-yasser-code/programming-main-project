@@ -8,6 +8,7 @@ package shop.ui.HomeWindow;
 
 //my packages imports
 import shop.ui.Helper.PressableButton;
+import shop.ui.MainWindow.MiddleView;
 import shop.ui.Helper.ImageLabel;
 
 
@@ -44,7 +45,7 @@ public class ItemPanel extends JPanel{
 
 
 
-    public ItemPanel(String name,String imageName, String price){
+    public ItemPanel(String name,String imageName,String description, String price,MiddleView middleView){
 
        
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -154,6 +155,11 @@ public class ItemPanel extends JPanel{
    
         cartAdd.addActionListener(e -> {
             System.out.println(name + " added to cart");
+
+            middleView.addCart(name,imageName,description,price);
+
+
+
         });
 
         buttonWrapper.add(cartAdd, BorderLayout.CENTER);

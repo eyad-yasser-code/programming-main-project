@@ -5,6 +5,7 @@ package shop.ui.ShopWindow;
 
 import shop.ui.CartWindow.CartWindow;
 import shop.ui.HomeWindow.HomeWindow;
+import shop.ui.LogicHelper.Product;
 import shop.ui.loginWindow.LoginWrapperWindow;
 
 //main imports 
@@ -13,10 +14,13 @@ import javax.swing.*;
 
 
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class ShopWindow extends JPanel{
 
+   
+   
     private CardLayout cardLayout;
     private JPanel cardPanel;
     
@@ -24,6 +28,12 @@ public class ShopWindow extends JPanel{
     private HomeWindow homeWindow;
     private LoginWrapperWindow loginWrapper;
 
+
+    private ArrayList<Product> products;
+    
+    
+    //constructor
+    
     public ShopWindow(){
 
         this.setLayout(new BorderLayout());
@@ -32,10 +42,20 @@ public class ShopWindow extends JPanel{
         this.cardPanel = new JPanel(cardLayout);
         cardPanel.setOpaque(false);
         
+
+
+       
+
+        products = new ArrayList<Product>();
+
         this.loginWrapper = new LoginWrapperWindow(this);
         this.homeWindow = new HomeWindow(this);
         this.cartWindow = new CartWindow(this);
       
+
+
+
+
 
       
         cardPanel.add(homeWindow,"homeWindow");
@@ -73,4 +93,30 @@ public class ShopWindow extends JPanel{
     }
 
 
+    //add functions
+
+    
+    public void addItem(String name,String imagename,String description,String price){
+       
+        homeWindow.addItem(name,imagename,description,price);
+
+    }
+
+    public void addCategory(String name,String imagename){
+
+        homeWindow.addCategory(name, imagename);
+
+    }
+
+    public void addCart(String name, String imagename,String description,String price){
+   
+      cartWindow.addItem(name,imagename,description,price);
+
+    }
+
+
+
 }
+
+
+

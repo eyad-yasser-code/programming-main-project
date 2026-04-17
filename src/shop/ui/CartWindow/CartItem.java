@@ -27,7 +27,7 @@ public class CartItem extends JPanel{
     private Color[] infoColor = {Color.decode("#4a806f"),Color.decode("#4a806f")};
     private float[] infoFloat = {0.0f, 1.0f};
 
-    public CartItem(){
+    public CartItem(String name,String imagename,String description,String price){
 
         this.setLayout(new BorderLayout());
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));

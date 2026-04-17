@@ -81,8 +81,8 @@ public class MiddleView extends JPanel{
 
     //adding 
 
-    public void addItem(String name, String imageName, String price){
-         itemsHolder.add(new ItemPanel(name,imageName,price));
+    public void addItem(String name, String imageName,String description, String price){
+         itemsHolder.add(new ItemPanel(name,imageName,description,price,this));
     }
 
     public void addCategory(String name, String imageName){
@@ -90,7 +90,10 @@ public class MiddleView extends JPanel{
        
    }
 
-  
+  //adding reverse 
+  public void addCart(String name, String imagename,String description,String price){
+    mainWindow.addCart(name,imagename,description,price);
+  }
 
 }
 

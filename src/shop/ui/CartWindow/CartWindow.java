@@ -5,11 +5,12 @@
 package shop.ui.CartWindow;
 
 
-import shop.ui.Helper.ModifiedScroll;
+
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
 import shop.ui.ShopWindow.ShopWindow;
+import shop.ui.Helper.ModifiedScroll;
 
 //main imports
 import java.awt.*;
@@ -169,19 +170,12 @@ public class CartWindow extends JPanel{
 
                 // });
                
-
-
-               
                
                
                 toTop.addActionListener(e->{
                     defaultCartScroll();
                 });
                 
-
-
-
-
 
 
 
@@ -292,21 +286,19 @@ public class CartWindow extends JPanel{
 
 
         
-        for(int i = 0 ; i < 20 ; i++){ 
-            addItem();
+        // for(int i = 0 ; i < 20 ; i++){ 
+        //     addItem("PC","laptop.PNG","good PC","30,000");
           
-        }
+        // }
      
-    
-
     }
 
 
    //add 
 
-   public void addItem(){
+   public void addItem(String name, String imagename,String description,String price){
 
-    CartItem item = new CartItem();
+    CartItem item = new CartItem(name,imagename,description, price);
     
     item.setAlignmentX(Component.CENTER_ALIGNMENT);
     

@@ -7,6 +7,7 @@ import shop.ui.Helper.MyGradient;
 //my imports 
 import shop.ui.Helper.PressableButton;
 //import shop.ui.ShopWindow.*;
+import shop.ui.HomeWindow.HomeWindow;
 
 //main imports 
 import javax.swing.*;
@@ -28,8 +29,13 @@ public class MainWindow extends JPanel{
     private JPanel basePanel;
 
 
+    private HomeWindow homeWindow;
 
-    public MainWindow(){
+
+    public MainWindow(HomeWindow homeWindow){
+
+
+        this.homeWindow=homeWindow;
 
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
@@ -59,8 +65,8 @@ public class MainWindow extends JPanel{
 
     //adding functions main
 
-    public  void addItem( String name, String imagName, String price) {
-        bottomBasePanel.addItem(name,imagName,price);
+    public  void addItem( String name, String imagName,String description, String price) {
+        bottomBasePanel.addItem(name,imagName,description,price);
     }
 
     public void addCategory(String name, String imagName){
@@ -68,6 +74,18 @@ public class MainWindow extends JPanel{
 
 
     }
+
+
+
+    //adding functions reverse
+
+    public void addCart(String name, String imagename,String description,String price){
+        homeWindow.addCart(name,imagename,description,price);
+    }
+
+
+
+
 
     //showing functions
 
@@ -194,8 +212,8 @@ class BottomBasePanel extends JPanel{
        }
    
        //adding
-       public void addItem(String name, String imagName, String price){
-         middleView.addItem(name, imagName, price);
+       public void addItem(String name, String imagName,String description, String price){
+         middleView.addItem(name, imagName,description, price);
          
        }
    
@@ -204,6 +222,12 @@ class BottomBasePanel extends JPanel{
             middleView.addCategory(name, imagName);
    
        }
+
+    //    //adding reverse
+    //    public void addCart(String name, String imagename,String description,String price){
+    //        middleView.addCart(name,imagename,description,price);
+    //    }
+    
    
 
        //showing 

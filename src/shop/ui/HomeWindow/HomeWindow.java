@@ -25,10 +25,13 @@ public class HomeWindow extends JPanel {
     private MainWindow mainWindow;
     private MainWrapper mainWrapper;
 
+    private ShopWindow shopWindow;
 
 
     public HomeWindow(ShopWindow shopWindow){
         
+
+        this.shopWindow = shopWindow;
        
         this.setLayout(new BorderLayout());   
         this.setBackground(Color.decode("#1b1b1b"));      
@@ -37,7 +40,7 @@ public class HomeWindow extends JPanel {
        
 
 
-        mainWindow = new MainWindow();
+        mainWindow = new MainWindow(this);
         mainWindow.setOpaque(false);
         mainWrapper = new MainWrapper(mainWindow, shopWindow);
         mainWrapper.setOpaque(false);
@@ -47,13 +50,13 @@ public class HomeWindow extends JPanel {
         
 
         //adding items test
-        mainWindow.addItem("laptop","laptop.PNG","15,000");
-        mainWindow.addItem("keyboard","keyboard.PNG","1000");
-        mainWindow.addItem("mouse","mouse.PNG","500");
-        mainWindow.addItem("microphone","microphone.PNG","1500");
+        mainWindow.addItem("laptop","laptop.PNG","good laptop","15,000");
+        mainWindow.addItem("keyboard","keyboard.PNG","good keyboard","1000");
+        mainWindow.addItem("mouse","mouse.PNG","good mouse","500");
+        mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
      
         for(int i =0 ; i<0 ; i++){
-            mainWindow.addItem("microphone","microphone.PNG","1500");
+            mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
         }
         mainWindow.addCategory("keyboards","keyboard.PNG");
         
@@ -94,6 +97,23 @@ public class HomeWindow extends JPanel {
    
     public void resetSearch(){
         mainWrapper.resetSearch();
+    }
+
+    //main adding 
+
+    public void addItem(String name,String imagename,String description,String price){
+        mainWindow.addItem(name,imagename,description,price);
+    }
+
+    public void addCategory(String name,String imagename){
+        mainWindow.addCategory(name, imagename);
+    }
+
+    
+    //reverse adding 
+
+    public void addCart(String name, String imagename,String description,String price){
+        shopWindow.addCart(name,imagename,description,price);
     }
 
 
