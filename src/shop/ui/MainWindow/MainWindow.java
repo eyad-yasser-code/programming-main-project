@@ -8,6 +8,7 @@ import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
 //import shop.ui.ShopWindow.*;
 import shop.ui.HomeWindow.HomeWindow;
+import shop.ui.LogicHelper.Product;
 
 //main imports 
 import javax.swing.*;
@@ -65,8 +66,8 @@ public class MainWindow extends JPanel{
 
     //adding functions main
 
-    public  void addItem( String name, String imagName,String description, String price) {
-        bottomBasePanel.addItem(name,imagName,description,price);
+    public  void addItem( Product product) {
+        bottomBasePanel.addItem(product);
     }
 
     public void addCategory(String name, String imagName){
@@ -79,12 +80,17 @@ public class MainWindow extends JPanel{
 
     //adding functions reverse
 
-    public void addCart(String name, String imagename,String description,String price){
-        homeWindow.addCart(name,imagename,description,price);
+    public void addCart(Product product){
+        homeWindow.addCart(product);
     }
 
 
+    //removing functions main
 
+
+    public void removeItem(Product product){
+        bottomBasePanel.removeItem(product);
+    }
 
 
     //showing functions
@@ -212,8 +218,8 @@ class BottomBasePanel extends JPanel{
        }
    
        //adding
-       public void addItem(String name, String imagName,String description, String price){
-         middleView.addItem(name, imagName,description, price);
+       public void addItem(Product product){
+         middleView.addItem(product);
          
        }
    
@@ -223,11 +229,21 @@ class BottomBasePanel extends JPanel{
    
        }
 
-    //    //adding reverse
-    //    public void addCart(String name, String imagename,String description,String price){
-    //        middleView.addCart(name,imagename,description,price);
-    //    }
-    
+
+
+       //removing main
+
+       public void removeItem(Product product){
+        middleView.removeItem(product);
+       }
+
+
+
+
+
+
+
+  
    
 
        //showing 

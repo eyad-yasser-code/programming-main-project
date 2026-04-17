@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import shop.ui.Helper.MyGradient;
 import shop.ui.HomeWindow.CategoryPanel;
 import shop.ui.HomeWindow.ItemPanel;
+import shop.ui.LogicHelper.Product;
 
 import java.awt.*;
 
@@ -43,8 +44,8 @@ public class MiddleView extends JPanel{
         this.setOpaque(false);
 
        
-        itemsHolder = new ItemsHolder(0,0,0,getHeight(),degrees,colors,30);
-        categoriesHolder = new CategoriesHolder(0,0,0,getHeight(),degrees,colors,30);
+        itemsHolder = new ItemsHolder(0,0,0,600,degrees,colors,30);
+        categoriesHolder = new CategoriesHolder(0,0,0,600,degrees,colors,30);
       
       
         cardLayout = new CardLayout();
@@ -81,18 +82,53 @@ public class MiddleView extends JPanel{
 
     //adding 
 
-    public void addItem(String name, String imageName,String description, String price){
-         itemsHolder.add(new ItemPanel(name,imageName,description,price,this));
+    public void addItem(Product product){
+        
+        ItemPanel itemPanel = new ItemPanel(product,this);
+        itemsHolder.add(itemPanel);
     }
 
     public void addCategory(String name, String imageName){
-        categoriesHolder.add(new CategoryPanel(name,imageName,this.mainWindow));
+        CategoryPanel categoryPanel = new CategoryPanel(name, imageName, mainWindow);
+        categoriesHolder.add(categoryPanel);
        
    }
 
+
+
+   //removing main
+   public void removeItem(Product product){
+    
+    Component[] components= itemsHolder.getComponents();
+
+    for(Component comp : components){
+
+        if(comp instanceof ItemPanel){
+
+            ItemPanel itemPanel = (ItemPanel)  comp;
+            if(itemPanel.getProduct().equals(product)){
+                itemsHolder.remove(itemPanel);
+                break;
+
+            }
+            
+
+        }
+
+    }
+
+itemsHolder.revalidate();
+itemsHolder.repaint();
+
+
+
+   }
+
+
+
   //adding reverse 
-  public void addCart(String name, String imagename,String description,String price){
-    mainWindow.addCart(name,imagename,description,price);
+  public void addCart(Product product){
+    mainWindow.addCart(product);
   }
 
 }

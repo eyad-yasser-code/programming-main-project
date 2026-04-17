@@ -5,6 +5,7 @@ package shop.ui.HomeWindow;
 
 
 
+import shop.ui.LogicHelper.Product;
 //my packages imports
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
@@ -49,16 +50,16 @@ public class HomeWindow extends JPanel {
 
         
 
-        //adding items test
-        mainWindow.addItem("laptop","laptop.PNG","good laptop","15,000");
-        mainWindow.addItem("keyboard","keyboard.PNG","good keyboard","1000");
-        mainWindow.addItem("mouse","mouse.PNG","good mouse","500");
-        mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
+        // //adding items test
+        // mainWindow.addItem("laptop","laptop.PNG","good laptop","15,000");
+        // mainWindow.addItem("keyboard","keyboard.PNG","good keyboard","1000");
+        // mainWindow.addItem("mouse","mouse.PNG","good mouse","500");
+        // mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
      
-        for(int i =0 ; i<0 ; i++){
-            mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
-        }
-        mainWindow.addCategory("keyboards","keyboard.PNG");
+        // for(int i =0 ; i<0 ; i++){
+        //     mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
+        // }
+        // mainWindow.addCategory("keyboards","keyboard.PNG");
         
 
 
@@ -101,8 +102,8 @@ public class HomeWindow extends JPanel {
 
     //main adding 
 
-    public void addItem(String name,String imagename,String description,String price){
-        mainWindow.addItem(name,imagename,description,price);
+    public void addItem(Product product){
+        mainWindow.addItem(product);
     }
 
     public void addCategory(String name,String imagename){
@@ -112,10 +113,16 @@ public class HomeWindow extends JPanel {
     
     //reverse adding 
 
-    public void addCart(String name, String imagename,String description,String price){
-        shopWindow.addCart(name,imagename,description,price);
+    public void addCart(Product product){
+        shopWindow.addCart(product);
     }
 
+    
 
+    //main removing
+
+    public void removeItem(Product product){
+        mainWindow.removeItem(product);
+    }
 
 }

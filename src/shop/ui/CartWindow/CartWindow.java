@@ -9,6 +9,7 @@ package shop.ui.CartWindow;
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
+import shop.ui.LogicHelper.Product;
 import shop.ui.ShopWindow.ShopWindow;
 import shop.ui.Helper.ModifiedScroll;
 
@@ -296,9 +297,9 @@ public class CartWindow extends JPanel{
 
    //add 
 
-   public void addItem(String name, String imagename,String description,String price){
+   public void addItem(Product product){
 
-    CartItem item = new CartItem(name,imagename,description, price);
+    CartItem item = new CartItem(product);
     
     item.setAlignmentX(Component.CENTER_ALIGNMENT);
     

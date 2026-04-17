@@ -8,6 +8,7 @@ package shop.ui.HomeWindow;
 
 //my packages imports
 import shop.ui.Helper.PressableButton;
+import shop.ui.LogicHelper.Product;
 import shop.ui.MainWindow.MiddleView;
 import shop.ui.Helper.ImageLabel;
 
@@ -44,14 +45,20 @@ public class ItemPanel extends JPanel{
     }
 
 
+    private Product product;
 
-    public ItemPanel(String name,String imageName,String description, String price,MiddleView middleView){
+
+    public ItemPanel(Product product,MiddleView middleView){
 
        
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(200,350));
         this.setOpaque(false);
         
+
+        this.product=product;
+
+
     
         //image section
 
@@ -79,7 +86,7 @@ public class ItemPanel extends JPanel{
         imagPanel.setBackground(Color.WHITE);
   
   
-        ImageLabel imagLabel = new ImageLabel("/images/",imageName);
+        ImageLabel imagLabel = new ImageLabel("/images/",product.getImageName());
         imagLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     
 
@@ -109,7 +116,7 @@ public class ItemPanel extends JPanel{
       
        
 
-        JLabel nameLabel = new JLabel(name);
+        JLabel nameLabel = new JLabel(product.getName());
         nameLabel.setFont(new Font("Arial",Font.PLAIN,12));
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -119,7 +126,7 @@ public class ItemPanel extends JPanel{
       
       
       
-        JLabel priceLabel = new JLabel( price + "L.E.");
+        JLabel priceLabel = new JLabel( product.getPrice() + "L.E.");
         priceLabel.setFont(new Font("Arial",Font.BOLD,14));
         priceLabel.setForeground(Color.WHITE);
         priceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -154,9 +161,9 @@ public class ItemPanel extends JPanel{
        
    
         cartAdd.addActionListener(e -> {
-            System.out.println(name + " added to cart");
+           
 
-            middleView.addCart(name,imageName,description,price);
+            middleView.addCart(product);
 
 
 
@@ -176,6 +183,11 @@ public class ItemPanel extends JPanel{
 
     
 
+    }
+
+
+    public Product getProduct(){
+        return product;
     }
 
 }

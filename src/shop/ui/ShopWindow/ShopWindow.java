@@ -46,15 +46,19 @@ public class ShopWindow extends JPanel{
 
        
 
-        products = new ArrayList<Product>();
+        this.products = new ArrayList<Product>();
+
+      
+
 
         this.loginWrapper = new LoginWrapperWindow(this);
         this.homeWindow = new HomeWindow(this);
         this.cartWindow = new CartWindow(this);
       
+        addItem("laptop","laptop.PNG","good laptop",10000);
+        addItem("microphone","microphone.PNG","good mic",1000);
 
-
-
+        addCategory("Electronics","laptop.PNG");
 
 
       
@@ -96,9 +100,13 @@ public class ShopWindow extends JPanel{
     //add functions
 
     
-    public void addItem(String name,String imagename,String description,String price){
+    public void addItem(String name,String imageName,String description,double price){
        
-        homeWindow.addItem(name,imagename,description,price);
+       
+        Product product = new Product(name,imageName,description,price);
+        products.add(product);
+
+        homeWindow.addItem(product);
 
     }
 
@@ -108,12 +116,45 @@ public class ShopWindow extends JPanel{
 
     }
 
-    public void addCart(String name, String imagename,String description,String price){
+    public void addCart(Product product){
    
-      cartWindow.addItem(name,imagename,description,price);
+      cartWindow.addItem(product);
 
     }
 
+    
+    //remove functions
+
+    
+    public void removeItem(String name){
+       
+       Product removable=null;
+       
+        for(Product product : products){
+        if(product.getName().equals(name)){
+            removable=product;
+        }
+       }
+       
+       if(removable != null) {
+        products.remove(removable);
+        homeWindow.removeItem(removable);
+       }
+    }
+
+   
+   
+    public void removeCategory(String name,String imagename){
+
+      //  homeWindow.removeCategory(name, imagename);
+
+    }
+
+    public void removeCart(Product product){
+   
+      //cartWindow.removeItem(product);
+
+    }
 
 
 }

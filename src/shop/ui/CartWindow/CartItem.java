@@ -6,6 +6,8 @@ package shop.ui.CartWindow;
 
 import shop.ui.Helper.ImageLabel;
 import shop.ui.Helper.MyGradient;
+import shop.ui.Helper.PressableButton;
+import shop.ui.LogicHelper.Product;
 
 //main imports
 
@@ -27,7 +29,7 @@ public class CartItem extends JPanel{
     private Color[] infoColor = {Color.decode("#4a806f"),Color.decode("#4a806f")};
     private float[] infoFloat = {0.0f, 1.0f};
 
-    public CartItem(String name,String imagename,String description,String price){
+    public CartItem(Product product){
 
         this.setLayout(new BorderLayout());
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
@@ -43,26 +45,50 @@ public class CartItem extends JPanel{
 
 
 
-            ItemPic itemPic = new ItemPic(0,0,0,getHeight(),picFloat,picColor,30);
+            ItemPic itemPic = new ItemPic(0,0,0,getHeight(),picFloat,picColor,30,product);
          
            
-            ItemInfo itemInfo = new ItemInfo(0,0,0,getHeight(),infoFloat,infoColor,30);
+            ItemInfo itemInfo = new ItemInfo(0,0,0,getHeight(),infoFloat,infoColor,30,product);
            
            
             
+            JPanel itemInfoJPaneWrapper = new JPanel(new BorderLayout());
+            itemInfoJPaneWrapper.setBorder(new EmptyBorder(10,0,0,10));
+            itemInfoJPaneWrapper.setOpaque(false);
+
 
                 JPanel itemInfoTop = new JPanel(new BorderLayout());
-                itemInfoTop.setOpaque(false);
+                 itemInfoTop.setOpaque(false);
 
 
+                    JPanel deletePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+                    deletePanel.setPreferredSize(new Dimension(40,50));
+                    deletePanel.setOpaque(false);
+
+                    
+                        PressableButton remove = new PressableButton("#313131","#6e6e6e",10);
+                        remove.setText("x");
+                        remove.setPreferredSize(new Dimension(40,30));
+                        remove.setMaximumSize(new Dimension(40,30));
+                        remove.setMinimumSize(new Dimension(40,30));
+                        remove.setFont(new Font("Arial",Font.BOLD,10));
+                        remove.addActionListener(e->{
+
+                            
+                        });
+
+                    deletePanel.add(remove);
+               
+                  itemInfoTop.add(deletePanel,BorderLayout.CENTER);        
+                    
 
                 JPanel itemInfoBottom = new JPanel(new BorderLayout());
                 itemInfoBottom.setOpaque(false);
 
 
-            itemInfo.add(itemInfoTop, BorderLayout.CENTER);
-            itemInfo.add(itemInfoBottom, BorderLayout.SOUTH);
-        
+              itemInfoJPaneWrapper.add(itemInfoTop, BorderLayout.NORTH);
+            //itemInfoJPaneWrapper.add(itemInfoBottom, BorderLayout.SOUTH);
+        itemInfo.add(itemInfoJPaneWrapper,BorderLayout.CENTER);
         
         base.add(itemPic, BorderLayout.WEST);
         base.add(itemInfo, BorderLayout.CENTER);
@@ -84,7 +110,7 @@ class ItemPic extends MyGradient{
 
 
     
-    public ItemPic(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+    public ItemPic(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc,Product product){
     
         super(startX, startY , endX, endY, degrees, colors, arc);
 
@@ -92,7 +118,7 @@ class ItemPic extends MyGradient{
         this.setPreferredSize(new Dimension(150,150));
         this.setOpaque(false);
 
-        imageLabel = new ImageLabel("/images/","keyboard.PNG");
+        imageLabel = new ImageLabel("/images/",product.getImageName());
 
        
         this.add(imageLabel,BorderLayout.CENTER);
@@ -105,7 +131,7 @@ class ItemPic extends MyGradient{
 }
 
 class ItemInfo extends MyGradient{
-    public ItemInfo(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc){
+    public ItemInfo(int startX, int startY , int endX, int endY, float[] degrees, Color[] colors,int arc,Product product){
         super(startX, startY , endX, endY, degrees, colors, arc);
 
         this.setLayout(new GridLayout());
