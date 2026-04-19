@@ -129,7 +129,8 @@ public class LoginWindow extends JPanel{
                     if(email.isEmpty()){JOptionPane.showMessageDialog(this,"email can't be empty"); return;}
                     if(password.isEmpty()){JOptionPane.showMessageDialog(this,"password can't be empty"); return;}
                  
-                 
+                    if(UsersDataBase.users.isEmpty()){JOptionPane.showMessageDialog(this, "User not found");
+                    resetText();}
 
 
                     for(User user : UsersDataBase.users){
@@ -140,6 +141,9 @@ public class LoginWindow extends JPanel{
                         if(email.equals(user.getEmail())){
                             if(password.equals(user.getPassword())){
                             JOptionPane.showMessageDialog(this, "Login success");
+                            shopWindow.setIsLogged(true);
+                            shopWindow.showHomeWindow();
+                            shopWindow.setUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
                             resetText();
                             return;
                             }

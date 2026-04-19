@@ -109,6 +109,13 @@ public class CheckoutWindow extends JPanel{
                 confirm.setAlignmentX(Component.CENTER_ALIGNMENT); 
                 confirm.addActionListener(e->{
 
+                    JOptionPane.showMessageDialog(this,"purchased successfully");
+                    cartWindow.clearCart();
+                    loadCheckout(cartWindow.getCart());
+                    shopWindow.showHomeWindow();
+                    
+                    //items.removeAll();
+
                 });
 
 
@@ -245,6 +252,8 @@ public class CheckoutWindow extends JPanel{
     }
 
 }
+
+
 
 
 class BaseWrapper extends MyGradient{

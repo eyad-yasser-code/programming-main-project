@@ -16,57 +16,81 @@ import java.awt.*;
 
 public class MainWrapper extends JPanel{
 
-private WrapperTop wrapperTop;
-private WrapperSide wrapperSide;
-private WrapperCenter wrapperCenter;
-
-private JPanel wrapperBottom;
-
-
-
-public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
+    private WrapperTop wrapperTop;
+    private WrapperSide wrapperSide;
+    private WrapperCenter wrapperCenter;
+    private JPanel wrapperBottom;
 
 
 
-
-    this.setLayout(new BorderLayout());
-    this.setOpaque(false);
-
-  
-    
+    private ShopWindow shopWindow;
+    private JLabel userGreetingLabel;
 
 
 
-    wrapperBottom = new JPanel(new BorderLayout());
-    wrapperSide = new WrapperSide(mainWindow ,this,shopWindow);
-    wrapperCenter = new WrapperCenter(this);
-    wrapperBottom.add(wrapperSide, BorderLayout.WEST);
-    wrapperBottom.add(wrapperCenter, BorderLayout.CENTER);
-    wrapperBottom.setOpaque(false);
-    wrapperBottom.setVisible(false);
 
-   
-    wrapperTop = new WrapperTop(wrapperBottom, shopWindow);
+
+    public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow){
+
+
+
+
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
 
     
-    this.add(wrapperTop, BorderLayout.NORTH);
-    this.add(wrapperBottom, BorderLayout.CENTER);
+        userGreetingLabel = new JLabel();
+        this.shopWindow=shopWindow;
 
 
-}
+        wrapperBottom = new JPanel(new BorderLayout());
+        wrapperSide = new WrapperSide(mainWindow ,this,shopWindow);
+        wrapperCenter = new WrapperCenter(this);
+        wrapperBottom.add(wrapperSide, BorderLayout.WEST);
+        wrapperBottom.add(wrapperCenter, BorderLayout.CENTER);
+        wrapperBottom.setOpaque(false);
+        wrapperBottom.setVisible(false);
 
-// helping methods 
+    
+        wrapperTop = new WrapperTop(wrapperBottom, shopWindow,this);
+
+        
+        this.add(wrapperTop, BorderLayout.NORTH);
+        this.add(wrapperBottom, BorderLayout.CENTER);
+
+        greetingLabel();
+
+    }
+
+    // helping methods 
 
 
 
-public void panelVisible(boolean bool){
-    wrapperBottom.setVisible(bool);
-}
+    public void panelVisible(boolean bool){
+        wrapperBottom.setVisible(bool);
+    }
 
-public void resetSearch(){
-    wrapperTop.resetSearch();
-}
+    public void resetSearch(){
+        wrapperTop.resetSearch();
+    }
 
+
+
+    public void greetingLabel(){
+
+
+        userGreetingLabel.setOpaque(false);
+        userGreetingLabel.setForeground(Color.WHITE);
+        userGreetingLabel.setFont(new Font("Arial",Font.BOLD,12)); 
+ 
+         if(shopWindow.getIsLogged())userGreetingLabel.setText("Hello, "+shopWindow.getUser().getFirstName());
+         else userGreetingLabel.setText("please log in");
+ 
+
+    }
+
+    //getters
+    public JLabel getUserGreetingLabel(){return userGreetingLabel;}
 
 
 }
@@ -81,7 +105,7 @@ class WrapperTop extends JPanel{
     private MyText searchField;
     
 
-    public WrapperTop(JPanel panel, ShopWindow shopWindow){
+    public WrapperTop(JPanel panel, ShopWindow shopWindow, MainWrapper mainWrapper){
        
        
        
@@ -122,6 +146,18 @@ class WrapperTop extends JPanel{
 
 
 
+        //user greeting
+        JPanel userGreetingPanel = new JPanel(new BorderLayout());
+        userGreetingPanel.setPreferredSize(new Dimension(200,20));
+        userGreetingPanel.setOpaque(false);
+
+       
+        userGreetingPanel.add(mainWrapper.getUserGreetingLabel(), BorderLayout.CENTER);
+
+        rightPanel.add(userGreetingPanel);
+
+
+
         //login
         PressableButton login = new PressableButton("#159069","#56b798",10);
         login.setText("login");
@@ -159,6 +195,11 @@ class WrapperTop extends JPanel{
 
         });
         rightPanel.add(cart);
+
+
+
+
+      
 
 
 

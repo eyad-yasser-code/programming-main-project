@@ -219,6 +219,9 @@ public class SignInWindow extends JPanel{
                         UsersDataBase.users.add(user);
 
                         JOptionPane.showMessageDialog(this, "User added successfully");
+                        shopWindow.setIsLogged(true);
+                        shopWindow.setUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
+                        shopWindow.showHomeWindow();
                         resetText();
 
                     });

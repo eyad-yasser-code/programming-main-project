@@ -5,6 +5,7 @@ package shop.ui.ShopWindow;
 
 import shop.ui.CartWindow.CartWindow;
 import shop.ui.CartWindow.CheckoutWindow;
+import shop.ui.Data.User;
 import shop.ui.HomeWindow.HomeWindow;
 
 import shop.ui.LogicHelper.*;
@@ -37,6 +38,9 @@ public class ShopWindow extends JPanel{
     private ArrayList<Product> products;
     private ArrayList<Category> categories;
     
+
+    private boolean isLogged = false;
+    private User user;
     
     //constructor
     
@@ -63,6 +67,10 @@ public class ShopWindow extends JPanel{
         this.cartWindow = new CartWindow(this);
         this.checkoutWindow = new CheckoutWindow(this,cartWindow);
        
+
+        this.user= new User("","","","");
+
+
        
        
         addItem(1,"laptop","laptop.PNG","good laptop\n best laptop ever, you must but this laptop or you will regret it all you life.\nTHAT's AN ORDERRRRR!!!;",20000);
@@ -97,6 +105,7 @@ public class ShopWindow extends JPanel{
     public void showCartWindow(){
         cardLayout.show(cardPanel,"cartWindow");
         cartWindow.defaultCartScroll();
+        cartWindow.updateCheckoutButton(this);
         revalidate();
         repaint();
     }
@@ -105,6 +114,7 @@ public class ShopWindow extends JPanel{
         cardLayout.show(cardPanel, "homeWindow");
         homeWindow.panelVisible(false);
         homeWindow.resetSearch();
+        homeWindow.greetingLabel();
         revalidate();
         repaint();
     }
@@ -120,6 +130,8 @@ public class ShopWindow extends JPanel{
     public void showCheckoutWindow(){
         cardLayout.show(cardPanel, "checkoutWindow");
         checkoutWindow.loadCheckout(cartWindow.getCart());
+        
+
         revalidate();
         repaint();
     }
@@ -202,6 +214,26 @@ public class ShopWindow extends JPanel{
     }
 
    
+
+
+
+    //setters 
+
+    public void setIsLogged(boolean isLogged){this.isLogged=isLogged;}
+   
+    public void setUser(String firstName, String LastName, String email, String password){
+        user.setFirstName(firstName);
+        user.setLastName(LastName);
+        user.setEmail(email);
+        user.setPassword(password);
+
+    }
+
+    //getters
+
+    public boolean getIsLogged(){return isLogged;}
+    public User getUser(){return user;}
+
 }
 
 

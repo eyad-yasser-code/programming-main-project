@@ -51,6 +51,7 @@ public class CartWindow extends JPanel{
     
     private JPanel items;
     private JScrollPane scrollPane;
+    private PressableButton checkout;
 
     private ArrayList<CartEntry> cart;
 
@@ -72,10 +73,10 @@ public class CartWindow extends JPanel{
 
 
        
-        BaseWrapper baseWrapper=new BaseWrapper(0,0,0,getHeight(),backgroundDegree,backgroundColors,30);
+        BaseWrapper baseWrapper=new BaseWrapper(0,0,0,0,backgroundDegree,backgroundColors,30);
        
        
-        CartBase cartBase = new CartBase(0,0,0,getHeight(),degrees,colors,30);
+        CartBase cartBase = new CartBase(0,0,0,0,degrees,colors,30);
         
         
         JPanel paddingWrapper = new JPanel(new BorderLayout());
@@ -122,7 +123,7 @@ public class CartWindow extends JPanel{
                 
 
 
-            LeftTop leftTop = new LeftTop(0,0,0,getHeight(),degrees,colors,30);
+            LeftTop leftTop = new LeftTop(0,0,0,0,degrees,colors,30);
 
 
 
@@ -206,18 +207,23 @@ public class CartWindow extends JPanel{
                 checkoutWrapper.setBorder(new EmptyBorder(0,30,20,30));
                 checkoutWrapper.setOpaque(false);
 
-                PressableButton checkout = new PressableButton("#159069","#56b798",10);
-                checkout.setText("Check Out");
+                checkout = new PressableButton("#159069","#56b798",10);
+                
                 checkout.setPreferredSize(new Dimension(250,50));
                 checkout.setMaximumSize(new Dimension(250,50));
                 checkout.setMinimumSize(new Dimension(250,50));
                 checkout.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+                updateCheckoutButton(shopWindow);
                 checkout.addActionListener(e->{
 
-                    shopWindow.showCheckoutWindow();
-
+                    if(shopWindow.getIsLogged()){shopWindow.showCheckoutWindow();}
+                    else shopWindow.showLoginWrapper();
+            
+            
                 });
+            
+                
+
 
 
 
@@ -234,7 +240,7 @@ public class CartWindow extends JPanel{
       
       
       
-        PaymentBase paymentBase = new PaymentBase(0,0,0,getHeight(),rightDegrees,rightColors,30);
+        PaymentBase paymentBase = new PaymentBase(0,0,0,0,rightDegrees,rightColors,30);
         
         
         JPanel paymentWrapper = new JPanel(new BorderLayout());
@@ -243,7 +249,7 @@ public class CartWindow extends JPanel{
 
        
        
-        PaymentBase paymentinner = new PaymentBase(0,0,0,getHeight(),paymentDegrees,paymentColors,30);
+        PaymentBase paymentinner = new PaymentBase(0,0,0,0,paymentDegrees,paymentColors,30);
                
         
         paymentWrapper.add(paymentinner,BorderLayout.CENTER);
@@ -346,7 +352,11 @@ public class CartWindow extends JPanel{
     }
 
 
-
+    
+    public void clearCart(){
+        cart.clear();
+        refreshUI();
+    }
 
 
    //scrollpane
@@ -357,14 +367,22 @@ public class CartWindow extends JPanel{
 
 
 
-
+   //getters
    public ArrayList<CartEntry> getCart(){ return new ArrayList<>(cart); }
 
 
 
+
+   public void updateCheckoutButton(ShopWindow shopWindow){
+
+   
+    if(shopWindow.getIsLogged()){checkout.setText("Check out");}
+    else checkout.setText("Login to proceed");
+
+
+    }
+
 }
-
-
 
 class BaseWrapper extends MyGradient{
 

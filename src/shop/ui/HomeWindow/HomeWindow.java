@@ -89,6 +89,11 @@ public class HomeWindow extends JPanel {
         mainWrapper.resetSearch();
     }
 
+    public void greetingLabel(){
+        mainWrapper.greetingLabel();
+    }
+
+
     //main adding 
 
     public void addItem(Product product){
