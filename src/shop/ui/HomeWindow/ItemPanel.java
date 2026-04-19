@@ -8,7 +8,7 @@ package shop.ui.HomeWindow;
 
 //my packages imports
 import shop.ui.Helper.PressableButton;
-import shop.ui.LogicHelper.Product;
+import shop.ui.LogicHelper.*;
 import shop.ui.MainWindow.MiddleView;
 import shop.ui.Helper.ImageLabel;
 
@@ -189,5 +189,9 @@ public class ItemPanel extends JPanel{
     public Product getProduct(){
         return product;
     }
+
+
+
+
 
 }

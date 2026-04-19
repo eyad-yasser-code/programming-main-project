@@ -5,15 +5,16 @@ package shop.ui.HomeWindow;
 
 
 
-import shop.ui.LogicHelper.Product;
+
 //my packages imports
 import shop.ui.MainWindow.*;
 import shop.ui.MainWrapper.MainWrapper;
 import shop.ui.ShopWindow.ShopWindow;
-
+import shop.ui.LogicHelper.*;
 // main imports
 import javax.swing.*;
 import java.awt.*;
+
 
 
 
@@ -106,8 +107,8 @@ public class HomeWindow extends JPanel {
         mainWindow.addItem(product);
     }
 
-    public void addCategory(String name,String imagename){
-        mainWindow.addCategory(name, imagename);
+    public void addCategory(Category category){
+       mainWindow.addCategory(category);
     }
 
     
@@ -124,5 +125,10 @@ public class HomeWindow extends JPanel {
     public void removeItem(Product product){
         mainWindow.removeItem(product);
     }
+
+    public void removeCategory(Category removable){
+            mainWindow.removeCategory(removable);
+        }
+
 
 }

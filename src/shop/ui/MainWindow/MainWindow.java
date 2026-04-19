@@ -8,13 +8,15 @@ import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
 //import shop.ui.ShopWindow.*;
 import shop.ui.HomeWindow.HomeWindow;
-import shop.ui.LogicHelper.Product;
+import shop.ui.LogicHelper.*;
+
 
 //main imports 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+
 
 
 
@@ -70,8 +72,8 @@ public class MainWindow extends JPanel{
         bottomBasePanel.addItem(product);
     }
 
-    public void addCategory(String name, String imagName){
-        bottomBasePanel.addCategory(name,imagName);
+    public void addCategory(Category category){
+        bottomBasePanel.addCategory(category);
 
 
     }
@@ -91,6 +93,13 @@ public class MainWindow extends JPanel{
     public void removeItem(Product product){
         bottomBasePanel.removeItem(product);
     }
+
+    public void removeCategory(Category removable){
+        bottomBasePanel.removeCategory(removable);
+    }
+
+
+
 
 
     //showing functions
@@ -219,13 +228,13 @@ class BottomBasePanel extends JPanel{
    
        //adding
        public void addItem(Product product){
-         middleView.addItem(product);
+             middleView.addItem(product);
          
        }
    
    
-       public void addCategory(String name, String imagName){
-            middleView.addCategory(name, imagName);
+       public void addCategory(Category category){
+            middleView.addCategory(category);
    
        }
 
@@ -234,10 +243,13 @@ class BottomBasePanel extends JPanel{
        //removing main
 
        public void removeItem(Product product){
-        middleView.removeItem(product);
+             middleView.removeItem(product);
        }
 
 
+       public void removeCategory(Category removable){
+              middleView.removeCategory(removable);
+       }
 
 
 

@@ -10,6 +10,7 @@ package shop.ui.HomeWindow;
 import shop.ui.Helper.PressableButton;
 import shop.ui.Helper.ImageLabel;
 import shop.ui.MainWindow.MainWindow;
+import shop.ui.LogicHelper.*;
 
 // main imports
 import javax.swing.*;
@@ -23,19 +24,30 @@ import java.awt.geom.*;
 
 
 
+
 public class CategoryPanel extends JPanel{
    
     private MainWindow mainWindow;
 
+
+
+    private Category category;
     
 
-    public CategoryPanel(String name,String imageName, MainWindow mainWindow){
+    public CategoryPanel(Category category, MainWindow mainWindow){
 
        
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(200,50));
         this.setOpaque(false);
         
+
+    
+        setCategory(category);
+
+
+
+
         this.mainWindow=mainWindow;
     
         //image section
@@ -65,7 +77,7 @@ public class CategoryPanel extends JPanel{
         imagPanel.setBackground(Color.WHITE);
   
   
-        ImageLabel imagLabel = new ImageLabel("/images/",imageName);
+        ImageLabel imagLabel = new ImageLabel("/images/",category.getImageName());
         imagLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         imagPanel.add(imagLabel, BorderLayout.CENTER);
 
@@ -79,7 +91,7 @@ public class CategoryPanel extends JPanel{
 
 
 
-        JLabel nameLabel = new JLabel(name);
+        JLabel nameLabel = new JLabel(category.getName());
         nameLabel.setFont(new Font("Arial",Font.BOLD,14));
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -107,7 +119,7 @@ public class CategoryPanel extends JPanel{
        
    
         select.addActionListener(e -> {
-            System.out.println(name + "selected");
+            System.out.println(category.getName() + "selected");
             this.mainWindow.defaultScroll();
             this.mainWindow.showItemsHolder();
             
@@ -129,6 +141,19 @@ public class CategoryPanel extends JPanel{
     
 
     }
+
+
+   
+    //setters 
+    public void setCategory(Category category){this.category = category;}
+
+
+    //getters
+  
+    public Category getCategory(){return category; }
+
+
+
 
 
 

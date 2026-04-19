@@ -29,7 +29,12 @@ public class CartItem extends JPanel{
     private Color[] infoColor = {Color.decode("#4a806f"),Color.decode("#4a806f")};
     private float[] infoFloat = {0.0f, 1.0f};
 
-    public CartItem(Product product){
+   
+    private Product product;
+ 
+
+   
+    public CartItem(Product product,CartWindow cartWindow){
 
         this.setLayout(new BorderLayout());
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
@@ -37,6 +42,11 @@ public class CartItem extends JPanel{
         this.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setOpaque(false);
        
+
+        setProduct(product);
+      
+
+
        
         JPanel base = new JPanel(new BorderLayout(20,5));
         base.setPreferredSize(new Dimension(700 , 150 ));
@@ -74,7 +84,7 @@ public class CartItem extends JPanel{
                         remove.setFont(new Font("Arial",Font.BOLD,10));
                         remove.addActionListener(e->{
 
-                            
+                            cartWindow.removeItem(product.getId());
                         });
 
                     deletePanel.add(remove);
@@ -98,6 +108,17 @@ public class CartItem extends JPanel{
         this.add(base, BorderLayout.CENTER);
 
     }
+
+
+
+    //setters 
+    public void setProduct(Product product){this.product=product;}
+
+
+    //getters 
+    public Product getProduct(){return product;}
+
+
 }
 
 

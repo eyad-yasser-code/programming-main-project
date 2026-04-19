@@ -299,7 +299,7 @@ public class CartWindow extends JPanel{
 
    public void addItem(Product product){
 
-    CartItem item = new CartItem(product);
+    CartItem item = new CartItem(product,this);
     
     item.setAlignmentX(Component.CENTER_ALIGNMENT);
     
@@ -310,6 +310,46 @@ public class CartWindow extends JPanel{
 
 
    }
+
+   //remove 
+
+   public void removeItem(int id){
+
+    Component[] components = items.getComponents();
+
+
+    for(int i =0 ; i< components.length;i++){
+       
+        if(components[i] instanceof CartItem){
+
+            CartItem cartItem = (CartItem) components[i];
+            if(cartItem.getProduct().getId()==id){
+                items.remove(cartItem);
+                
+                if(i+1<components.length){
+                    items.remove(components[i+1]);
+                }
+                
+                
+                break;
+
+
+
+            }
+
+        }
+
+
+
+    }
+    items.revalidate();
+    items.repaint();
+
+   }
+
+
+
+
 
    //scrollpane
 

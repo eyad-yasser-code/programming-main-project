@@ -4,18 +4,20 @@ package shop.ui.MainWindow;
 
 
 
+//my imports
+
+import shop.ui.Helper.MyGradient;
+import shop.ui.HomeWindow.CategoryPanel;
+import shop.ui.HomeWindow.ItemPanel;
+import shop.ui.LogicHelper.*;
 
 
 // main imports 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import shop.ui.Helper.MyGradient;
-import shop.ui.HomeWindow.CategoryPanel;
-import shop.ui.HomeWindow.ItemPanel;
-import shop.ui.LogicHelper.Product;
-
 import java.awt.*;
+
 
 
 
@@ -88,8 +90,8 @@ public class MiddleView extends JPanel{
         itemsHolder.add(itemPanel);
     }
 
-    public void addCategory(String name, String imageName){
-        CategoryPanel categoryPanel = new CategoryPanel(name, imageName, mainWindow);
+    public void addCategory(Category category){
+        CategoryPanel categoryPanel = new CategoryPanel(category, mainWindow);
         categoriesHolder.add(categoryPanel);
        
    }
@@ -99,7 +101,7 @@ public class MiddleView extends JPanel{
    //removing main
    public void removeItem(Product product){
     
-    Component[] components= itemsHolder.getComponents();
+    Component[] components = itemsHolder.getComponents();
 
     for(Component comp : components){
 
@@ -111,18 +113,39 @@ public class MiddleView extends JPanel{
                 break;
 
             }
-            
-
+          
         }
+       
+     }
+     itemsHolder.revalidate();
+     itemsHolder.repaint();
+   }
 
+
+
+
+    public void removeCategory(Category category){
+
+        Component[] components = categoriesHolder.getComponents();
+
+        for(Component comp : components){
+            if(comp instanceof CategoryPanel){
+
+                CategoryPanel categoryPanel =(CategoryPanel) comp;
+                if(categoryPanel.getCategory().equals(category)){
+                    categoriesHolder.remove(categoryPanel);
+                    break;
+                }
+              
+            }
+        }
+        categoriesHolder.revalidate();
+        categoriesHolder.repaint();
     }
 
-itemsHolder.revalidate();
-itemsHolder.repaint();
 
 
 
-   }
 
 
 

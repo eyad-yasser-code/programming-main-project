@@ -5,7 +5,9 @@ package shop.ui.ShopWindow;
 
 import shop.ui.CartWindow.CartWindow;
 import shop.ui.HomeWindow.HomeWindow;
-import shop.ui.LogicHelper.Product;
+
+import shop.ui.LogicHelper.*;
+
 import shop.ui.loginWindow.LoginWrapperWindow;
 
 //main imports 
@@ -30,6 +32,7 @@ public class ShopWindow extends JPanel{
 
 
     private ArrayList<Product> products;
+    private ArrayList<Category> categories;
     
     
     //constructor
@@ -47,6 +50,7 @@ public class ShopWindow extends JPanel{
        
 
         this.products = new ArrayList<Product>();
+        this.categories = new ArrayList<Category>();
 
       
 
@@ -55,13 +59,23 @@ public class ShopWindow extends JPanel{
         this.homeWindow = new HomeWindow(this);
         this.cartWindow = new CartWindow(this);
       
-        addItem("laptop","laptop.PNG","good laptop",10000);
-        addItem("microphone","microphone.PNG","good mic",1000);
+       
+       
+       
+        addItem(1,"laptop","laptop.PNG","good laptop",10000);
+        addItem(2,"microphone","microphone.PNG","good mic",1000);
 
-        addCategory("Electronics","laptop.PNG");
+        addCategory(11,"Electronics","laptop.PNG");
+        addCategory(12,"Accessories","keyboard.PNG");
 
+
+        removeItem(1);
+        removeCategory(11);
 
       
+       
+       
+       
         cardPanel.add(homeWindow,"homeWindow");
         cardPanel.add(cartWindow, "cartWindow");
         cardPanel.add(loginWrapper, "loginWrapper");
@@ -100,19 +114,23 @@ public class ShopWindow extends JPanel{
     //add functions
 
     
-    public void addItem(String name,String imageName,String description,double price){
+    public void addItem(int id, String name,String imageName,String description,double price){
        
        
-        Product product = new Product(name,imageName,description,price);
+        Product product = new Product(id,name,imageName,description,price);
         products.add(product);
 
         homeWindow.addItem(product);
 
     }
 
-    public void addCategory(String name,String imagename){
+    public void addCategory(int id, String name, String imagename){
 
-        homeWindow.addCategory(name, imagename);
+       
+       Category category = new Category(id, name, imagename);
+       categories.add(category);
+       
+        homeWindow.addCategory(category);
 
     }
 
@@ -126,15 +144,16 @@ public class ShopWindow extends JPanel{
     //remove functions
 
     
-    public void removeItem(String name){
+    public void removeItem(int id){
        
        Product removable=null;
        
         for(Product product : products){
-        if(product.getName().equals(name)){
+        if(product.getId()==id){
             removable=product;
         }
-       }
+       
+        }
        
        if(removable != null) {
         products.remove(removable);
@@ -144,15 +163,27 @@ public class ShopWindow extends JPanel{
 
    
    
-    public void removeCategory(String name,String imagename){
+    public void removeCategory(int id){
 
-      //  homeWindow.removeCategory(name, imagename);
+        Category removable = null;
+
+
+        for(Category category : categories){
+            if(category.getId()==id){
+                removable = category;
+            }
+        }
+
+        if(removable != null){
+            categories.remove(removable);
+            homeWindow.removeCategory(removable);
+        }
 
     }
 
-    public void removeCart(Product product){
+    public void removeCart(int id){
    
-      //cartWindow.removeItem(product);
+      cartWindow.removeItem(id);
 
     }
 
