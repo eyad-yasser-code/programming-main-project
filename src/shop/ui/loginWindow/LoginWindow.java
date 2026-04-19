@@ -4,6 +4,8 @@
 package shop.ui.loginWindow;
 
 
+import shop.ui.Data.User;
+import shop.ui.Data.UsersDataBase;
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.MyText;
@@ -95,7 +97,7 @@ public class LoginWindow extends JPanel{
                    emailField.setPreferredSize(new Dimension(300 , 50 ));
                    emailField.setMaximumSize(new Dimension(300 , 50 ));
                    emailField.setMinimumSize(new Dimension(300 , 50 ));
-                   emailField.setFocusable(false);
+                  // emailField.setFocusable(false);
                    emailField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                    
                 
@@ -105,7 +107,7 @@ public class LoginWindow extends JPanel{
                    passwordField.setPreferredSize(new Dimension(300 , 50 ));
                    passwordField.setMaximumSize(new Dimension(300 , 50 ));
                    passwordField.setMinimumSize(new Dimension(300 , 50 ));
-                   passwordField.setFocusable(false);
+                  // passwordField.setFocusable(false);
 
                    passwordField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                 
@@ -117,7 +119,42 @@ public class LoginWindow extends JPanel{
                    login.setMaximumSize(new Dimension(300 , 50 ));
                    login.setMinimumSize(new Dimension(300 , 50 ));
                    login.setAlignmentX(Component.CENTER_ALIGNMENT); 
+                   
+                   login.addActionListener(e->{
 
+                    String email = emailField.getText();
+                    String password = passwordField.getText();
+
+
+                    if(email.isEmpty()){JOptionPane.showMessageDialog(this,"email can't be empty"); return;}
+                    if(password.isEmpty()){JOptionPane.showMessageDialog(this,"password can't be empty"); return;}
+                 
+                 
+
+
+                    for(User user : UsersDataBase.users){
+
+                     
+                       
+                     
+                        if(email.equals(user.getEmail())){
+                            if(password.equals(user.getPassword())){
+                            JOptionPane.showMessageDialog(this, "Login success");
+                            resetText();
+                            return;
+                            }
+                            JOptionPane.showMessageDialog(this, "Wrong password");
+                            return;
+                        
+                        }
+                        JOptionPane.showMessageDialog(this, "User not found");
+                        resetText();
+
+                    }
+
+                    
+
+                   });
 
 
 

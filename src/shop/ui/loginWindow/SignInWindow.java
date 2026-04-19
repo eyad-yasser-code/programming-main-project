@@ -4,6 +4,8 @@
 package shop.ui.loginWindow;
 
 
+import shop.ui.Data.User;
+import shop.ui.Data.UsersDataBase;
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.MyText;
@@ -12,6 +14,8 @@ import shop.ui.ShopWindow.ShopWindow;
 
 //main imports
 import java.awt.*;
+import java.util.StringTokenizer;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -99,7 +103,7 @@ public class SignInWindow extends JPanel{
                     firstNameField.setPreferredSize(new Dimension(300 , 50 ));
                     firstNameField.setMaximumSize(new Dimension(300 , 50 ));
                     firstNameField.setMinimumSize(new Dimension(300 , 50 ));
-                    firstNameField.setFocusable(false);
+                   // firstNameField.setFocusable(false);
                     firstNameField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                     
 
@@ -108,7 +112,7 @@ public class SignInWindow extends JPanel{
                     lastNameField.setPreferredSize(new Dimension(300 , 50 ));
                     lastNameField.setMaximumSize(new Dimension(300 , 50 ));
                     lastNameField.setMinimumSize(new Dimension(300 , 50 ));
-                    lastNameField.setFocusable(false);
+                   // lastNameField.setFocusable(false);
                     lastNameField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                     
                 
@@ -118,7 +122,7 @@ public class SignInWindow extends JPanel{
                     emailField.setPreferredSize(new Dimension(300 , 50 ));
                     emailField.setMaximumSize(new Dimension(300 , 50 ));
                     emailField.setMinimumSize(new Dimension(300 , 50 ));
-                    emailField.setFocusable(false);
+                   // emailField.setFocusable(false);
                     emailField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                     
                     
@@ -128,7 +132,7 @@ public class SignInWindow extends JPanel{
                     passwordField.setPreferredSize(new Dimension(300 , 50 ));
                     passwordField.setMaximumSize(new Dimension(300 , 50 ));
                     passwordField.setMinimumSize(new Dimension(300 , 50 ));
-                    passwordField.setFocusable(false);
+                   // passwordField.setFocusable(false);
                     passwordField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                     
 
@@ -137,7 +141,7 @@ public class SignInWindow extends JPanel{
                     confirmPasswordField.setPreferredSize(new Dimension(300 , 50 ));
                     confirmPasswordField.setMaximumSize(new Dimension(300 , 50 ));
                     confirmPasswordField.setMinimumSize(new Dimension(300 , 50 ));
-                    confirmPasswordField.setFocusable(false);
+                   // confirmPasswordField.setFocusable(false);
                     confirmPasswordField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                     
                     
@@ -152,7 +156,72 @@ public class SignInWindow extends JPanel{
                    signin.setMaximumSize(new Dimension(300 , 50 ));
                    signin.setMinimumSize(new Dimension(300 , 50 ));
                    signin.setAlignmentX(Component.CENTER_ALIGNMENT); 
+                   
+                    signin.addActionListener(e->{
 
+                        String firstName = firstNameField.getText();
+                        String lastName = lastNameField.getText();
+                        String email = emailField.getText();
+                        String password = passwordField.getText();
+                        String confirmPassword = confirmPasswordField.getText();
+
+                      
+
+                        if(firstName.isEmpty()){JOptionPane.showMessageDialog(this,"first name can't be empty"); return;}
+                        if(lastName.isEmpty()){JOptionPane.showMessageDialog(this,"last name can't be empty"); return;}
+                        if(email.isEmpty()){JOptionPane.showMessageDialog(this,"email can't be empty"); return;}
+                        if(password.isEmpty()){JOptionPane.showMessageDialog(this,"password can't be empty"); return;}
+                      
+                        if(!email.contains("@")){
+                            JOptionPane.showMessageDialog(this, "Invalid email format");
+                            emailField.resetText();
+
+                            return;
+                        }
+                        
+                        String domain = "";
+                        
+                        StringTokenizer tokenizer = new StringTokenizer(email,"@");
+                        while(tokenizer.hasMoreTokens()){
+                            domain=tokenizer.nextToken();
+
+
+                        }
+
+
+
+                        if(!(domain.equals("gmail.com")) &&!(domain.equals("outlook.com")) &&!(domain.equals("yahoo.com")))
+                        {JOptionPane.showMessageDialog(this,"domain isn't avilable");
+                            emailField.resetText();
+                        return;
+                        }
+                      
+
+                        for(User user : UsersDataBase.users){
+                            if(email.equals(user.getEmail())){
+                                JOptionPane.showMessageDialog(this,"Email not avilable");
+                                emailField.resetText();
+                                return;
+
+                            }
+
+                        }
+
+                        if(!(password.equals(confirmPassword))){
+
+                            JOptionPane.showMessageDialog(this, "password must match");
+                            confirmPasswordField.resetText();
+                            return;
+                        }
+                    
+                        User user = new User(firstName, lastName, email, password);
+
+                        UsersDataBase.users.add(user);
+
+                        JOptionPane.showMessageDialog(this, "User added successfully");
+                        resetText();
+
+                    });
 
 
 
