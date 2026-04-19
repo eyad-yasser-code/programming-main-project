@@ -8,6 +8,7 @@ import shop.ui.HomeWindow.HomeWindow;
 
 import shop.ui.LogicHelper.*;
 
+
 import shop.ui.loginWindow.LoginWrapperWindow;
 
 //main imports 
@@ -62,15 +63,17 @@ public class ShopWindow extends JPanel{
        
        
        
-        addItem(1,"laptop","laptop.PNG","good laptop",10000);
-        addItem(2,"microphone","microphone.PNG","good mic",1000);
+        addItem(1,"laptop","laptop.PNG","good laptop\n best laptop ever, you must but this laptop or you will regret it all you life.\nTHAT's AN ORDERRRRR!!!;",20000);
+        addItem(2,"microphone","microphone.PNG","good mic",800);
+        addItem(3,"mouse","mouse.PNG","good mouse",500);
+        addItem(4,"keyboard","keyboard.PNG","good keyboard",1000);
 
         addCategory(11,"Electronics","laptop.PNG");
         addCategory(12,"Accessories","keyboard.PNG");
 
 
-        removeItem(1);
-        removeCategory(11);
+       // removeItem(1);
+        //removeCategory(11);
 
       
        
@@ -134,9 +137,9 @@ public class ShopWindow extends JPanel{
 
     }
 
-    public void addCart(Product product){
+    public void addToCart(Product product){
    
-      cartWindow.addItem(product);
+      cartWindow.addToCart(product);
 
     }
 
@@ -181,9 +184,9 @@ public class ShopWindow extends JPanel{
 
     }
 
-    public void removeCart(int id){
+    public void removeFromCart(int id){
    
-      cartWindow.removeItem(id);
+      cartWindow.removeFromCart(id);
 
     }
 

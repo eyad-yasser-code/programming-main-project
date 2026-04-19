@@ -150,8 +150,8 @@ public class MiddleView extends JPanel{
 
 
   //adding reverse 
-  public void addCart(Product product){
-    mainWindow.addCart(product);
+  public void addToCart(Product product){
+    mainWindow.addToCart(product);
   }
 
 }

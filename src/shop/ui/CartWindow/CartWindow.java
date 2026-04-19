@@ -9,21 +9,20 @@ package shop.ui.CartWindow;
 //my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
-import shop.ui.LogicHelper.Product;
+import shop.ui.LogicHelper.*;
 import shop.ui.ShopWindow.ShopWindow;
 import shop.ui.Helper.ModifiedScroll;
 
 //main imports
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
 public class CartWindow extends JPanel{
     
-
-    private JPanel items;
-    private JScrollPane scrollPane;
 
     
     private Color[] backgroundColors={Color.decode("#1c1c1c"),Color.decode("#1c1c1c")};
@@ -48,6 +47,15 @@ public class CartWindow extends JPanel{
 
 
 
+
+    
+    private JPanel items;
+    private JScrollPane scrollPane;
+
+    private ArrayList<CartEntry> cart;
+
+
+
     public CartWindow(ShopWindow shopWindow){
 
 
@@ -57,6 +65,12 @@ public class CartWindow extends JPanel{
         this.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
 
       
+
+
+        cart = new ArrayList<CartEntry>();
+
+
+
        
         BaseWrapper baseWrapper=new BaseWrapper(0,0,0,getHeight(),backgroundDegree,backgroundColors,30);
        
@@ -158,20 +172,7 @@ public class CartWindow extends JPanel{
                 scrollPane.getVerticalScrollBar().setUI(new ModifiedScroll());
                 scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15,0));
                
-                // scrollPane.addMouseListener(new java.awt.event.MouseAdapter() {
-                    
-                //     @Override
-                //     public void mouseEntered(java.awt.event.MouseEvent e){
-                //         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-                //     }
-                //     @Override
-                //     public void mouseExited(java.awt.event.MouseEvent e){
-                //         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-                //     }
-
-                // });
-               
-               
+           
                
                 toTop.addActionListener(e->{
                     defaultCartScroll();
@@ -286,66 +287,55 @@ public class CartWindow extends JPanel{
         this.add(baseWrapper, BorderLayout.CENTER);
 
 
-        
-        // for(int i = 0 ; i < 20 ; i++){ 
-        //     addItem("PC","laptop.PNG","good PC","30,000");
-          
-        // }
      
     }
 
 
-   //add 
+    //add cartEntry
 
-   public void addItem(Product product){
+    public void addToCart(Product product){
 
-    CartItem item = new CartItem(product,this);
-    
-    item.setAlignmentX(Component.CENTER_ALIGNMENT);
-    
-    items.add(item);
-    items.add(Box.createVerticalStrut(20));
-    items.revalidate();
-    items.repaint();
-
-
-   }
-
-   //remove 
-
-   public void removeItem(int id){
-
-    Component[] components = items.getComponents();
-
-
-    for(int i =0 ; i< components.length;i++){
-       
-        if(components[i] instanceof CartItem){
-
-            CartItem cartItem = (CartItem) components[i];
-            if(cartItem.getProduct().getId()==id){
-                items.remove(cartItem);
-                
-                if(i+1<components.length){
-                    items.remove(components[i+1]);
-                }
-                
-                
-                break;
-
-
-
+        for(CartEntry entry : cart){
+            if(entry.getProduct().getId()== product.getId()){
+                entry.increase();
+                refreshUI();
+                return;
             }
-
+           
         }
+        cart.add(new CartEntry(product));
+       
+        refreshUI();
+
+
+    }
+
+    public void removeFromCart(int id){
+
+       
+            cart.removeIf(entry -> entry.getProduct().getId()==id);
+        
+        refreshUI();
+
+    }
+
+
+
+    //refresh UI :remove everything then add the arraylist cart as it is with everychange i did 
+
+    public void refreshUI(){
+
+        items.removeAll();
+        for(CartEntry entry : cart){
+            items.add(new CartItem(entry,this));
+            items.add(Box.createVerticalStrut(20));
+        }
+        items.revalidate();
+        items.repaint();
 
 
 
     }
-    items.revalidate();
-    items.repaint();
-
-   }
 
 
 

@@ -82,8 +82,8 @@ public class MainWindow extends JPanel{
 
     //adding functions reverse
 
-    public void addCart(Product product){
-        homeWindow.addCart(product);
+    public void addToCart(Product product){
+        homeWindow.addToCart(product);
     }
 
 

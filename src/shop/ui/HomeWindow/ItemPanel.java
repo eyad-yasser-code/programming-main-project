@@ -163,7 +163,7 @@ public class ItemPanel extends JPanel{
         cartAdd.addActionListener(e -> {
            
 
-            middleView.addCart(product);
+            middleView.addToCart(product);
 
 
 

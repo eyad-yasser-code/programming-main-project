@@ -20,6 +20,7 @@ import java.awt.*;
 
 
 
+
 public class HomeWindow extends JPanel {
 
 
@@ -49,20 +50,7 @@ public class HomeWindow extends JPanel {
       
 
 
-        
-
-        // //adding items test
-        // mainWindow.addItem("laptop","laptop.PNG","good laptop","15,000");
-        // mainWindow.addItem("keyboard","keyboard.PNG","good keyboard","1000");
-        // mainWindow.addItem("mouse","mouse.PNG","good mouse","500");
-        // mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
-     
-        // for(int i =0 ; i<0 ; i++){
-        //     mainWindow.addItem("microphone","microphone.PNG","good mic","1500");
-        // }
-        // mainWindow.addCategory("keyboards","keyboard.PNG");
-        
-
+      
 
 
         JLayeredPane layeredPane = new JLayeredPane(){
@@ -114,8 +102,8 @@ public class HomeWindow extends JPanel {
     
     //reverse adding 
 
-    public void addCart(Product product){
-        shopWindow.addCart(product);
+    public void addToCart(Product product){
+        shopWindow.addToCart(product);
     }
 
     
