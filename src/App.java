@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         JFrame frame = new JFrame("Shop test");
-        frame.setSize(1280,900);
+        frame.setSize(1280,800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
        
