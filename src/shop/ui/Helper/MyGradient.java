@@ -43,10 +43,10 @@ public class MyGradient extends JPanel{
        
         graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        
+        int height = getHeight();
        
        
-        LinearGradientPaint linerG = new LinearGradientPaint(startX,startY, endX,getHeight(), degrees, colors);
+        LinearGradientPaint linerG = new LinearGradientPaint(startX,startY, endX,height, degrees, colors);
         
 
 

@@ -213,6 +213,14 @@ public class CartWindow extends JPanel{
                 checkout.setMinimumSize(new Dimension(250,50));
                 checkout.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+                checkout.addActionListener(e->{
+
+                    shopWindow.showCheckoutWindow();
+
+                });
+
+
+
                 checkoutWrapper.add(checkout,  BorderLayout.CENTER);
 
 
@@ -346,6 +354,12 @@ public class CartWindow extends JPanel{
     public void defaultCartScroll(){
     this.scrollPane.getVerticalScrollBar().setValue(0);
    }
+
+
+
+
+   public ArrayList<CartEntry> getCart(){ return new ArrayList<>(cart); }
+
 
 
 }

@@ -4,6 +4,7 @@ package shop.ui.ShopWindow;
 //my imports 
 
 import shop.ui.CartWindow.CartWindow;
+import shop.ui.CartWindow.CheckoutWindow;
 import shop.ui.HomeWindow.HomeWindow;
 
 import shop.ui.LogicHelper.*;
@@ -30,6 +31,7 @@ public class ShopWindow extends JPanel{
     private CartWindow cartWindow;
     private HomeWindow homeWindow;
     private LoginWrapperWindow loginWrapper;
+    private CheckoutWindow checkoutWindow;
 
 
     private ArrayList<Product> products;
@@ -59,7 +61,7 @@ public class ShopWindow extends JPanel{
         this.loginWrapper = new LoginWrapperWindow(this);
         this.homeWindow = new HomeWindow(this);
         this.cartWindow = new CartWindow(this);
-      
+        this.checkoutWindow = new CheckoutWindow(this,cartWindow);
        
        
        
@@ -82,6 +84,8 @@ public class ShopWindow extends JPanel{
         cardPanel.add(homeWindow,"homeWindow");
         cardPanel.add(cartWindow, "cartWindow");
         cardPanel.add(loginWrapper, "loginWrapper");
+        cardPanel.add(checkoutWindow, "checkoutWindow");
+
 
         this.add(cardPanel, BorderLayout.CENTER);
         showHomeWindow();
@@ -109,6 +113,13 @@ public class ShopWindow extends JPanel{
     public void showLoginWrapper(){
         cardLayout.show(cardPanel, "loginWrapper");
         loginWrapper.showLoginWindow();
+        revalidate();
+        repaint();
+    }
+
+    public void showCheckoutWindow(){
+        cardLayout.show(cardPanel, "checkoutWindow");
+        checkoutWindow.loadCheckout(cartWindow.getCart());
         revalidate();
         repaint();
     }
@@ -190,7 +201,7 @@ public class ShopWindow extends JPanel{
 
     }
 
-
+   
 }
 
 
