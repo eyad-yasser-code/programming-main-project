@@ -117,17 +117,22 @@ public class ItemPanel extends JPanel{
        
 
         JLabel nameLabel = new JLabel(product.getName());
-        nameLabel.setFont(new Font("Arial",Font.PLAIN,12));
+        nameLabel.setFont(new Font("Arial",Font.BOLD,12));
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         
        
 
+        JLabel descriptionLabel = new JLabel("<html>" + product.getDescription() + "<html>");
+        descriptionLabel.setPreferredSize(new Dimension(180,50));
+        descriptionLabel.setFont(new Font("Arial",Font.PLAIN,10));
+        descriptionLabel.setForeground(Color.WHITE);
+        descriptionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
       
       
-      
-        JLabel priceLabel = new JLabel( product.getPrice() + "L.E.");
-        priceLabel.setFont(new Font("Arial",Font.BOLD,14));
+        JLabel priceLabel = new JLabel( product.getPrice() + " EGP");
+        priceLabel.setFont(new Font("Arial",Font.BOLD,16));
         priceLabel.setForeground(Color.WHITE);
         priceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -136,9 +141,11 @@ public class ItemPanel extends JPanel{
 
 
         textPanel.add(nameLabel);
-        textPanel.add(Box.createRigidArea(new Dimension(0 , 10)));
+        textPanel.add(Box.createVerticalStrut(5));
+        textPanel.add(descriptionLabel);
+        textPanel.add(Box.createVerticalStrut(10));
         textPanel.add(priceLabel);
-        textPanel.add(Box.createRigidArea(new Dimension(0 , 10)));
+        textPanel.add(Box.createVerticalStrut(15));
 
         wrapper.add(textPanel, BorderLayout.WEST);
    
@@ -164,8 +171,6 @@ public class ItemPanel extends JPanel{
            
 
             middleView.addToCart(product);
-
-
 
         });
 

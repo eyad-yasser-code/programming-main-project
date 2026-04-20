@@ -73,13 +73,13 @@ public class ShopWindow extends JPanel{
 
        
        
-        addItem(1,"laptop","laptop.PNG","good laptop\n best laptop ever, you must but this laptop or you will regret it all you life.\nTHAT's AN ORDERRRRR!!!;",20000);
-        addItem(2,"microphone","microphone.PNG","good mic",800);
-        addItem(3,"mouse","mouse.PNG","good mouse",500);
-        addItem(4,"keyboard","keyboard.PNG","good keyboard",1000);
+        addItem(1,"laptop","laptop.PNG","good laptop\n best laptop ever, you must but this laptop or you will regret it all you life.\nTHAT's AN ORDERRRRR!!!;",20000,1);
+        addItem(2,"microphone","microphone.PNG","good mic",800,2);
+        addItem(3,"mouse","mouse.PNG","good mouse",500,2);
+        addItem(4,"keyboard","keyboard.PNG","good keyboard",1000,2);
 
-        addCategory(11,"Electronics","laptop.PNG");
-        addCategory(12,"Accessories","keyboard.PNG");
+        addCategory(1,"Electronics","laptop.PNG");
+        addCategory(2,"Accessories","keyboard.PNG");
 
 
        // removeItem(1);
@@ -140,10 +140,10 @@ public class ShopWindow extends JPanel{
     //add functions
 
     
-    public void addItem(int id, String name,String imageName,String description,double price){
+    public void addItem(int id, String name,String imageName,String description,double price, int categoryId){
        
        
-        Product product = new Product(id,name,imageName,description,price);
+        Product product = new Product(id,name,imageName,description,price,categoryId);
         products.add(product);
 
         homeWindow.addItem(product);
@@ -233,6 +233,7 @@ public class ShopWindow extends JPanel{
 
     public boolean getIsLogged(){return isLogged;}
     public User getUser(){return user;}
+    public ArrayList<Product> getAllProducts(){return products;}
 
 }
 

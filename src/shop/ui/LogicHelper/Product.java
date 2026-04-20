@@ -21,14 +21,16 @@ public class Product{
     private String imageName;
     private String description;
     private double price;
+    private int categoryId;
     
     
-    public Product(int id,String name,String imageName,String description,double price) {
+    public Product(int id,String name,String imageName,String description,double price,int categoryId) {
        setId(id);
        setName(name);
        setImageName(imageName);
        setDescritption(description); 
        setPrice(price); 
+       setCategoryId(categoryId);
     }
     
     
@@ -38,6 +40,7 @@ public class Product{
     public String getImageName(){return imageName;}
     public String getDescription(){return description;}
     public double getPrice(){return price;}
+    public int getCategoryId(){return categoryId;}
     
     //setters
     public void setId(int id){this.id = id;};
@@ -45,7 +48,7 @@ public class Product{
     public void setImageName(String imageName){this.imageName=imageName;}
     public void setDescritption(String description){this.description=description;}
     public void setPrice(double price){this.price=price;}
-    
+    public void setCategoryId(int categoryId){this.categoryId = categoryId;}
     
 
     

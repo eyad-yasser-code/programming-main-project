@@ -114,7 +114,7 @@ public class CheckoutWindow extends JPanel{
                     loadCheckout(cartWindow.getCart());
                     shopWindow.showHomeWindow();
                     
-                    //items.removeAll();
+                  
 
                 });
 

@@ -17,6 +17,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.ArrayList;
 
 
 
@@ -117,16 +118,42 @@ public class CategoryPanel extends JPanel{
         select.setAlignmentX(Component.CENTER_ALIGNMENT);
         select.setPreferredSize(new Dimension(120, 40));
        
-   
-        select.addActionListener(e -> {
-            System.out.println(category.getName() + "selected");
-            this.mainWindow.defaultScroll();
-            this.mainWindow.showItemsHolder();
+        
             
-            
-        });
+        
+                select.addActionListener(e -> {
+                
+                
+                
+                    System.out.println(category.getName() + "selected");
+                    
+                    ArrayList<Product> filtered = new ArrayList<>();
 
-        buttonWrapper.add(select, BorderLayout.CENTER);
+                    for(Product test : mainWindow.getAllProducts()){
+
+                        if(test.getCategoryId() == category.getId()){
+
+                            filtered.add(test);
+
+                        }
+
+                    }
+                 
+                 
+                    mainWindow.showFilteredProducts(filtered);
+                 
+                 
+                    this.mainWindow.defaultScroll();
+                    this.mainWindow.showItemsHolder();
+                    
+                    
+                });
+
+       
+       
+       
+       
+                buttonWrapper.add(select, BorderLayout.CENTER);
 
 
        

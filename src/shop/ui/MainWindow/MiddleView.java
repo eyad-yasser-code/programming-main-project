@@ -17,6 +17,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 
 
@@ -75,6 +76,22 @@ public class MiddleView extends JPanel{
         repaint();
         
     }
+
+    public void showFilteredProducts(ArrayList<Product> filteredProducts){
+
+        itemsHolder.removeAll();
+
+
+        for(Product test : filteredProducts){
+
+            itemsHolder.add(new ItemPanel(test , this));
+
+        }
+
+        showItemsHolder();
+
+    }
+
     public void showCategoriesHolder(){
        
         cardLayout.show(cardPanel, "catigoriesHolder");

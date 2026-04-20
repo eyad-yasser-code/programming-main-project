@@ -14,6 +14,7 @@ import shop.ui.LogicHelper.*;
 // main imports
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 
@@ -122,6 +123,12 @@ public class HomeWindow extends JPanel {
     public void removeCategory(Category removable){
             mainWindow.removeCategory(removable);
         }
+
+
+
+
+    // connecting allProducts from shopWindow to mainWindow
+    public ArrayList<Product> getAllProducts(){return shopWindow.getAllProducts();}
 
 
 }

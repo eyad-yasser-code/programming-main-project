@@ -16,6 +16,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 
 
@@ -110,6 +111,9 @@ public class MainWindow extends JPanel{
     public void showItemsHolder(){
         bottomBasePanel.showItemsHolder();
     }
+    public void showFilteredProducts(ArrayList<Product> filtered){
+        bottomBasePanel.showFilteredProducts(filtered);
+    }
 
     //scroll
 
@@ -118,6 +122,11 @@ public class MainWindow extends JPanel{
     }
 
 
+    //getting allProducts from homewindow to categorypanel
+
+    public ArrayList<Product> getAllProducts(){
+        return homeWindow.getAllProducts();
+    }
 
 }
 
@@ -264,6 +273,10 @@ class BottomBasePanel extends JPanel{
        }
        public void showItemsHolder(){
         middleView.showItemsHolder();
+       }
+
+       public void showFilteredProducts(ArrayList<Product> filtered){
+            middleView.showFilteredProducts(filtered);
        }
 
        //scrollpane
