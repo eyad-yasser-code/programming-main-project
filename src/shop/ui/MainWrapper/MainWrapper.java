@@ -162,6 +162,12 @@ class WrapperTop extends JPanel{
 
             public void update(){
 
+                
+                if(!searchField.isUserTyping()){
+                    return; 
+                }
+            
+
                 String text = searchField.getText().trim();
 
                 if(text.isEmpty()){

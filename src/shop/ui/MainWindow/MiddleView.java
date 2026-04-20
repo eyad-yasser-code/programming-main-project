@@ -45,11 +45,31 @@ public class MiddleView extends JPanel{
     
         this.mainWindow=mainWindow;        
         this.setOpaque(false);
-
+       // this.setPreferredSize(new Dimension(800,600));
        
-        itemsHolder = new ItemsHolder(0,0,0,600,degrees,colors,30);
-        categoriesHolder = new CategoriesHolder(0,0,0,600,degrees,colors,30);
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        itemsHolder = new ItemsHolder(0,0,0,600,degrees,colors,30);
+        
+        categoriesHolder = new CategoriesHolder(0,0,0,600,degrees,colors,30);
+        categoriesHolder.setPreferredSize(new Dimension(800,600));
+
+        JPanel categoryHolderWrapper = new JPanel(new BorderLayout());
+        categoryHolderWrapper.setOpaque(isOpaque());
+        categoryHolderWrapper.add(categoriesHolder, BorderLayout.NORTH);
+      
+
+
       
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
@@ -58,7 +78,7 @@ public class MiddleView extends JPanel{
 
 
         cardPanel.add(itemsHolder,"itemsHolder");
-        cardPanel.add(categoriesHolder, "catigoriesHolder");
+        cardPanel.add(categoryHolderWrapper, "catigoriesHolder");
 
         
         
@@ -72,8 +92,8 @@ public class MiddleView extends JPanel{
 
     public  void showItemsHolder(){
         cardLayout.show(cardPanel,"itemsHolder");
-        revalidate();
-        repaint();
+        itemsHolder.revalidate();
+        itemsHolder.repaint();
         
     }
 
@@ -110,8 +130,8 @@ public class MiddleView extends JPanel{
     public void showCategoriesHolder(){
        
         cardLayout.show(cardPanel, "catigoriesHolder");
-        revalidate();
-        repaint();
+        categoriesHolder.revalidate();
+        categoriesHolder.repaint();
     }
 
     //adding 
@@ -220,6 +240,9 @@ class CategoriesHolder extends MyGradient{
 
         this.setLayout(new GridLayout(0, 4, 50, 50));
         this.setBorder(new EmptyBorder(150,105,100,105));
+        this.setMinimumSize(new Dimension(800,100));
+        this.setPreferredSize(new Dimension(800,100));
+        this.setMaximumSize(new Dimension(800,100));
         this.setOpaque(false);
       
      

@@ -39,7 +39,7 @@ public class HomeWindow extends JPanel {
        
         this.setLayout(new BorderLayout());   
         this.setBackground(Color.decode("#1b1b1b"));      
-        this.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
+       // this.setBorder(BorderFactory.createLineBorder(Color.decode("#111111"),10));
 
        
 

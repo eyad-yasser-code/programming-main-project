@@ -119,7 +119,7 @@ public class MainWindow extends JPanel{
     }
 
 
-    
+
 
     //scroll
 
@@ -169,6 +169,10 @@ class BottomBasePanel extends JPanel{
           
           
            middleView = new MiddleView(mainWindow);
+           //middleView.setMinimumSize(new Dimension(800,1000));
+          // middleView.setPreferredSize(new Dimension(800,600));
+
+
            middleView.showCategoriesHolder();
            middleView.setAlignmentX(Component.CENTER_ALIGNMENT);
            middleView.setOpaque(false); 

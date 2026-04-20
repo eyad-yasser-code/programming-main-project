@@ -78,9 +78,20 @@ public class ShopWindow extends JPanel{
         addItem(3,"mouse","mouse.PNG","good mouse",500,2);
         addItem(4,"keyboard","keyboard.PNG","good keyboard",1000,2);
 
+
+        for(int i = 0 ; i<6 ; i++){
+            addItem(4,"keyboard","keyboard.PNG","good keyboard",1000,2);
+        }
+
+
         addCategory(1,"Electronics","laptop.PNG");
         addCategory(2,"Accessories","keyboard.PNG");
 
+        
+        // for(int i = 0 ; i<6 ; i++){
+        //     addCategory(2,"Accessories","keyboard.PNG");
+
+        // }
 
        // removeItem(1);
         //removeCategory(11);

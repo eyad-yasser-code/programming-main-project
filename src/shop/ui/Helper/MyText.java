@@ -16,7 +16,7 @@ import java.awt.*;
 
 
 public class MyText extends MyGradient{
-   
+    private boolean isUserTyping = true;
    
    private JTextComponent txt;
    private String name;
@@ -59,7 +59,8 @@ public class MyText extends MyGradient{
             @Override 
             public void focusGained(java.awt.event.FocusEvent e ){
                 
-     
+                isUserTyping = false;
+
                 
                 if(txt.getText().equals(name) && txt.getForeground().equals(Color.GRAY)){
                     
@@ -71,12 +72,13 @@ public class MyText extends MyGradient{
                     }
                     
                 }
+                isUserTyping = true;
             }
 
             @Override
             public void focusLost(java.awt.event.FocusEvent e){
                 
-      
+                isUserTyping = false;
                 
                 if(txt.getText().isEmpty()){
                     txt.setText(name);
@@ -90,6 +92,7 @@ public class MyText extends MyGradient{
 
 
                 }
+                isUserTyping = true;
             }
 
             });
@@ -142,6 +145,11 @@ public class MyText extends MyGradient{
 
     }
 
+    public boolean isAtive(){
+        return txt.getText().equals(name) && txt.getForeground().equals(Color.GRAY);
+    }
 
-
+    public boolean isUserTyping(){
+        return isUserTyping;
+    }
 }
