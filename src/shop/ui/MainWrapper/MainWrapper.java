@@ -5,13 +5,17 @@ package shop.ui.MainWrapper;
 
 //my imports 
 import shop.ui.Helper.*;
+import shop.ui.LogicHelper.Product;
 import shop.ui.MainWindow.MainWindow;
 import shop.ui.ShopWindow.ShopWindow;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class MainWrapper extends JPanel{
@@ -142,6 +146,45 @@ class WrapperTop extends JPanel{
         searchField.setPreferredSize(new Dimension(300 , 30 ));
         searchField.setMaximumSize(new Dimension(300 , 30 ));
         searchField.setMinimumSize(new Dimension(300 , 30 ));
+        searchField.addTextListener(new DocumentListener() {
+            
+            public void insertUpdate(DocumentEvent e){
+                update();
+            }
+            public void removeUpdate(DocumentEvent e){
+                update();
+            }
+
+            public void changedUpdate(DocumentEvent e){
+                update();
+            }
+
+
+            public void update(){
+
+                String text = searchField.getText().trim();
+
+                if(text.isEmpty()){
+                    shopWindow.getHomeWindow().showCategories();
+                    return;
+                }
+
+                ArrayList<Product> searchedProducts = new ArrayList<>();
+                searchedProducts = shopWindow.searchProducts(text);
+                shopWindow.getHomeWindow().showSearchedProducts(searchedProducts);
+
+                
+
+            }
+
+
+
+        });
+        
+        
+        
+        
+        
         middlePanel.add(searchField);
 
 
@@ -287,7 +330,7 @@ class WrapperSide extends JPanel{
             category.setAlignmentX(Component.CENTER_ALIGNMENT);
             category.addActionListener( e->{
 
-            mainWindow.showCategoriesHolder();
+            shopWindow.getHomeWindow().showCategories();
             mainWindow.defaultScroll();
             mainWrapper.panelVisible(false);
 

@@ -87,8 +87,23 @@ public class MiddleView extends JPanel{
             itemsHolder.add(new ItemPanel(test , this));
 
         }
-
+        itemsHolder.revalidate();
+        itemsHolder.repaint();
         showItemsHolder();
+
+    }
+
+    public void showSearchedProducts(ArrayList<Product> searchedProducts){
+
+        itemsHolder.removeAll();
+
+        for(Product test : searchedProducts){
+            itemsHolder.add(new ItemPanel(test, this));
+        }
+        itemsHolder.revalidate();
+        itemsHolder.repaint();
+        showItemsHolder();
+
 
     }
 

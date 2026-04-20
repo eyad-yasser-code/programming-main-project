@@ -129,6 +129,19 @@ public class HomeWindow extends JPanel {
 
     // connecting allProducts from shopWindow to mainWindow
     public ArrayList<Product> getAllProducts(){return shopWindow.getAllProducts();}
+    public void showAllProducts(){
+        mainWindow.showItemsHolder();
+    
+        mainWindow.showSearchedProducts(getAllProducts());
+    }
+
+    public void showCategories(){
+        mainWindow.showCategoriesHolder();
+        mainWindow.defaultScroll();
+    }
+    public void showSearchedProducts(ArrayList<Product> searchedProducts){
+        mainWindow.showSearchedProducts(searchedProducts);
+    }
 
 
 }

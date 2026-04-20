@@ -40,6 +40,8 @@ public class CategoryPanel extends JPanel{
        
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setPreferredSize(new Dimension(200,50));
+        this.setMaximumSize(new Dimension(200,50));
+        this.setMinimumSize(new Dimension(200,50));
         this.setOpaque(false);
         
 

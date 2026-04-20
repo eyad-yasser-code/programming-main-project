@@ -114,6 +114,12 @@ public class MainWindow extends JPanel{
     public void showFilteredProducts(ArrayList<Product> filtered){
         bottomBasePanel.showFilteredProducts(filtered);
     }
+    public void showSearchedProducts(ArrayList<Product> searchedProducts){
+        bottomBasePanel.showSearchedProducts(searchedProducts);
+    }
+
+
+    
 
     //scroll
 
@@ -278,6 +284,13 @@ class BottomBasePanel extends JPanel{
        public void showFilteredProducts(ArrayList<Product> filtered){
             middleView.showFilteredProducts(filtered);
        }
+
+       public void showSearchedProducts(ArrayList<Product> searchedProducts){
+
+        middleView.showSearchedProducts(searchedProducts);
+
+       }
+
 
        //scrollpane
 

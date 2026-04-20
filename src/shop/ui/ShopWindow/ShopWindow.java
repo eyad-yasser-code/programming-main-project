@@ -216,6 +216,28 @@ public class ShopWindow extends JPanel{
    
 
 
+    //search in all products 
+
+    public ArrayList<Product> searchProducts(String text){
+
+        ArrayList<Product> foundList = new ArrayList<>();
+
+        for(Product test : products){
+
+            if(test.getName().toLowerCase().contains(text.toLowerCase())){
+                foundList.add(test);
+            }
+
+        }
+
+        return foundList;
+    }
+
+    
+
+
+
+
 
     //setters 
 
@@ -235,6 +257,7 @@ public class ShopWindow extends JPanel{
     public User getUser(){return user;}
     public ArrayList<Product> getAllProducts(){return products;}
 
+    public HomeWindow getHomeWindow(){return homeWindow;}
 }
 
 

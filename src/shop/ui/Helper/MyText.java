@@ -129,4 +129,19 @@ public class MyText extends MyGradient{
     }
 
 
+    public void addActionListener(java.awt.event.ActionListener listener){
+        if(txt instanceof JTextField){
+            ((JTextField)txt).addActionListener(listener);
+        }
+    } 
+
+    public void addTextListener(javax.swing.event.DocumentListener listener){
+
+        txt.getDocument().addDocumentListener(listener);
+
+
+    }
+
+
+
 }
