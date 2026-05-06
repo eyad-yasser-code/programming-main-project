@@ -4,12 +4,9 @@ package shop.ui.loginWindow;
 
 
 //my imports
-import shop.ui.ShopWindow.ShopWindow;
-
-
-//main imports
 import java.awt.*;
 import javax.swing.*;
+import shop.ui.ShopWindow.ShopWindow;
 
 
 

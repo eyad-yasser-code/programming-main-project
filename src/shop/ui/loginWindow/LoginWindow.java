@@ -1,8 +1,4 @@
-
-//main package;
-
 package shop.ui.loginWindow;
-
 
 import java.awt.*;
 import javax.swing.*;
@@ -13,8 +9,6 @@ import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.MyText;
 import shop.ui.Helper.PressableButton;
 import shop.ui.ShopWindow.ShopWindow;
-
-
 
 public class LoginWindow extends JPanel{
 
@@ -97,6 +91,7 @@ public class LoginWindow extends JPanel{
                    emailField.setMinimumSize(new Dimension(300 , 50 ));
                    emailField.setAlignmentX(Component.CENTER_ALIGNMENT); 
                    
+                   
                 
               
                    
@@ -126,13 +121,13 @@ public class LoginWindow extends JPanel{
 
                  if(email.isEmpty())
                     {
-                     JOptionPane.showMessageDialog(this,"email can't be empty");
+                     CustomDialog.showMessage(this,"email can't be empty");
                       return;
                    }
   
                if(password.isEmpty())
                 {
-                  JOptionPane.showMessageDialog(this,"password can't be empty");
+                  CustomDialog.showMessage(this,"password can't be empty");
                   return;
                 }
 
@@ -143,7 +138,7 @@ public class LoginWindow extends JPanel{
               if (user != null) 
                 {
 
-                 JOptionPane.showMessageDialog(this, "Login Success");
+                 CustomDialog.showMessage(this, "Login Success");
                  shopWindow.setIsLogged(true);
                  shopWindow.setUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
                  shopWindow.showHomeWindow();
@@ -152,7 +147,7 @@ public class LoginWindow extends JPanel{
             else 
             {
 
-            JOptionPane.showMessageDialog(this, "Wrong Password");
+            CustomDialog.showMessage(this, "Wrong Password");
 
              }
     }

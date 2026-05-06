@@ -1,8 +1,4 @@
-
 package shop.ui.Data;
-
-
-
 
 
 public class User {
@@ -19,11 +15,6 @@ public class User {
         this.lastName=lastName;
         this.email=email;
         this.password=password;
-
-
-
-
-
 
     }
 

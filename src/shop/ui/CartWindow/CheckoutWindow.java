@@ -1,30 +1,21 @@
-
-
-
-
-
-//main package;
-
 package shop.ui.CartWindow;
 
+import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import shop.ui.Helper.ModifiedScroll;
-//my imports
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
 import shop.ui.LogicHelper.CartEntry;
 import shop.ui.ShopWindow.ShopWindow;
-
-//main imports
-import java.awt.*;
-import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import shop.ui.loginWindow.CustomDialog;
 
 
 
 
-public class CheckoutWindow extends JPanel{
+public class CheckoutWindow extends JPanel
+{
 
 
     private Color[] backgroundColors={Color.decode("#1c1c1c"),Color.decode("#1c1c1c")};
@@ -87,14 +78,14 @@ public class CheckoutWindow extends JPanel{
 
 
                 
-                PressableButton back = new PressableButton("#159069","#56b798",10);
-                back.setText("Back");
-                back.setPreferredSize(new Dimension(80,40));
-                back.addActionListener(e->{
-                    shopWindow.showCartWindow();
+            PressableButton back = new PressableButton("#159069","#56b798",10);
+            back.setText("Back");
+            back.setPreferredSize(new Dimension(80,40));
+            back.addActionListener(e->{
+                 shopWindow.showCartWindow();
                     
-                    revalidate();
-                    repaint();
+                revalidate();
+                repaint();
                 });
 
                 
@@ -102,26 +93,25 @@ public class CheckoutWindow extends JPanel{
                 PressableButton confirm = new PressableButton("#159069","#56b798",10);
              
                    
-                confirm.setText("Confirm");
-                confirm.setPreferredSize(new Dimension(300 , 40 ));
-                confirm.setMaximumSize(new Dimension(300 , 40 ));
-                confirm.setMinimumSize(new Dimension(300 , 40 ));
-                confirm.setAlignmentX(Component.CENTER_ALIGNMENT); 
-                confirm.addActionListener(e->{
+            confirm.setText("Confirm");
+            confirm.setPreferredSize(new Dimension(300 , 40 ));
+            confirm.setMaximumSize(new Dimension(300 , 40 ));
+            confirm.setMinimumSize(new Dimension(300 , 40 ));
+            confirm.setAlignmentX(Component.CENTER_ALIGNMENT); 
+            confirm.addActionListener(e->{
 
-                    JOptionPane.showMessageDialog(this,"purchased successfully");
-                    cartWindow.clearCart();
-                    loadCheckout(cartWindow.getCart());
-                    shopWindow.showHomeWindow();
+                CustomDialog.showMessage(this,"Purchased successfully");
+                cartWindow.clearCart();
+                loadCheckout(cartWindow.getCart());
+                shopWindow.showHomeWindow();
                     
-                  
-
+                
                 });
 
 
 
-                Bottom.add(back);
-                Bottom.add(confirm);
+            Bottom.add(back);
+            Bottom.add(confirm);
 
 
         bottomWrapper.add(Bottom,BorderLayout.CENTER);        
@@ -132,45 +122,37 @@ public class CheckoutWindow extends JPanel{
         topWrapper.setOpaque(false);
 
        
-            JPanel itemsWrapper = new JPanel(new BorderLayout());
-            itemsWrapper.setOpaque(false); 
+        JPanel itemsWrapper = new JPanel(new BorderLayout());
+        itemsWrapper.setOpaque(false); 
             
 
-            items = new JPanel();
-            items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-            items.setOpaque(false);
-            items.setAlignmentX(Component.CENTER_ALIGNMENT);
+        items = new JPanel();
+        items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
+        items.setOpaque(false);
+        items.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
 
 
                 
-                itemsWrapper.add(items, BorderLayout.CENTER);
-                itemsWrapper.setBorder(new EmptyBorder(0,50,20,50));
+            itemsWrapper.add(items, BorderLayout.CENTER);
+            itemsWrapper.setBorder(new EmptyBorder(0,50,20,50));
 
                 
-                scrollPane = new JScrollPane(itemsWrapper);
-                scrollPane.setWheelScrollingEnabled(true);
-                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                scrollPane.setBorder(null);
-                scrollPane.setOpaque(false);
-                scrollPane.getViewport().setOpaque(false);
-                scrollPane.getVerticalScrollBar().setUI(new ModifiedScroll());
-                scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15,0));
+        scrollPane = new JScrollPane(itemsWrapper);
+        scrollPane.setWheelScrollingEnabled(true);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(null);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.getVerticalScrollBar().setUI(new ModifiedScroll());
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15,0));
                
            
-               
 
-
-                topWrapper.add(scrollPane, BorderLayout.CENTER);
-           
-
-
-       
-         
+        topWrapper.add(scrollPane, BorderLayout.CENTER);
                 
-
        
         checkoutBase.add(topWrapper , BorderLayout.CENTER);   
         checkoutBase.add(bottomWrapper, BorderLayout.SOUTH);        
@@ -179,16 +161,11 @@ public class CheckoutWindow extends JPanel{
 
 
 
-        
-
     }
 
     public void defaultCartScroll(){
         this.scrollPane.getVerticalScrollBar().setValue(0);
        }
-    
-
-
 
 
 
@@ -264,9 +241,7 @@ class BaseWrapper extends MyGradient{
         
         this.setLayout(new  GridBagLayout());
         this.setBackground(Color.decode("#111111"));
-        
-        
-
+    
 
     }
 

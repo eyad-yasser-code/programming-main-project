@@ -60,7 +60,8 @@ public class MiddleView extends JPanel {
         itemsHolder.repaint();
     }
 
-    public void showFilteredProducts(ArrayList<Product> filteredProducts) {
+    public void showFilteredProducts(ArrayList<Product> filteredProducts) 
+    {
         itemsHolder.removeAll();
         for (Product p : filteredProducts) {
             itemsHolder.add(new ItemPanel(p, this));
@@ -70,7 +71,8 @@ public class MiddleView extends JPanel {
         showItemsHolder();
     }
 
-    public void showSearchedProducts(ArrayList<Product> searchedProducts) {
+    public void showSearchedProducts(ArrayList<Product> searchedProducts)
+     {
         itemsHolder.removeAll();
         for (Product p : searchedProducts) {
             itemsHolder.add(new ItemPanel(p, this));
@@ -87,19 +89,25 @@ public class MiddleView extends JPanel {
         categoriesHolder.repaint();
     }
 
-    // ── Adding ────────────────────────────────────────────────────────────────
+    //  Adding
 
-    public void addItem(Product product) {
+    public void addItem(Product product) 
+    {
         itemsHolder.add(new ItemPanel(product, this));
     }
 
-    public void addCategory(Category category) {
+
+    public void addCategory(Category category) 
+    {
         categoriesHolder.add(new CategoryPanel(category, mainWindow));
     }
 
-    // ── Removing ──────────────────────────────────────────────────────────────
 
-    public void removeItem(Product product) {
+
+    // Removing 
+
+    public void removeItem(Product product) 
+    {
         for (Component comp : itemsHolder.getComponents()) {
             if (comp instanceof ItemPanel) {
                 ItemPanel ip = (ItemPanel) comp;
@@ -127,16 +135,16 @@ public class MiddleView extends JPanel {
         categoriesHolder.repaint();
     }
 
-    // ── Reverse delegation ────────────────────────────────────────────────────
+    // Reverse delegation
 
     public void addToCart(Product product) {
         mainWindow.addToCart(product);
     }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 
-class ItemsHolder extends MyGradient {
+class ItemsHolder extends MyGradient 
+{
 
     public ItemsHolder(int startX, int startY, int endX, int endY,
                        float[] degrees, Color[] colors, int arc) {
@@ -148,9 +156,9 @@ class ItemsHolder extends MyGradient {
     }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 
-class CategoriesHolder extends MyGradient {
+class CategoriesHolder extends MyGradient 
+{
 
     public CategoriesHolder(int startX, int startY, int endX, int endY,
                             float[] degrees, Color[] colors, int arc) {

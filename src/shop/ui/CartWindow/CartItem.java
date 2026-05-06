@@ -1,24 +1,13 @@
-//main packages
 package shop.ui.CartWindow;
 
 
-//my imports 
-
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import shop.ui.Helper.ImageLabel;
 import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.PressableButton;
 import shop.ui.LogicHelper.*;
-
-
-//main imports
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-
-
-import java.awt.*;
-
 
 
 public class CartItem extends JPanel{

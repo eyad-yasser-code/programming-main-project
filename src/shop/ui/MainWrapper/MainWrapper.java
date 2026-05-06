@@ -17,22 +17,19 @@ public class MainWrapper extends JPanel {
     private WrapperSide   wrapperSide;
     private WrapperCenter wrapperCenter;
     private JPanel        wrapperBottom;
-
     private ShopWindow shopWindow;
     private JLabel     userGreetingLabel;
 
-    public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow) {
+    public MainWrapper(MainWindow mainWindow, ShopWindow shopWindow) 
+    {
 
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
-
         userGreetingLabel = new JLabel();
         this.shopWindow   = shopWindow;
-
         wrapperBottom = new JPanel(new BorderLayout());
         wrapperSide   = new WrapperSide(mainWindow, this, shopWindow);
         wrapperCenter = new WrapperCenter(this);
-
         wrapperBottom.add(wrapperSide,   BorderLayout.WEST);
         wrapperBottom.add(wrapperCenter, BorderLayout.CENTER);
         wrapperBottom.setOpaque(false);
@@ -46,7 +43,7 @@ public class MainWrapper extends JPanel {
         greetingLabel();
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    //  Helpers
 
     public void panelVisible(boolean bool) { wrapperBottom.setVisible(bool); }
     public void resetSearch()              { wrapperTop.resetSearch(); }
@@ -62,21 +59,21 @@ public class MainWrapper extends JPanel {
             userGreetingLabel.setText("Please log in");
     }
 
-    // ── Getters ───────────────────────────────────────────────────────────────
+    //  Getters
 
     public JLabel getUserGreetingLabel() { return userGreetingLabel; }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-
-class WrapperTop extends JPanel {
+class WrapperTop extends JPanel
+ {
 
     private final float[] searchFloats = {0.0f, 1.0f};
     private final Color[] searchColors = {Color.decode("#1a1a1a"), Color.decode("#1a1a1a")};
 
     private MyText searchField;
 
-    public WrapperTop(JPanel panel, ShopWindow shopWindow, MainWrapper mainWrapper) {
+    public WrapperTop(JPanel panel, ShopWindow shopWindow, MainWrapper mainWrapper) 
+    {
 
         this.setLayout(new GridLayout(1, 3, 0, 0));
         this.setPreferredSize(new Dimension(0, 46));
@@ -92,17 +89,17 @@ class WrapperTop extends JPanel {
         rightPanel.setOpaque(false);
 
         searchField = new MyText(0, 0, 0, getHeight(), searchFloats, searchColors, 20,
-                "Search products…", false);
+         "Search products…", false);
         searchField.setPreferredSize(new Dimension(300, 32));
         searchField.setMaximumSize(new Dimension(300, 32));
         searchField.setMinimumSize(new Dimension(300, 32));
-
         searchField.addTextListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e)  { update(); }
             public void removeUpdate(DocumentEvent e)  { update(); }
             public void changedUpdate(DocumentEvent e) { update(); }
 
-            private void update() {
+           private void update()
+            {
                 if (!searchField.isUserTyping()) return;
 
                 String text = searchField.getText().trim();
@@ -167,7 +164,6 @@ class WrapperTop extends JPanel {
     public void resetSearch() { searchField.resetText(); }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 
 class SideInner extends MyGradient {
     public SideInner(int startX, int startY, int endX, int endY,
@@ -178,7 +174,6 @@ class SideInner extends MyGradient {
     }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 
 class WrapperSide extends JPanel {
 
@@ -206,7 +201,7 @@ class WrapperSide extends JPanel {
         cateWrapper.setLayout(new BoxLayout(cateWrapper, BoxLayout.Y_AXIS));
         cateWrapper.setOpaque(false);
 
-        // ── Categories button ─────────────────────────────────────────────────
+        // Categories button
         PressableButton category = new PressableButton("#159069", "#21c48a", 10);
         category.setText("📂  Categories");
         category.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -219,7 +214,7 @@ class WrapperSide extends JPanel {
             mainWrapper.panelVisible(false);
         });
 
-        // ── Login / Sign-in button ────────────────────────────────────────────
+        //  Login / Sign-in button 
         PressableButton loginBtn = new PressableButton("#159069", "#21c48a", 10);
         loginBtn.setText("🔑  Login / Sign in");
         loginBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -239,15 +234,18 @@ class WrapperSide extends JPanel {
     }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 
-class WrapperCenter extends JPanel {
-    public WrapperCenter(MainWrapper mainWrapper) {
+class WrapperCenter extends JPanel 
+{
+    public WrapperCenter(MainWrapper mainWrapper) 
+    {
      
         this.setBackground(new Color(0, 0, 0, 170));
-        this.addMouseListener(new java.awt.event.MouseAdapter() {
+        this.addMouseListener(new java.awt.event.MouseAdapter() 
+        {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
+            public void mouseClicked(java.awt.event.MouseEvent e) 
+            {
                 mainWrapper.panelVisible(false);
             }
         });

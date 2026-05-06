@@ -333,7 +333,6 @@ public class CartWindow extends JPanel{
 
 
 
-    //refresh UI :remove everything then add the arraylist cart as it is with everychange i did 
 
     public void refreshUI(){
 

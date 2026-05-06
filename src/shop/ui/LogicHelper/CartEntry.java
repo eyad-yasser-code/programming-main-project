@@ -1,8 +1,6 @@
 package shop.ui.LogicHelper;
-
-
-
-public class CartEntry {
+public class CartEntry 
+{
    
     private Product product;
     private int quantity;
@@ -12,10 +10,6 @@ public class CartEntry {
 
         this.product=product;
         this.quantity=1;
-
-
-
-
     }
 
 
@@ -27,7 +21,5 @@ public class CartEntry {
     public void decrease(){
         if(quantity>1)quantity--;
     }
-
-
 
 }

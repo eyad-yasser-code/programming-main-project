@@ -1,20 +1,6 @@
-//main package 
-
 package shop.ui.LogicHelper;
-
-
-
-
-
-//my imports
-
-//main imports
-
-
-
-
-
-public class Product{
+public class Product
+{
     
     private int id;
     private String name;
@@ -50,7 +36,6 @@ public class Product{
     public void setPrice(double price){this.price=price;}
     public void setCategoryId(int categoryId){this.categoryId = categoryId;}
     
-
     
     @Override 
     public boolean equals(Object obj){
@@ -62,10 +47,7 @@ public class Product{
 
         return this.getId() == other.getId();
 
-    }
-
-
-
+       }
 
 
 

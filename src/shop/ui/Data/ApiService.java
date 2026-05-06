@@ -38,7 +38,8 @@ public static int registerUser(String firstName, String lastName, String email, 
         }
     }
 
-  public static User loginUser(String email, String password) {
+  public static User loginUser(String email, String password) 
+  {
     try {
         URL url = new URL("http://localhost:8080/auth/login");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -65,7 +66,7 @@ public static int registerUser(String firstName, String lastName, String email, 
 
             String response = br.readLine();
 
-            System.out.println(response); // 👈 مهم للتأكد
+            System.out.println(response);
 
             String firstName = response.split("\"firstName\":\"")[1].split("\"")[0];
             String lastName = response.split("\"lastName\":\"")[1].split("\"")[0];
