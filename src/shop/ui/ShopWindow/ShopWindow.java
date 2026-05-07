@@ -1,11 +1,10 @@
 package shop.ui.ShopWindow;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.ArrayList;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
 import shop.ui.CartWindow.CartWindow;
 import shop.ui.CartWindow.CheckoutWindow;
 import shop.ui.Data.User;
@@ -102,7 +101,7 @@ public class ShopWindow extends JFrame {
                 e -> setState(JFrame.ICONIFIED)
         );
 
-        // ================= MAXIMIZE =================
+        //MAXIMIZE 
 
         PressableButton maximize =
                 new PressableButton(
