@@ -12,7 +12,7 @@ import shop.ui.MainWindow.MainWindow;
 
 public class CategoryPanel extends JPanel {
 
-    private MainWindow mainWindow;
+    
     private Category category;
 
     // BUG FIX: Height was 50 — far too small to hold image (300px) + label + button.
@@ -29,7 +29,7 @@ public class CategoryPanel extends JPanel {
         this.setOpaque(false);
 
         setCategory(category);
-        this.mainWindow = mainWindow;
+        
 
         // ── Image panel ──────────────────────────────────────────────────────
         JPanel imagePanel = new JPanel(new BorderLayout()) {

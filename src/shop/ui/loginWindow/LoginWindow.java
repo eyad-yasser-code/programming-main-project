@@ -27,8 +27,8 @@ public class LoginWindow extends JPanel{
     private Color[] textColors = {Color.decode("#222222"),Color.decode("#222222")};
 
     
-    private MyText firstNameField; 
-    private MyText lastNameField;
+    // private MyText firstNameField; 
+    // private MyText lastNameField;
     private MyText emailField;
     private MyText passwordField;
     
