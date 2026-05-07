@@ -89,7 +89,8 @@ public class ShopWindow extends JFrame {
                         10
                 );
 
-        minimize.setText("_");
+        minimize.setText("\u2014");
+        minimize.setFont(new Font ("PLAIN",Font.BOLD,10));
 
         minimize.setForeground(Color.WHITE);
 
