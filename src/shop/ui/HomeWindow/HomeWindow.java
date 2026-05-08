@@ -140,4 +140,14 @@ public class HomeWindow extends JPanel {
     //getters
     //============
     public ArrayList<Product> getAllProducts() { return shopWindow.getAllProducts(); }
+
+
+
+
+
+
+    public void refreshUI1(){
+        mainWrapper.refreshUI();
+
+    }
 }

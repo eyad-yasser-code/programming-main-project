@@ -216,6 +216,7 @@ public class SignInWindow extends JPanel{
                          shopWindow.setIsLogged(true);
                          shopWindow.setUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
                          shopWindow.showHomeWindow();
+                         shopWindow.refreshUI();
                          resetText();
                     }
                      else

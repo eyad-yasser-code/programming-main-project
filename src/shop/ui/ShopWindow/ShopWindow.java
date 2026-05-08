@@ -12,8 +12,7 @@ import shop.ui.Data.UsersDataBase;
 import shop.ui.HomeWindow.HomeWindow;
 
 import shop.ui.LogicHelper.*;
-
-
+import shop.ui.MainWrapper.MainWrapper;
 import shop.ui.loginWindow.LoginWrapperWindow;
 
 //main imports 
@@ -38,7 +37,6 @@ public class ShopWindow extends JPanel{
     private LoginWrapperWindow loginWrapper;
     private CheckoutWindow checkoutWindow;
     private AdminWrapper adminWrapper;
-
 
     private ArrayList<Product> products;
     private ArrayList<Category> categories;
@@ -73,6 +71,7 @@ public class ShopWindow extends JPanel{
         this.cartWindow = new CartWindow(this,checkoutWindow);
         this.checkoutWindow = new CheckoutWindow(this,cartWindow);
         this.adminWrapper = new AdminWrapper(this);
+        
        
 
         
@@ -316,6 +315,11 @@ public class ShopWindow extends JPanel{
         user = new User("Guest", "", "", "");
     
         showHomeWindow();
+    }
+
+
+    public void refreshUI(){
+        homeWindow.refreshUI();
     }
 
 }
