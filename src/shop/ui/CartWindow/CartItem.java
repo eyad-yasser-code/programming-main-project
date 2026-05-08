@@ -2,6 +2,8 @@ package shop.ui.CartWindow;
 
 
 import java.awt.*;
+import java.io.File;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import shop.ui.Helper.ImageLabel;
@@ -218,7 +220,9 @@ class ItemPic extends MyGradient{
         this.setPreferredSize(new Dimension(150,150));
         this.setOpaque(false);
 
-        imageLabel = new ImageLabel("/images/",product.getImageName());
+        File[] selectedFiles = product.getselectedFiles();
+
+        imageLabel = new ImageLabel(selectedFiles[0]);
 
        
         this.add(imageLabel,BorderLayout.CENTER);

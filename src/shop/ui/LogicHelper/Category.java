@@ -1,16 +1,20 @@
 package shop.ui.LogicHelper;
 
+import java.io.File;
+
 public class Category
  {
 
 private int id;
 private String name;
-private String imageName;    
-public Category(int id,String name,String imageName){
+private File selectedFile;
+
+
+public Category(int id,String name,File selectedFile){
 
     setId(id);
     setName(name);
-    setImageName(imageName);
+    setSelectedFile(selectedFile);
    
 }
 
@@ -18,12 +22,12 @@ public Category(int id,String name,String imageName){
 //getters 
 public int getId(){return id;}
 public String getName(){return name;}
-public String getImageName(){return imageName;}
+public File getSelectedFile(){return selectedFile;}
 
 //setters
 public void setId(int id){this.id = id;};
 public void setName(String name){this.name=name;}
-public void setImageName(String imageName){this.imageName=imageName;}
+public void setSelectedFile(File selectedFile){this.selectedFile=selectedFile;}
 
  
 @Override 

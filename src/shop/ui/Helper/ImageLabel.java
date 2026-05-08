@@ -7,6 +7,8 @@ package shop.ui.Helper;
 // main imports
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+
 import javax.swing.*;
 
 
@@ -16,19 +18,20 @@ public class ImageLabel extends JLabel{
 
     private Image image;
 
-    public ImageLabel(String dir,String imagName){
-       
-        ImageIcon icon = new ImageIcon(getClass().getResource(dir + imagName)); //dir -> ex: /images/
-        this.image= icon.getImage();
-        this.setOpaque(false);
+    public ImageLabel(File file) {
 
+        if (file != null && file.exists()) {
+            this.image = new ImageIcon(file.getAbsolutePath()).getImage();
+        }
+
+        this.setOpaque(false);
     }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        Graphics2D g2D = (Graphics2D) g;
+        Graphics2D g2D = (Graphics2D) g.create();
         
         
         
@@ -39,7 +42,7 @@ public class ImageLabel extends JLabel{
       
 
         Shape clip = new RoundRectangle2D.Float(0,0,getWidth(),getHeight(),30,30);
-        Shape oldClip = g2D.getClip();
+       // Shape oldClip = g2D.getClip();
 
         g2D.setClip(clip);
         g2D.setColor(Color.WHITE);
@@ -49,6 +52,7 @@ public class ImageLabel extends JLabel{
         
        
   
+        if (image != null) {
 
         int imagWidth = image.getWidth(this);
         int imagHeight = image.getHeight(this);
@@ -74,17 +78,25 @@ public class ImageLabel extends JLabel{
         g2D.drawImage(image, xPos, yPos, newWidth, newHeight, this);
        
        
+        }
+        //g2D.setClip(oldClip);
        
-        g2D.setClip(oldClip);
-       
-      
+        g2D.dispose();
 
        // g2D.drawImage(image,xPos,yPos,newWidth,newHeight,this);
 
     }
 
     
+    public void setImage(File file){
 
+        
+        if (file != null && file.exists()) {
+            this.image = new ImageIcon(file.getAbsolutePath()).getImage();
+        }
+
+        repaint();
+    }
 
 
 }

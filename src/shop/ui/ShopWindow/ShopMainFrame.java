@@ -8,19 +8,13 @@ import shop.ui.Helper.PressableButton;
 
 public class ShopMainFrame extends JFrame {
 
-    // ================= RESIZE SETTINGS =================
-
-    private static final int RESIZE_MARGIN = 10;
+    // ================= WINDOW SETTINGS =================
 
     private static final int MIN_WIDTH = 900;
 
     private static final int MIN_HEIGHT = 600;
 
-    // ================= RESIZE VARIABLES =================
-
-    private Point clickPoint;
-
-    private int resizeDirection = 0;
+    private static final int RESIZE_MARGIN = 10;
 
     // ================= RESIZE DIRECTIONS =================
 
@@ -42,6 +36,12 @@ public class ShopMainFrame extends JFrame {
 
     private static final int SOUTH_EAST = 8;
 
+    // ================= VARIABLES =================
+
+    private Point clickPoint;
+
+    private int resizeDirection = NONE;
+
     public ShopMainFrame() {
 
         initializeFrame();
@@ -52,14 +52,14 @@ public class ShopMainFrame extends JFrame {
 
         add(new ShopWindow(), BorderLayout.CENTER);
 
-        enableDragging(topBar);
+        enableWindowDragging(topBar);
 
-        enableResizing();
+        enableWindowResize();
 
         setVisible(true);
     }
 
-    // ================= FRAME =================
+    // ================= INITIALIZE FRAME =================
 
     private void initializeFrame() {
 
@@ -85,7 +85,9 @@ public class ShopMainFrame extends JFrame {
 
         setLocationRelativeTo(null);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(
+                JFrame.EXIT_ON_CLOSE
+        );
 
         setUndecorated(true);
 
@@ -102,7 +104,7 @@ public class ShopMainFrame extends JFrame {
                 );
 
         topBar.setBackground(
-                Color.decode("#1e2020")
+                Color.decode("#161616")
         );
 
         topBar.setPreferredSize(
@@ -126,9 +128,9 @@ public class ShopMainFrame extends JFrame {
 
         topBar.add(title, BorderLayout.WEST);
 
-        // ================= BUTTONS =================
+        // ================= BUTTON PANEL =================
 
-        JPanel buttonsPanel =
+        JPanel buttonPanel =
                 new JPanel(
                         new FlowLayout(
                                 FlowLayout.RIGHT,
@@ -137,9 +139,9 @@ public class ShopMainFrame extends JFrame {
                         )
                 );
 
-        buttonsPanel.setOpaque(false);
+        buttonPanel.setOpaque(false);
 
-        // MINIMIZE
+        // ================= MINIMIZE =================
 
         PressableButton minimize =
                 createWindowButton(
@@ -152,7 +154,7 @@ public class ShopMainFrame extends JFrame {
                 e -> setState(JFrame.ICONIFIED)
         );
 
-        // MAXIMIZE
+        // ================= MAXIMIZE =================
 
         PressableButton maximize =
                 createWindowButton(
@@ -161,20 +163,22 @@ public class ShopMainFrame extends JFrame {
                         "#101312"
                 );
 
-                maximize.setFont(
+        maximize.setFont(
                 new Font(
                         "Arial",
                         Font.BOLD,
                         18
                 )
-
         );
+
         maximize.addActionListener(e -> {
 
             if (getExtendedState()
                     == JFrame.MAXIMIZED_BOTH) {
 
-                setExtendedState(JFrame.NORMAL);
+                setExtendedState(
+                        JFrame.NORMAL
+                );
 
             } else {
 
@@ -184,7 +188,7 @@ public class ShopMainFrame extends JFrame {
             }
         });
 
-        // CLOSE
+        // ================= CLOSE =================
 
         PressableButton close =
                 createWindowButton(
@@ -197,14 +201,16 @@ public class ShopMainFrame extends JFrame {
                 e -> dispose()
         );
 
-        buttonsPanel.add(minimize);
+        // ================= ADD BUTTONS =================
 
-        buttonsPanel.add(maximize);
+        buttonPanel.add(minimize);
 
-        buttonsPanel.add(close);
+        buttonPanel.add(maximize);
+
+        buttonPanel.add(close);
 
         topBar.add(
-                buttonsPanel,
+                buttonPanel,
                 BorderLayout.EAST
         );
 
@@ -247,9 +253,11 @@ public class ShopMainFrame extends JFrame {
         return button;
     }
 
-    // ================= WINDOW DRAG =================
+    // ================= WINDOW DRAGGING =================
 
-    private void enableDragging(JPanel topBar) {
+    private void enableWindowDragging(
+            JPanel topBar
+    ) {
 
         final Point[] mousePoint = {null};
 
@@ -257,14 +265,18 @@ public class ShopMainFrame extends JFrame {
                 new MouseAdapter() {
 
                     @Override
-                    public void mousePressed(MouseEvent e) {
+                    public void mousePressed(
+                            MouseEvent e
+                    ) {
 
                         mousePoint[0] =
                                 e.getPoint();
                     }
 
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(
+                            MouseEvent e
+                    ) {
 
                         if (e.getClickCount() == 2) {
 
@@ -289,7 +301,9 @@ public class ShopMainFrame extends JFrame {
                 new MouseMotionAdapter() {
 
                     @Override
-                    public void mouseDragged(MouseEvent e) {
+                    public void mouseDragged(
+                            MouseEvent e
+                    ) {
 
                         if (getExtendedState()
                                 == JFrame.MAXIMIZED_BOTH) {
@@ -300,8 +314,11 @@ public class ShopMainFrame extends JFrame {
                                 e.getLocationOnScreen();
 
                         setLocation(
-                                current.x - mousePoint[0].x,
-                                current.y - mousePoint[0].y
+                                current.x
+                                        - mousePoint[0].x,
+
+                                current.y
+                                        - mousePoint[0].y
                         );
                     }
                 });
@@ -309,33 +326,39 @@ public class ShopMainFrame extends JFrame {
 
     // ================= WINDOW RESIZE =================
 
-    private void enableResizing() {
+    private void enableWindowResize() {
 
         MouseAdapter resizeListener =
                 new MouseAdapter() {
 
                     @Override
-                    public void mouseMoved(MouseEvent e) {
+                    public void mouseMoved(
+                            MouseEvent e
+                    ) {
 
-                        Point p =
+                        Point point =
                                 SwingUtilities.convertPoint(
                                         e.getComponent(),
                                         e.getPoint(),
                                         ShopMainFrame.this
                                 );
 
-                        updateResizeCursor(p);
+                        updateResizeCursor(point);
                     }
 
                     @Override
-                    public void mousePressed(MouseEvent e) {
+                    public void mousePressed(
+                            MouseEvent e
+                    ) {
 
                         clickPoint =
                                 e.getLocationOnScreen();
                     }
 
                     @Override
-                    public void mouseDragged(MouseEvent e) {
+                    public void mouseDragged(
+                            MouseEvent e
+                    ) {
 
                         if (getExtendedState()
                                 == JFrame.MAXIMIZED_BOTH) {
@@ -348,41 +371,46 @@ public class ShopMainFrame extends JFrame {
                     }
                 };
 
-        addResizeListenerRecursively(
-                getContentPane(),
+        getRootPane().addMouseListener(
+                resizeListener
+        );
+
+        getRootPane().addMouseMotionListener(
                 resizeListener
         );
     }
 
     // ================= UPDATE CURSOR =================
 
-    private void updateResizeCursor(Point p) {
+    private void updateResizeCursor(
+            Point point
+    ) {
 
         int width = getWidth();
 
         int height = getHeight();
 
         boolean left =
-                p.x <= RESIZE_MARGIN;
+                point.x <= RESIZE_MARGIN;
 
         boolean right =
-                p.x >= width - RESIZE_MARGIN;
+                point.x >= width - RESIZE_MARGIN;
 
         boolean top =
-                p.y <= RESIZE_MARGIN;
+                point.y <= RESIZE_MARGIN;
 
         boolean bottom =
-                p.y >= height - RESIZE_MARGIN;
+                point.y >= height - RESIZE_MARGIN;
 
         resizeDirection = NONE;
 
-        // CORNERS
+        // ================= CORNERS =================
 
         if (top && left) {
 
             resizeDirection = NORTH_WEST;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.NW_RESIZE_CURSOR
                     )
@@ -393,7 +421,7 @@ public class ShopMainFrame extends JFrame {
 
             resizeDirection = NORTH_EAST;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.NE_RESIZE_CURSOR
                     )
@@ -404,7 +432,7 @@ public class ShopMainFrame extends JFrame {
 
             resizeDirection = SOUTH_WEST;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.SW_RESIZE_CURSOR
                     )
@@ -415,20 +443,20 @@ public class ShopMainFrame extends JFrame {
 
             resizeDirection = SOUTH_EAST;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.SE_RESIZE_CURSOR
                     )
             );
         }
 
-        // SIDES
+        // ================= SIDES =================
 
         else if (left) {
 
             resizeDirection = WEST;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.W_RESIZE_CURSOR
                     )
@@ -439,7 +467,7 @@ public class ShopMainFrame extends JFrame {
 
             resizeDirection = EAST;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.E_RESIZE_CURSOR
                     )
@@ -450,7 +478,7 @@ public class ShopMainFrame extends JFrame {
 
             resizeDirection = NORTH;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.N_RESIZE_CURSOR
                     )
@@ -461,7 +489,7 @@ public class ShopMainFrame extends JFrame {
 
             resizeDirection = SOUTH;
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getPredefinedCursor(
                             Cursor.S_RESIZE_CURSOR
                     )
@@ -470,7 +498,7 @@ public class ShopMainFrame extends JFrame {
 
         else {
 
-            setCursor(
+            getRootPane().setCursor(
                     Cursor.getDefaultCursor()
             );
         }
@@ -478,7 +506,9 @@ public class ShopMainFrame extends JFrame {
 
     // ================= RESIZE WINDOW =================
 
-    private void resizeWindow(Point dragPoint) {
+    private void resizeWindow(
+            Point dragPoint
+    ) {
 
         Rectangle bounds =
                 getBounds();
@@ -513,7 +543,8 @@ public class ShopMainFrame extends JFrame {
 
             case WEST:
 
-                if (bounds.width - dx >= MIN_WIDTH) {
+                if (bounds.width - dx
+                        >= MIN_WIDTH) {
 
                     bounds.x += dx;
 
@@ -524,7 +555,8 @@ public class ShopMainFrame extends JFrame {
 
             case NORTH:
 
-                if (bounds.height - dy >= MIN_HEIGHT) {
+                if (bounds.height - dy
+                        >= MIN_HEIGHT) {
 
                     bounds.y += dy;
 
@@ -535,14 +567,16 @@ public class ShopMainFrame extends JFrame {
 
             case NORTH_WEST:
 
-                if (bounds.width - dx >= MIN_WIDTH) {
+                if (bounds.width - dx
+                        >= MIN_WIDTH) {
 
                     bounds.x += dx;
 
                     bounds.width -= dx;
                 }
 
-                if (bounds.height - dy >= MIN_HEIGHT) {
+                if (bounds.height - dy
+                        >= MIN_HEIGHT) {
 
                     bounds.y += dy;
 
@@ -559,7 +593,8 @@ public class ShopMainFrame extends JFrame {
                                 bounds.width + dx
                         );
 
-                if (bounds.height - dy >= MIN_HEIGHT) {
+                if (bounds.height - dy
+                        >= MIN_HEIGHT) {
 
                     bounds.y += dy;
 
@@ -570,7 +605,8 @@ public class ShopMainFrame extends JFrame {
 
             case SOUTH_WEST:
 
-                if (bounds.width - dx >= MIN_WIDTH) {
+                if (bounds.width - dx
+                        >= MIN_WIDTH) {
 
                     bounds.x += dx;
 
@@ -606,29 +642,9 @@ public class ShopMainFrame extends JFrame {
 
         clickPoint = dragPoint;
     }
-
-    // ================= ADD LISTENERS RECURSIVELY =================
-
-    private void addResizeListenerRecursively(
-            Component component,
-            MouseAdapter listener
-    ) {
-
-        component.addMouseListener(listener);
-
-        component.addMouseMotionListener(listener);
-
-        if (component instanceof Container) {
-
-            for (Component child :
-                    ((Container) component)
-                            .getComponents()) {
-
-                addResizeListenerRecursively(
-                        child,
-                        listener
-                );
-            }
-        }
-    }
 }
+
+
+
+
+

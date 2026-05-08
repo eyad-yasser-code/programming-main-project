@@ -135,7 +135,7 @@ public class MiddleView extends JPanel {
         categoriesHolder.repaint();
     }
 
-    // Reverse delegation
+
 
     public void addToCart(Product product) {
         mainWindow.addToCart(product);
@@ -149,7 +149,7 @@ class ItemsHolder extends MyGradient
     public ItemsHolder(int startX, int startY, int endX, int endY,
                        float[] degrees, Color[] colors, int arc) {
         super(startX, startY, endX, endY, degrees, colors, arc);
-        // DESIGN: 5 columns for wider screens; generous gap; comfortable padding
+       
         this.setLayout(new GridLayout(0, 4, 40, 40));
         this.setBorder(new EmptyBorder(100, 80, 80, 80));
         this.setOpaque(false);
