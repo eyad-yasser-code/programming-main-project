@@ -54,7 +54,7 @@ public class CartWindow extends JPanel{
 
 
 
-    public CartWindow(ShopWindow shopWindow){
+    public CartWindow(ShopWindow shopWindow, CheckoutWindow checkoutWindow){
 
 
         
@@ -280,7 +280,7 @@ public class CartWindow extends JPanel{
         payBWrapper.add(credit);
 
 
-       paymentWrapper.add(payBWrapper);         
+       //paymentWrapper.add(payBWrapper);         
 
 
         

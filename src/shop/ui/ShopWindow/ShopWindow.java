@@ -70,7 +70,7 @@ public class ShopWindow extends JPanel{
 
         this.loginWrapper = new LoginWrapperWindow(this);
         this.homeWindow = new HomeWindow(this);
-        this.cartWindow = new CartWindow(this);
+        this.cartWindow = new CartWindow(this,checkoutWindow);
         this.checkoutWindow = new CheckoutWindow(this,cartWindow);
         this.adminWrapper = new AdminWrapper(this);
        
