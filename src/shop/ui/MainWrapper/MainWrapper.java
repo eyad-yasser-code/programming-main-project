@@ -10,8 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-
-
+import shop.ui.Data.User;
 //my imports 
 import shop.ui.Helper.*;
 import shop.ui.LogicHelper.Product;
@@ -56,7 +55,9 @@ public class MainWrapper extends JPanel {
 
        
         userGreetingLabel = new JLabel();
-
+        userGreetingLabel.setOpaque(false);
+        userGreetingLabel.setForeground(Color.WHITE);
+        userGreetingLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 
         wrapperBottom = new JPanel(new BorderLayout());
 
@@ -80,13 +81,20 @@ public class MainWrapper extends JPanel {
 
 
 
-        greetingLabel();//changing text
+        updateGreeting();//changing text
         //anytime mainWrapper shown or at construction I check if logged 
     }
 
     //  Helpers
     //=====================
 
+    public void refreshUI() {
+        updateGreeting();
+        wrapperTop.updateLoginState();
+        wrapperSide.updateLoginState();
+        revalidate();
+        repaint();
+    }
 
         //mainWrapper -> homeWindow 
         //click to hide
@@ -99,18 +107,14 @@ public class MainWrapper extends JPanel {
     
     
         // change greeting text
-        public void greetingLabel() {
-            userGreetingLabel.setOpaque(false);
-            userGreetingLabel.setForeground(Color.WHITE);
-            userGreetingLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+    
 
+        public void updateGreeting() {
             if (shopWindow.getIsLogged())
                 userGreetingLabel.setText("Hello, " + shopWindow.getUser().getFirstName() + " 👋");
             else
                 userGreetingLabel.setText("Please log in");
         }
-
-
 
 
     //  Getters
@@ -135,6 +139,9 @@ class WrapperTop extends JPanel
     private MyText searchField;     //help in searching logic
 
 
+    private PressableButton loginBtn;
+    private ShopWindow shopWindow;
+
     //panel for wrapperBottom for sidePanel
     //shopWindow for :-> homeWindow -> showcategorie
             //search in product with search text
@@ -146,7 +153,7 @@ class WrapperTop extends JPanel
     {
 
 
-
+        this.shopWindow=shopWindow;
 
         this.setLayout(new GridLayout(1, 3, 0, 0));
         this.setPreferredSize(new Dimension(0, 46));
@@ -220,16 +227,29 @@ class WrapperTop extends JPanel
 
         //login
         //=========
-        PressableButton login = new PressableButton("#159069", "#21c48a", 10);
-        login.setText("Login");
-        login.setFont(new Font("SansSerif", Font.BOLD, 12));
-        login.setPreferredSize(new Dimension(80, 32));
-        login.addActionListener(e -> {
-            shopWindow.showLoginWrapper();
-            revalidate();
-            repaint();
-        });
-        rightPanel.add(login);
+         loginBtn = new PressableButton("#159069", "#21c48a", 10);
+         updateLoginState();
+
+        loginBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
+        loginBtn.setPreferredSize(new Dimension(80, 32));
+        loginBtn.addActionListener(e -> {
+               
+                    if(shopWindow.getIsLogged()){
+                    shopWindow.setIsLogged(false);
+                    loginBtn.setText("Login");
+                    mainWrapper.refreshUI();
+                    }
+                    else{shopWindow.showLoginWrapper();}
+                    
+
+
+                    });
+
+        
+        
+
+
+        rightPanel.add(loginBtn);
 
         //cart
         //========
@@ -270,6 +290,14 @@ class WrapperTop extends JPanel
     //==========
     public void resetSearch() { searchField.resetText(); }
 
+    public void updateLoginState() {
+        if (shopWindow.getIsLogged())
+            loginBtn.setText("sign out");
+        else
+            loginBtn.setText("Login");
+    }
+
+
 }
 
 
@@ -292,7 +320,14 @@ class WrapperSide extends JPanel {
         Color.decode("#282828")
     };
 
+    private  PressableButton loginBtn;
+    private PressableButton delete;
+    private ShopWindow shopWindow;
+
     public WrapperSide(MainWindow mainWindow, MainWrapper mainWrapper, ShopWindow shopWindow) {
+
+
+        this.shopWindow=shopWindow;
 
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(260, 0));
@@ -324,13 +359,24 @@ class WrapperSide extends JPanel {
                 
                 
                 //  Login / Sign-in button 
-                PressableButton loginBtn = new PressableButton("#159069", "#21c48a", 10);
-                loginBtn.setText("🔑  Login / Sign in");
+                loginBtn= new PressableButton("#159069", "#21c48a", 10);
+                updateLoginState();
+
+               
                 loginBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
                 loginBtn.setMaximumSize(new Dimension(200, 36));
                 loginBtn.setPreferredSize(new Dimension(200, 36));
                 loginBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-                loginBtn.addActionListener(e -> shopWindow.showLoginWrapper());
+                loginBtn.addActionListener(e -> {
+                    
+                    if(shopWindow.getIsLogged()){
+                    shopWindow.setIsLogged(false);
+                    loginBtn.setText("🔑  Login / Sign in");
+                    mainWrapper.refreshUI();
+                    }
+                    else{shopWindow.showLoginWrapper();}
+                  
+                    });
 
 
                 // admin button
@@ -345,16 +391,72 @@ class WrapperSide extends JPanel {
 
 
 
+                //delete account 
+
+
+                delete = new PressableButton("#313131","#6e6e6e",10);
+                updateLoginState();
+                delete.setText("remove account");
+                delete.setFont(new Font("SansSerif", Font.BOLD, 10));
+                delete.setMaximumSize(new Dimension(200, 20));
+                delete.setPreferredSize(new Dimension(200, 20));
+                delete.setAlignmentX(Component.CENTER_ALIGNMENT);
+                delete.addActionListener(e -> {
+
+                  
+                
+                    int confirm = JOptionPane.showConfirmDialog(
+                            this,
+                            "Are you sure you want to delete your account?\nThis action cannot be undone.",
+                            "Confirm Delete",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                
+                    if (confirm == JOptionPane.YES_OPTION) {
+                
+                        User user = shopWindow.getUser();
+                
+                        shopWindow.deleteAccount(user);  
+                
+                        shopWindow.setIsLogged(false);
+                
+                        mainWrapper.resetSearch();
+                        mainWrapper.refreshUI();
+                        mainWrapper.panelVisible(false);
+                
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Account deleted successfully."
+                        );
+                    }
+                });
+
+
+
+
         cateWrapper.add(Box.createVerticalStrut(30));
         cateWrapper.add(category);
         cateWrapper.add(Box.createVerticalStrut(12));
         cateWrapper.add(loginBtn);
         cateWrapper.add(Box.createVerticalStrut(12));
         cateWrapper.add(adminBtn);
+        cateWrapper.add(Box.createVerticalStrut(12));
+        cateWrapper.add(delete);
 
         side.add(cateWrapper, BorderLayout.CENTER);
         wrapper.add(side, BorderLayout.CENTER);
         this.add(wrapper, BorderLayout.CENTER);
+    }
+
+    public void updateLoginState() {
+        if (shopWindow.getIsLogged())
+            loginBtn.setText("sign out");
+       
+            else{loginBtn.setText("Login");
+                 delete.setVisible(false);
+
+                 }
     }
 }
 

@@ -73,9 +73,10 @@ public class HomeWindow extends JPanel {
    
     public void resetSearch(){ mainWrapper.resetSearch(); } //exiting homeWindow will remove what is typed 
     
-    public void greetingLabel(){ mainWrapper.greetingLabel(); }//change from login to greeting
+    public void greetingLabel(){ mainWrapper.updateGreeting(); }//change from login to greeting
 
    
+    public void refreshUI(){mainWrapper.refreshUI();}
    
    
     //Adding (main)

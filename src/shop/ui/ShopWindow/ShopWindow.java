@@ -8,6 +8,7 @@ import shop.ui.AdminWrapper.AdminWrapper;
 import shop.ui.CartWindow.CartWindow;
 import shop.ui.CartWindow.CheckoutWindow;
 import shop.ui.Data.User;
+import shop.ui.Data.UsersDataBase;
 import shop.ui.HomeWindow.HomeWindow;
 
 import shop.ui.LogicHelper.*;
@@ -43,9 +44,9 @@ public class ShopWindow extends JPanel{
     private ArrayList<Category> categories;
     
 
-    private boolean isLogged = false;
+    private boolean isLogged = true;
     
-    private User user; // holde info for the current user, help in greetings
+    private User user= new User("eyad","yasser","eyadyasser@gmail.com","123");; // holde info for the current user, help in greetings
     
     //constructor
     
@@ -74,7 +75,8 @@ public class ShopWindow extends JPanel{
         this.adminWrapper = new AdminWrapper(this);
        
 
-        this.user= new User("","","","");
+        
+        UsersDataBase.addUser(user);
 
 
         File[] images = {
@@ -119,7 +121,7 @@ public class ShopWindow extends JPanel{
 
 
         this.add(cardPanel, BorderLayout.CENTER);
-       showAdminWrapper();
+       showHomeWindow();
 
     }
 
@@ -300,4 +302,20 @@ public class ShopWindow extends JPanel{
     public ArrayList<Category> getAllCategories(){return categories;}//used in adding category in admin
 
     public HomeWindow getHomeWindow(){return homeWindow;} //used in search as showing categories from homeWindow
+
+
+    public void deleteAccount(User user) {
+
+        if (user == null) return;
+    
+      
+        UsersDataBase.removeUser(user);
+    
+        isLogged = false;
+    
+        user = new User("Guest", "", "", "");
+    
+        showHomeWindow();
+    }
+
 }
