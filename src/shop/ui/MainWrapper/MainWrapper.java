@@ -321,7 +321,7 @@ class WrapperSide extends JPanel {
     };
 
     private  PressableButton loginBtn;
-    private PressableButton delete;
+    private PressableButton delete = new PressableButton("#313131","#6e6e6e",10);
     private ShopWindow shopWindow;
 
     public WrapperSide(MainWindow mainWindow, MainWrapper mainWrapper, ShopWindow shopWindow) {
@@ -394,7 +394,7 @@ class WrapperSide extends JPanel {
                 //delete account 
 
 
-                delete = new PressableButton("#313131","#6e6e6e",10);
+                
                 updateLoginState();
                 delete.setText("remove account");
                 delete.setFont(new Font("SansSerif", Font.BOLD, 10));

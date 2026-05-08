@@ -44,9 +44,9 @@ public class ShopWindow extends JPanel{
     private ArrayList<Category> categories;
     
 
-    private boolean isLogged = true;
+    private boolean isLogged = false;
     
-    private User user= new User("eyad","yasser","eyadyasser@gmail.com","123");; // holde info for the current user, help in greetings
+    private User user= new User("Guest","","","");; // holde info for the current user, help in greetings
     
     //constructor
     
