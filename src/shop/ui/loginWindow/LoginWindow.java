@@ -143,6 +143,7 @@ public class LoginWindow extends JPanel{
                  shopWindow.setUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
                  shopWindow.showHomeWindow();
                  shopWindow.refreshUI();
+                 shopWindow.showDelete(true);
                  resetText();
               }
             else 

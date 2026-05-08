@@ -322,4 +322,9 @@ public class ShopWindow extends JPanel{
         homeWindow.refreshUI();
     }
 
+
+    public void showDelete(boolean bool){
+        homeWindow.showDelete(bool);
+    }
+
 }

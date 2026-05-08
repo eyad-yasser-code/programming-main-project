@@ -95,6 +95,9 @@ public class MainWrapper extends JPanel {
         revalidate();
         repaint();
     }
+    public void showDelete(boolean bool){
+        wrapperSide.showDelete(bool);
+    }
 
         //mainWrapper -> homeWindow 
         //click to hide
@@ -295,6 +298,7 @@ class WrapperTop extends JPanel
             loginBtn.setText("sign out");
         else
             loginBtn.setText("Login");
+
     }
 
 
@@ -452,11 +456,23 @@ class WrapperSide extends JPanel {
     public void updateLoginState() {
         if (shopWindow.getIsLogged())
             loginBtn.setText("sign out");
+
+
+
+
+
+
+
        
             else{loginBtn.setText("Login");
                  delete.setVisible(false);
 
                  }
+    }
+
+
+    public void showDelete(boolean bool){
+        delete.setVisible(bool);
     }
 }
 

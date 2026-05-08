@@ -78,6 +78,7 @@ public class HomeWindow extends JPanel {
    
     public void refreshUI(){mainWrapper.refreshUI();}
    
+    
    
     //Adding (main)
     //==========================
@@ -143,7 +144,9 @@ public class HomeWindow extends JPanel {
 
 
 
-
+    public void showDelete(boolean bool){
+        mainWrapper.showDelete(bool);
+    }
 
 
     public void refreshUI1(){
