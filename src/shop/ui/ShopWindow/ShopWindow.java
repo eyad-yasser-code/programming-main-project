@@ -76,10 +76,10 @@ public class ShopWindow extends JPanel{
 
 
         File[] images = {
-            new File("src/images/laptop.PNG"),
-            new File("src/images/mouse.PNG"),
-            new File("src/images/microphone.PNG"),
-            new File("src/images/keyboard.PNG")
+            new File("programming-main-project/src/images/laptop.PNG"),
+            new File("programming-main-project/src/images/mouse.PNG"),
+            new File("programming-main-project/src/images/microphone.PNG"),
+            new File("programming-main-project/src/images/keyboard.PNG")
         };
         
        
