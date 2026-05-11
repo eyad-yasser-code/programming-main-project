@@ -5,7 +5,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import shop.ui.Data.ApiService;
 import shop.ui.Data.User;
-import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.MyText;
 import shop.ui.Helper.PressableButton;
 import shop.ui.ShopWindow.ShopWindow;

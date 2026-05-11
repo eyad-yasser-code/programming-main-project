@@ -74,6 +74,8 @@ public class ShopWindow extends JPanel{
             new File("programming-main-project/src/images/microphone.PNG"),
             new File("programming-main-project/src/images/keyboard.PNG")
         };
+
+        
 File basePath = new File("programming-main-project/src/images");
 
 ArrayList<String> products = ApiService.getProducts();

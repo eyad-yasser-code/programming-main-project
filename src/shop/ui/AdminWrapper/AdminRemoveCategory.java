@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 
 
 import javax.swing.BorderFactory;
@@ -18,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 
 import shop.ui.Data.ApiService;
 import shop.ui.LogicHelper.*;
-import shop.ui.Helper.MyGradient;
 import shop.ui.Helper.MyText;
 import shop.ui.Helper.PressableButton;
 import shop.ui.ShopWindow.ShopWindow;
